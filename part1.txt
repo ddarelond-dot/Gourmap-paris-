@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GourMap – trouve l’adresse parfaite en 3 clics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff7ee;--card:#fff;--ink:#21140a;--muted:#8a7765;--line:#f1e2d2;--acc:#ff4d2e;--sh:0 8px 24px rgba(120,60,10,.10);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#100b07;--card:#1c140d;--ink:#fff3e6;--muted:#b9a794;--line:#2d2218;--sh:0 8px 24px rgba(0,0,0,.4);color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:104px;-webkit-tap-highlight-color:transparent}
+h1,h2,h3,.logo{font-family:"Fraunces",Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);padding:10px 16px 8px}
+.top{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:24px;letter-spacing:-.5px}.logo span{color:var(--acc)}
+.ib{width:40px;height:40px;border-radius:50%;border:0;background:var(--card);box-shadow:var(--sh);font-size:18px}
+.ai{display:flex;gap:8px;margin-top:10px;background:var(--card);border-radius:28px;padding:5px 5px 5px 14px;box-shadow:var(--sh);border:1.5px solid var(--line)}
+.ai input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font-size:15px;outline:none}
+.ai button{border:0;background:linear-gradient(135deg,#ff7a45,#ff4d2e);color:#fff;border-radius:22px;padding:0 18px;font-weight:700}
+#ans{margin:6px 16px 0;padding:12px 14px;border-radius:14px;background:var(--card);box-shadow:var(--sh);font-size:14px;line-height:1.45;display:none}
+main{padding:0 0 20px}
+.hero{position:relative;overflow:hidden;margin:12px 16px;border-radius:26px;padding:26px 22px 24px;color:#fff;background:linear-gradient(135deg,#ff8a3d,#ff4d2e 55%,#e0245e);box-shadow:0 14px 30px rgba(255,77,46,.35)}
+.hero h1{font-size:30px;line-height:1.05;font-weight:800;position:relative}
+.hero p{margin-top:10px;font-size:14px;opacity:.95;position:relative;max-width:85%}
+.fl{position:absolute;font-size:54px;opacity:.9;animation:fl 5s ease-in-out infinite}
+.f1{right:12px;top:8px}.f2{right:70px;bottom:-6px;animation-delay:-1.5s;font-size:46px}.f3{right:-6px;bottom:34px;animation-delay:-3s;font-size:40px}
+@keyframes fl{50%{transform:translateY(-10px) rotate(8deg)}}
+@media(prefers-reduced-motion:reduce){.fl{animation:none}}
+h2{font-size:20px;margin:20px 16px 10px;font-weight:800}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
+.tile{position:relative;overflow:hidden;border:0;border-radius:22px;height:116px;padding:14px;text-align:left;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:var(--sh);display:flex;flex-direction:column;justify-content:flex-end}
+.tile b{font-size:16px;line-height:1.1;position:relative}.tile small{font-size:12px;opacity:.92;position:relative}
+.tile .te{position:absolute;right:-4px;top:-2px;font-size:62px;transform:rotate(-12deg);filter:drop-shadow(0 4px 6px rgba(0,0,0,.2))}
+.tile:active{transform:scale(.97)}
+.wide{grid-column:span 2;height:92px}
+.row{display:flex;gap:10px;overflow-x:auto;padding:4px 16px 8px;scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+.cc{flex:0 0 140px;text-align:left;background:var(--card);border:0;border-radius:18px;padding:8px;box-shadow:var(--sh)}
+.ct{height:92px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative}
+.rt{position:absolute;left:6px;bottom:6px;background:#fff;color:#21140a;font-size:12px;font-weight:700;border-radius:10px;padding:2px 7px}
+.cc b{display:block;font-size:14px;margin-top:8px;line-height:1.15}.cc small{color:var(--muted);font-size:12px}
+.crumb{display:flex;gap:6px;overflow-x:auto;padding:12px 16px 2px;scrollbar-width:none}
+.cp{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:6px 12px;font-size:13px;white-space:nowrap}
+.cp.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:6px 13px;font-size:13px;white-space:nowrap}
+.chip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.lbl{font-size:12px;color:var(--muted);padding:8px 16px 0;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.tiles2{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+.st{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);background:var(--card);border-radius:18px;padding:14px;text-align:left;box-shadow:var(--sh)}
+.st span{font-size:28px}.st b{font-size:14px;line-height:1.15;flex:1}.st small{color:var(--muted);font-size:12px}
+.st.on{border-color:var(--acc)}
+.bud{grid-column:span 2;display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);background:var(--card);border-radius:20px;padding:16px;box-shadow:var(--sh);text-align:left}
+.bud span{font-size:34px}.bud b{font-size:16px;display:block}.bud small{color:var(--muted);font-size:13px}
+.rh{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 0}
+.rh h2{margin:0;font-size:19px}
+.seg{display:flex;background:var(--line);border-radius:12px;padding:3px}
+.seg button{border:0;background:none;padding:6px 12px;border-radius:9px;font-size:13px}.seg button.on{background:var(--card);font-weight:700}
+.gmap{display:block;margin:10px 16px 0;text-align:center;border:1.5px dashed var(--line);border-radius:14px;padding:10px;font-size:13px;color:var(--muted);text-decoration:none}
+.pod{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px 16px 0}
+.big{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:var(--sh)}
+.big:first-child{grid-column:span 2}
+.bt{height:120px;position:relative;display:flex;align-items:center;justify-content:center;font-size:58px}
+.big:first-child .bt{height:150px;font-size:76px}
+.med{position:absolute;left:10px;top:8px;font-size:26px}
+.bb{padding:12px 14px 14px}.bb b{font-size:16px;display:block;line-height:1.15}
+.sm{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.35}.st2{color:#e6a700;font-weight:700}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.btn{border:0;border-radius:14px;padding:11px;font-size:14px;font-weight:700;text-align:center;text-decoration:none;background:var(--acc);color:#fff;display:block}
+.btn.alt{background:var(--line);color:var(--ink)}
+.list{padding:0 16px}
+.pl{display:flex;gap:12px;padding:12px 0;border:0;border-bottom:1px solid var(--line);width:100%;text-align:left;background:none}
+.ph{flex:0 0 64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.pl b{font-size:15px;display:block}.pl small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.map{position:relative;margin:12px 16px 0;border-radius:20px;overflow:hidden;box-shadow:var(--sh);background:#eef0ea}
+.map svg{display:block;width:100%;aspect-ratio:360/326;touch-action:none;cursor:grab}
+.mctl{position:absolute;right:8px;top:8px;display:flex;flex-direction:column;gap:6px}.mctl button{width:38px;height:38px;border-radius:10px;border:0;background:var(--card);font-size:18px;box-shadow:0 1px 5px #0003}
+.lg{position:absolute;left:8px;bottom:8px;background:#fffe;color:#21140a;border-radius:9px;padding:4px 9px;font-size:11px;display:flex;gap:9px;flex-wrap:wrap}.lg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:3px}
+.mini{margin:10px 16px 0;padding:14px;background:var(--card);border-radius:18px;box-shadow:var(--sh)}.mini b{display:block;font-size:16px}
+.modal{position:fixed;inset:0;background:rgba(20,10,0,.55);z-index:20;display:none;align-items:flex-end}.modal.open{display:flex}
+.sheet{background:var(--bg);width:100%;max-height:92%;overflow:auto;border-radius:26px 26px 0 0;padding:16px 16px 24px;position:relative}
+.sheet .ph{width:100%;height:130px;font-size:64px;margin-bottom:12px;border-radius:20px}
+.x{position:absolute;top:12px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:var(--card);z-index:2;box-shadow:var(--sh)}
+.sheet h3{font-size:24px;line-height:1.1;margin-bottom:6px}
+.info{font-size:14px;line-height:1.5;margin:7px 0}.info span{color:var(--muted)}
+.src{font-size:11px;color:var(--muted);text-align:center;padding:18px 20px 0;line-height:1.5}
+.empty{padding:30px 24px;text-align:center;color:var(--muted)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #2d6cdf;outline-offset:2px}
+:root[data-theme="dark"]{--bg:#100b07;--card:#1c140d;--ink:#fff3e6;--muted:#b9a794;--line:#2d2218;--sh:0 8px 24px rgba(0,0,0,.4);color-scheme:dark}
+@keyframes up{from{opacity:0;transform:translateY(12px)}}
+@keyframes sl{from{transform:translateY(40px);opacity:.4}}
+@keyframes sh{to{background-position:-200% 0}}
+#scr>*{animation:up .38s cubic-bezier(.2,.8,.2,1) both}
+#scr>*:nth-child(2){animation-delay:.04s}#scr>*:nth-child(3){animation-delay:.08s}#scr>*:nth-child(4){animation-delay:.12s}#scr>*:nth-child(n+5){animation-delay:.16s}
+.sheet{animation:sl .3s cubic-bezier(.2,.8,.2,1)}
+.sk{display:block;height:14px;border-radius:7px;margin:6px 0;background:linear-gradient(90deg,var(--line),var(--card),var(--line));background-size:200% 100%;animation:sh 1.1s linear infinite}
+.pl{content-visibility:auto;contain-intrinsic-size:auto 88px}
+.ph,.ct,.bt{position:relative;overflow:hidden}
+.more{display:block;margin:14px auto 0;border:0;background:var(--card);box-shadow:var(--sh);border-radius:20px;padding:11px 22px;font-weight:700}
+@media(prefers-reduced-motion:reduce){#scr>*,.sheet,.sk{animation:none}}
+header{background:var(--bg);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:saturate(1.5) blur(16px);-webkit-backdrop-filter:saturate(1.5) blur(16px)}
+nav#tabs{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:15;display:flex;background:var(--card);background:color-mix(in srgb,var(--card) 86%,transparent);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);border-radius:28px;padding:6px;box-shadow:0 12px 32px rgba(60,30,0,.25);border:1px solid var(--line)}
+nav#tabs button{flex:1;border:0;background:none;border-radius:22px;padding:8px 2px;font-size:11px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;transition:background .25s,color .25s}
+nav#tabs button i{font-style:normal;font-size:20px;transition:transform .3s cubic-bezier(.3,.7,.4,1.6)}
+nav#tabs button.on{background:linear-gradient(135deg,#ff7a45,#ff4d2e);color:#fff;font-weight:700}
+nav#tabs button.on i{transform:translateY(-1px) scale(1.15)}
+.greet{padding:14px 18px 0}.greet small{color:var(--muted);font-weight:700}.greet h1{font-size:30px;line-height:1.05;margin-top:2px}
+.mini-map{position:relative;display:block;width:calc(100% - 32px);margin:14px 16px 0;border:0;padding:0;border-radius:26px;overflow:hidden;box-shadow:var(--sh);background:#eef0ea;height:176px}
+.mini-map svg{width:100%;height:100%;display:block}
+.mm-cta{position:absolute;left:12px;bottom:12px;background:var(--card);border-radius:16px;padding:8px 13px;font-size:13px;font-weight:700;box-shadow:var(--sh)}
+.q{padding-top:14px}
+.sec{display:flex;align-items:baseline;justify-content:space-between;padding:0 16px}.sec h2{margin:22px 0 8px;padding:0}
+.hint{padding:0 16px;color:var(--muted);font-size:13px;margin:-4px 0 6px}
+.lnk{border:0;background:none;color:var(--acc);font-weight:700;font-size:13px}
+.dc{flex:0 0 152px;position:relative;text-align:left;border:0;border-radius:22px;padding:14px 12px 12px;color:#fff;background:linear-gradient(135deg,#ff8a3d,#e0245e);box-shadow:var(--sh);overflow:hidden;min-height:132px;display:flex;flex-direction:column;justify-content:flex-end}
+.dc:nth-child(2n){background:linear-gradient(135deg,#7c4dff,#e040fb)}.dc:nth-child(3n){background:linear-gradient(135deg,#00b4a6,#0072ff)}
+.dpb{position:absolute;left:10px;top:10px;background:#fff;color:#21140a;font-weight:800;font-size:15px;border-radius:12px;padding:3px 9px}
+.de{position:absolute;right:6px;top:2px;font-size:48px;transform:rotate(10deg);filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.dc b{font-size:14px;line-height:1.1}.dc small{font-size:11.5px;opacity:.92}
+.deal{display:flex;gap:12px;margin:0 16px 12px;background:var(--card);border-radius:24px;padding:14px;box-shadow:var(--sh)}
+.deal>div:last-child{flex:1;min-width:0}
+.deal .dp{flex:0 0 74px;align-self:flex-start;min-height:74px;border-radius:20px;background:linear-gradient(135deg,#ff8a3d,#e0245e);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px;text-align:center;line-height:1.05;padding:6px}
+.deal h3{font-size:16px;line-height:1.15;margin:2px 0}.deal p{font-size:13px;margin:4px 0;line-height:1.4}.deal small{color:var(--muted);font-size:12.5px;display:block}
+.fine{display:block;color:var(--muted);font-size:11.5px;line-height:1.35;margin-top:6px}
+.hdr2{padding:6px 16px 0}.hdr2 h2{margin:10px 0 2px;padding:0}.hdr2 p{color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:6px}
+.row2{display:flex;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.row2>div{flex:1;min-width:0}.row2 small{display:block;color:var(--muted);font-size:12px;margin-top:2px}.row2 .btn{padding:9px 12px;font-size:13px}
+.press:active,.tile:active,.cc:active,.dc:active,.pl:active,.big:active,.st:active,.bud:active{transform:scale(.97)}
+.cc,.dc,.tile,.big,.pl,.st,.bud,.chip{transition:transform .2s cubic-bezier(.3,.7,.4,1.4),box-shadow .2s,background .2s}
+.fa{width:62%;height:62%;filter:drop-shadow(0 4px 6px rgba(0,0,0,.2));position:relative}
+.ph .fa{width:70%;height:70%}.sheet .ph .fa{width:46%;height:92%}
+.map.big svg{aspect-ratio:360/430}
+.mapchips{padding-top:10px}
+@media(prefers-reduced-motion:reduce){nav#tabs button i,.press,.cc,.dc,.tile{transition:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="top"><div class="logo">Gour<span>Map</span></div><div style="display:flex;gap:8px"><button class="ib" id="thm" onclick="cycleTheme()" aria-label="Changer de thème">🌓</button><button class="ib" onclick="surprise()" aria-label="Surprends-moi">🎲</button></div></div>
+<div class="ai"><input id="q" placeholder="✨ « Anniv de mon fils de 6 ans », « poulet frit < 10 € »…" aria-label="Recherche IA" onkeydown="if(event.key==='Enter')ask()"><button onclick="ask()">Go</button></div>
+</header>
+<div id="ans"></div>
+<main id="scr"></main>
+<div class="src">Lieux, adresses, notes et horaires : Google Maps. Avis résumés avec mes mots ; photos et avis complets sur chaque fiche Google Maps. Plan indicatif, non à l’échelle.</div>
+<nav id="tabs" aria-label="Navigation"><button data-t="home" onclick="tab('home')"><i>🏠</i>Feed</button><button data-t="map" onclick="tab('map')"><i>🗺️</i>Carte</button><button data-t="deals" onclick="tab('deals')"><i>💸</i>Bons plans</button><button data-t="fav" onclick="tab('fav')"><i>❤️</i>Favoris</button></nav>
+<div class="modal" id="m"><div class="sheet" id="s"></div></div>
+<script>
+const RAW=`
+La Tradition|Restaurant|undefined|4.8|undefined|189 Av. du Président Wilson, 93210 Saint-Denis|undefined|48.91205|2.35755|0|
+La Passerelle|Restaurant|undefined|4.9|undefined|10 Quai du Châtelier, 93450 L’Île-Saint-Denis|undefined|48.92316|2.33192|0|
+Les Curieux|Restaurant|undefined|4.7|undefined|25 Rue du Landy, 93210 Saint-Denis|undefined|48.9153|2.36365|0|
+Restaurant AVA|Restaurant|undefined|4.5|undefined|10 Quai du Châtelier, 93450 L’Île-Saint-Denis|undefined|48.923|2.33193|0|
+Obun|Restaurant|undefined|4.7|undefined|11 Rue Gabriel Péri, 93200 Saint-Denis|undefined|48.93142|2.35595|0|
+L’Oasis du Sphinx|Restaurant|undefined|4.9|undefined|40 Rue Gabriel Péri, 93200 Saint-Denis|undefined|48.93318|2.3557|0|
+Café de France|Restaurant|undefined|4.3|undefined|224 Av. du Président Wilson, 93210 Saint-Denis|undefined|48.91501|2.35831|0|
+Naan N Curry|Restaurant|undefined|4.8|undefined|35 Rue Paul Bert, 93400 Saint-Ouen-sur-Seine|undefined|48.90167|2.33851|0|
+New Mahrajah Grill|Restaurant|undefined|4.2|undefined|16 Rue Jesse Owens, 93200 Saint-Denis|undefined|48.92538|2.36478|0|
+Thevy Mahal|Restaurant|undefined|4.2|undefined|246 Av. du Président Wilson, 93210 Saint-Denis|undefined|48.91689|2.35813|0|
+Chez Nous Grillades|Restaurant|undefined|4.6|undefined|24 Rue Gabriel Péri, 93200 Saint-Denis|undefined|48.93261|2.35574|0|
+Dream Sushi|Restaurant|undefined|4.7|undefined|4 Pl. des Pianos, 93200 Saint-Denis|undefined|48.91986|2.34315|0|
+Okane|Restaurant|undefined|4.6|undefined|62 Bd Ornano, 93200 Saint-Denis|undefined|48.91419|2.34401|0|
+Kyo|Restaurant|undefined|4.3|undefined|132 Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.90206|2.33032|0|
+Sushi Shop|Restaurant|undefined|4.6|undefined|10 bis Rue de l’Hippodrome, 93400 Saint-Ouen-sur-Seine|undefined|48.9129|2.32918|0|
+Mein Sushi|Restaurant|undefined|4.4|undefined|143 Av. du Président Wilson, 93210 Saint-Denis|undefined|48.90908|2.35778|0|
+Indiana Café|Restaurant|undefined|4.7|undefined|10 bis Rue de l’Hippodrome, 93400 Saint-Ouen-sur-Seine|undefined|48.91256|2.32888|0|
+Bouillon Pigalle|Restaurant|undefined|4.6|undefined|22 Bd de Clichy, 75018 Paris|undefined|48.88262|2.33742|0|
+Bouillon Julien|Restaurant|undefined|4.2|undefined|16 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87056|2.35323|0|
+Bouillon Chartier Gare de l’Est|Restaurant|undefined|4.5|undefined|5 Rue du 8 Mai 1945, 75010 Paris|undefined|48.87596|2.35878|0|
+Bouillon République|Restaurant|undefined|4.6|undefined|39 Bd du Temple, 75003 Paris|undefined|48.86611|2.36463|0|
+Bouillon Chartier Grands Boulevards|Restaurant|undefined|4.1|undefined|7 Rue du Faubourg Montmartre, 75009 Paris|undefined|48.87192|2.34303|0|
+Crousty One|Fast-food|undefined|4.4|undefined|64 Bd Victor Hugo, 93400 Saint-Ouen-sur-Seine|undefined|48.90938|2.32924|0|
+Bill’s Burger|Fast-food|undefined|4.6|undefined|3 Av. Michelet, 93400 Saint-Ouen-sur-Seine|undefined|48.91378|2.34449|0|
+Wesh Bro|Fast-food|undefined|4.9|undefined|67 Bd Ornano, 93200 Saint-Denis|undefined|48.91419|2.34455|0|
+Psk Chicken|Fast-food|undefined|4.5|undefined|2 Pl. d’Armes, 93400 Saint-Ouen-sur-Seine|undefined|48.91792|2.33186|0|
+Chicken Street|Fast-food|undefined|4.2|undefined|54 Av. Michelet, 93400 Saint-Ouen-sur-Seine|undefined|48.90889|2.34391|0|
+Chicken Spot|Fast-food|undefined|3.4|undefined|49 Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.90806|2.3327|0|
+Bloom Café|Goûter|undefined|4|undefined|9 All. de la Comtesse du Cayla, 93400 Saint-Ouen-sur-Seine|undefined|48.91315|2.32835|0|
+Le Roi et l’Oiseau|Goûter|undefined|4.2|undefined|41 Rue Gabriel Péri, 93200 Saint-Denis|undefined|48.9337|2.35555|0|
+Au royaume de l’oriental|Goûter|undefined|3.1|undefined|2 Rue Jules Joffrin, 93200 Saint-Denis|undefined|48.93726|2.35666|0|
+Best Cook|Fast-food|undefined|4.6|undefined|145 Av. de Saint-Ouen, 75018 Paris|undefined|48.89715|2.32858|0|
+7 Pizza|Restaurant|undefined|4.7|undefined|23 Rue des Rosiers, 93400 Saint-Ouen-sur-Seine|undefined|48.90672|2.33528|0|
+Napolitano|Restaurant|undefined|4.8|undefined|10 Pl. du Capitaine Glarner, 93400 Saint-Ouen-sur-Seine|undefined|48.90663|2.3269|0|
+Victoria Pizza|Restaurant|undefined|4.1|undefined|43 Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.90858|2.33289|0|
+L’Atelier Gabriel|Goûter|undefined|4.7|undefined|123 Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.9023|2.3308|0|
+Clem & Gwen|Goûter|undefined|4.3|undefined|11 Rue de l’Hippodrome, 93400 Saint-Ouen-sur-Seine|undefined|48.91256|2.32947|0|
+Boulangerie L’Audonienne|Goûter|undefined|4.3|undefined|12 Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.91105|2.33335|0|
+Maison Villers|Goûter|undefined|4.7|undefined|1 Av. de la Porte de Clignancourt, 75018 Paris|undefined|48.89827|2.34388|0|
+O’Splendide Traiteur Libanais|Restaurant|undefined|4.9|undefined|77 Av. Michelet, 93400 Saint-Ouen-sur-Seine|undefined|48.90622|2.34439|0|
+Beyrouth Sur Seine|Restaurant|undefined|4.8|undefined|47 Rue Albert Dhalenne, 93400 Saint-Ouen-sur-Seine|undefined|48.91546|2.33141|0|
+Le Comptoir Libanais|Restaurant|undefined|5|undefined|10 Rue de l’Hippodrome, 93400 Saint-Ouen-sur-Seine|undefined|48.91265|2.32895|0|
+Osaphir|Restaurant|undefined|4.7|undefined|52 Av. George Sand, 93210 Saint-Denis|undefined|48.91316|2.36575|0|
+Au Soleil du Vietnam|Restaurant|undefined|4.4|undefined|49 Rue du Dr Bauer, 93400 Saint-Ouen-sur-Seine|undefined|48.91044|2.33783|0|
+Camone|Restaurant|undefined|4.6|undefined|103 Rue Damrémont, 75018 Paris|undefined|48.89508|2.33729|0|
+Asian Cantine|Restaurant|undefined|4.9|undefined|34 Av. de Saint-Ouen, 75018 Paris|undefined|48.88929|2.32637|0|
+Thu-Thu|Restaurant|undefined|4.7|undefined|51 bis Rue Hermel, 75018 Paris|undefined|48.89468|2.34601|0|
+L’Oasis|Restaurant|undefined|4.4|undefined|124 Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.90278|2.33055|0|
+Amayya|Restaurant|undefined|4.5|undefined|44 Rue de Saint-Denis, 93400 Saint-Ouen-sur-Seine|undefined|48.91789|2.33254|0|
+Dar Djerba|Restaurant|undefined|4.5|undefined|10 Rue des Bateliers, 93400 Saint-Ouen-sur-Seine|undefined|48.9148|2.32458|0|
+Le Majâz|Restaurant|undefined|4.7|undefined|2 Pass. de l’Aqueduc, 93200 Saint-Denis|undefined|48.93653|2.35858|0|
+The 100% Frais|Fast-food|undefined|4.6|undefined|100 Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.90469|2.33117|0|
+Star Food|Fast-food|undefined|3.6|undefined|169-171 Av. du Président Wilson, 93210 Saint-Denis|undefined|48.91096|2.35763|0|
+O’Tacos|Fast-food|undefined|4.5|undefined|131 Av. de Saint-Ouen, 75017 Paris|undefined|48.89609|2.32827|0|
+Oziano 2|Fast-food|undefined|4.9|undefined|67 Rue Albert Dhalenne, 93400 Saint-Ouen-sur-Seine|undefined|48.91412|2.33304|0|
+Amorino Gelato|Goûter|undefined|3.9|undefined|4 Bd Gallieni, 92390 Villeneuve-la-Garenne|undefined|48.92542|2.32834|0|
+Au P’tit Crêpe|Goûter|undefined|4.5|undefined|25 Rue Saint-Denis, 75001 Paris|undefined|48.85966|2.34789|0|
+La Crème de Paris Notre-Dame|Goûter|undefined|4.8|undefined|1 Quai Saint-Michel, 75005 Paris|undefined|48.85305|2.34654|0|
+La Crème de Paris Montmartre|Goûter|undefined|4.3|undefined|4 Rue du Faubourg Montmartre, 75009 Paris|undefined|48.87171|2.34328|0|
+Kodawari Ramen Yokochō|Restaurant|undefined|4.5|undefined|29 Rue Mazarine, 75006 Paris|undefined|48.85463|2.3381|0|
+Gaijin Ramen Pigalle|Restaurant|undefined|4.8|undefined|40 Rue Jean-Baptiste Pigalle, 75009 Paris|undefined|48.88006|2.33455|0|
+Isshin Ramen|Restaurant|undefined|4.8|undefined|168 Rue Montmartre, 75002 Paris|undefined|48.87061|2.343|0|
+A Folé|Restaurant|undefined|4|undefined|169 Bd Victor Hugo, 93400 Saint-Ouen-sur-Seine|undefined|48.90376|2.32101|0|
+A La Bonne Sauce|Restaurant|undefined|4.8|undefined|29 Bd Anatole France, 93200 Saint-Denis|undefined|48.92719|2.35313|0|
+Le Forty|Restaurant|undefined|4.3|undefined|37 Rue Gabriel Péri, 93200 Saint-Denis|undefined|48.93352|2.35546|0|
+BK Restaurant|Restaurant|undefined|4.3|undefined|69 Rue Henri Barbusse, 93200 Saint-Denis|undefined|48.94214|2.37197|0|
+Chez Hélène|Goûter|undefined|4.7|undefined|89 Rue Duhesme, 75018 Paris|undefined|48.89448|2.34414|0|
+Harry’s Coffee|Goûter|undefined|4.9|undefined|91 Rue des Rosiers, 93400 Saint-Ouen-sur-Seine|undefined|48.9025|2.34202|0|
+Mignon Café|Goûter|undefined|4.7|undefined|67 Rue Caulaincourt, 75018 Paris|undefined|48.88966|2.33617|0|
+Au P’tit Curieux|Restaurant|undefined|4.8|undefined|27 Rue de Sambre-et-Meuse, 75010 Paris|undefined|48.87471|2.37268|0|
+L’Arlequin|Restaurant|undefined|4.9|undefined|33 Rue du Faubourg Saint-Martin, 75010 Paris|undefined|48.87038|2.35597|0|
+Louisette|Restaurant|undefined|4.6|undefined|8 Bd Saint-Denis, 75010 Paris|undefined|48.86951|2.35501|0|
+Les Rupins|Restaurant|undefined|4.6|undefined|35 Bd de Magenta, 75010 Paris|undefined|48.87188|2.3597|0|
+Orgueil|Restaurant|undefined|4.8|undefined|6 Rue Popincourt, 75011 Paris|undefined|48.8571|2.37772|0|
+Chez Sophie|Restaurant|undefined|4.9|undefined|11 Rue de Charonne, 75011 Paris|undefined|48.85272|2.37417|0|
+Les Cuivres|Restaurant|undefined|4.7|undefined|68 Av. de la République, 75011 Paris|undefined|48.86448|2.37761|0|
+Brasserie Martin|Restaurant|undefined|4.7|undefined|24 Rue Saint-Ambroise, 75011 Paris|undefined|48.86266|2.37868|0|
+L’Aubergeade|Restaurant|undefined|4.8|undefined|17 Rue Chaligny, 75012 Paris|undefined|48.84657|2.38349|0|
+ANCO|Restaurant|undefined|4.6|undefined|108 Rue de Bercy, 75012 Paris|undefined|48.83933|2.38064|0|
+Rencontres|Restaurant|undefined|4.9|undefined|67 Rue de Charenton, 75012 Paris|undefined|48.85028|2.37372|0|
+L’Ébauchoir|Restaurant|undefined|4.7|undefined|43-45 Rue de Cîteaux, 75012 Paris|undefined|48.84987|2.38114|0|
+Chez Trassoudaine|Restaurant|undefined|4.8|undefined|3 Pl. Nationale, 75013 Paris|undefined|48.8287|2.36515|0|
+Dame Augustine|Restaurant|undefined|4.8|undefined|32 Av. des Gobelins, 75013 Paris|undefined|48.83573|2.35228|0|
+Tadam|Restaurant|undefined|4.8|undefined|14 Rue du Jura, 75013 Paris|undefined|48.83711|2.35597|0|
+The Tree|Restaurant|undefined|4.7|undefined|13 Bd du Général Jean Simon, 75013 Paris|undefined|48.82656|2.38482|0|
+Chouchou|Restaurant|undefined|4.8|undefined|23 Bd de Sébastopol, 75001 Paris|undefined|48.85997|2.34872|0|
+Au Pied de Cochon|Restaurant|undefined|4.4|undefined|6 Rue Coquillière, 75001 Paris|undefined|48.86352|2.34372|0|
+Café de la Régence|Restaurant|undefined|4.4|undefined|167 Rue Saint-Honoré, 75001 Paris|undefined|48.86357|2.33451|0|
+Daimant Saint-Honoré|Restaurant|undefined|4.8|undefined|24 Pl. du Marché Saint-Honoré, 75001 Paris|undefined|48.86643|2.33211|0|
+La Mézéterie|Restaurant|undefined|4.8|undefined|2 Rue des Petits Carreaux, 75002 Paris|undefined|48.86642|2.3473|0|
+Dalia|Restaurant|undefined|4.7|undefined|93 Rue Montmartre, 75002 Paris|undefined|48.8679|2.34355|0|
+Mon Creme|Restaurant|undefined|4.6|undefined|64-66 Rue Montmartre, 75002 Paris|undefined|48.8657|2.34493|0|
+Le Marais Restaurant|Restaurant|undefined|4.6|undefined|47 Rue de Turbigo, 75003 Paris|undefined|48.86511|2.35401|0|
+La Banquette Marais|Restaurant|undefined|4.6|undefined|92 Rue de Turenne, 75003 Paris|undefined|48.86182|2.36469|0|
+Le Carreau|Restaurant|undefined|4.7|undefined|5 Rue de la Corderie, 75003 Paris|undefined|48.8652|2.36283|0|
+Bouch Marais|Restaurant|undefined|4.6|undefined|10 Rue Réaumur, 75003 Paris|undefined|48.865|2.35909|0|
+Le Ju’|Restaurant|undefined|4.8|undefined|16 Rue des Archives, 75004 Paris|undefined|48.85769|2.3548|0|
+Au Bourguignon du Marais|Restaurant|undefined|4.6|undefined|52 Rue François Miron, 75004 Paris|undefined|48.85544|2.35758|0|
+Fragola Marais|Restaurant|undefined|4.8|undefined|7 Rue Rambuteau, 75004 Paris|undefined|48.86024|2.35615|0|
+Chez Mademoiselle|Restaurant|undefined|4.6|undefined|16 Rue Charlemagne, 75004 Paris|undefined|48.85438|2.35998|0|
+Emma Duvéré|Goûter|undefined|4.8|undefined|41 Rue Sedaine, 75011 Paris|undefined|48.85701|2.37462|0|
+Cakepart|Goûter|undefined|4.9|undefined|77 Rue de Charonne, 75011 Paris|undefined|48.8539|2.38149|0|
+Plaisir d’équi’thé|Goûter|undefined|4.7|undefined|12 Bd Beaumarchais, 75011 Paris|undefined|48.85499|2.36901|0|
+Sweet Romance (Marché Beauvau)|Goûter|undefined|4.9|undefined|Pl. d’Aligre, 75012 Paris|undefined|48.84898|2.37775|0|
+Plan B Paris|Fast-food|undefined|4.8|undefined|3 Rue de Compiègne, 75010 Paris|undefined|48.87996|2.35344|0|
+Los Brothers|Fast-food|undefined|4.5|undefined|73 Rue Saint-Denis, 75001 Paris|undefined|48.8616|2.34903|0|
+Lüks Kebab|Fast-food|undefined|4.3|undefined|38 Rue de la Grange aux Belles, 75010 Paris|undefined|48.87728|2.36975|0|
+Nassim Rapide Kebab|Fast-food|undefined|4.5|undefined|74 Rue du Faubourg Poissonnière, 75010 Paris|undefined|48.87626|2.34882|0|
+Maison Blanche|Restaurant|undefined|4.6|undefined|21 Rue de la Huchette, 75005 Paris|undefined|48.85302|2.34543|0|
+La Pie Noir|Restaurant|undefined|4.8|undefined|5 Rue de la Montagne Sainte-Geneviève, 75005 Paris|undefined|48.84928|2.34887|0|
+Le Vieux Bistrot|Restaurant|undefined|4.7|undefined|54 Rue Mouffetard, 75005 Paris|undefined|48.84327|2.34945|0|
+Les Baux de Paris|Restaurant|undefined|4.7|undefined|71 Rue Mouffetard, 75005 Paris|undefined|48.84227|2.34983|0|
+Le Jardin Saint-Germain|Restaurant|undefined|4.9|undefined|9 Rue de l’Éperon, 75006 Paris|undefined|48.85265|2.34071|0|
+Côté Saint-Germain|Restaurant|undefined|4.6|undefined|150 Bd Saint-Germain, 75006 Paris|undefined|48.85317|2.33663|0|
+Brasserie des Prés|Restaurant|undefined|4.7|undefined|6 Cour du Commerce Saint-André, 75006 Paris|undefined|48.85295|2.3392|0|
+Le Bosquet Saint-Benoît|Restaurant|undefined|4.8|undefined|3 Rue Saint-Benoît, 75006 Paris|undefined|48.85536|2.33343|0|
+Francette|Restaurant|undefined|4.5|undefined|1 Port de Suffren, 75007 Paris|undefined|48.85878|2.2914|0|
+Madame Brasserie|Restaurant|undefined|4.1|undefined|Tour Eiffel, 1er étage, 75007 Paris|undefined|48.85842|2.2946|0|
+Amazonia Eiffel|Restaurant|undefined|4.7|undefined|33 Av. de Suffren, 75007 Paris|undefined|48.85505|2.29508|0|
+Le Jules Verne|Restaurant|undefined|4.4|undefined|Tour Eiffel, 2e étage, 75007 Paris|undefined|48.85837|2.29448|0|
+L’Alsace|Restaurant|undefined|4.6|undefined|39 Av. des Champs-Élysées, 75008 Paris|undefined|48.86998|2.30577|0|
+Le Drugstore|Restaurant|undefined|4.6|undefined|133 Av. des Champs-Élysées, 75008 Paris|undefined|48.87252|2.29706|0|
+Le Carré Élysée|Restaurant|undefined|4.8|undefined|49 Av. Franklin D. Roosevelt, 75008 Paris|undefined|48.87011|2.30988|0|
+Ma Dame|Restaurant|undefined|4.7|undefined|14 Rue de Marignan, 75008 Paris|undefined|48.86867|2.30654|0|
+Le Patio Opéra|Restaurant|undefined|4.4|undefined|5 Rue Meyerbeer, 75009 Paris|undefined|48.87177|2.33337|0|
+Opera 9|Restaurant|undefined|4.9|undefined|4 bis Rue de Châteaudun, 75009 Paris|undefined|48.87587|2.34197|0|
+Le P’tit Piano|Restaurant|undefined|4.8|undefined|26 Rue Cadet, 75009 Paris|undefined|48.87565|2.34365|0|
+CoCo|Restaurant|undefined|3.8|undefined|Opéra Garnier, Pl. Jacques Rouché, 75009 Paris|undefined|48.87189|2.33242|0|
+Le Petit Plaisir|Restaurant|undefined|4.8|undefined|15 Rue des Suisses, 75014 Paris|undefined|48.83031|2.3138|0|
+Les Artistes|Restaurant|undefined|4.6|undefined|60 Rue Didot, 75014 Paris|undefined|48.82965|2.31767|0|
+Chez Alphonse|Restaurant|undefined|4.6|undefined|16 Rue Alphonse Daudet, 75014 Paris|undefined|48.82687|2.32709|0|
+L’Impératif|Restaurant|undefined|4.6|undefined|135 Bd Brune, 75014 Paris|undefined|48.82503|2.31835|0|
+Le Panna Cotta|Restaurant|undefined|4.7|undefined|9 Rue Bélidor, 75017 Paris|undefined|48.88019|2.28561|0|
+Les Demoiselles|Restaurant|undefined|4.6|undefined|23 Rue Léon Jost, 75017 Paris|undefined|48.88127|2.30175|0|
+Chez Gabrielle|Restaurant|undefined|4.8|undefined|7 Rue de l’Étoile, 75017 Paris|undefined|48.87674|2.29615|0|
+Le Paris 17|Restaurant|undefined|4.7|undefined|41 Rue Guersant, 75017 Paris|undefined|48.88196|2.28857|0|
+Musa Belleville|Restaurant|undefined|4.9|undefined|82 Bd de Belleville, 75020 Paris|undefined|48.86996|2.37984|0|
+Ostara Belleville|Restaurant|undefined|4.9|undefined|39 Rue Ramponeau, 75020 Paris|undefined|48.87154|2.38083|0|
+Paloma|Restaurant|undefined|4.6|undefined|93 Rue Julien Lacroix, 75020 Paris|undefined|48.87229|2.38227|0|
+Vieux Belleville|Restaurant|undefined|4.6|undefined|12 Rue des Envierges, 75020 Paris|undefined|48.8717|2.38634|0|
+La Luisa|Restaurant|undefined|4.9|undefined|4 Av. Paul-Déroulède, 94300 Vincennes|undefined|48.8491|2.45458|0|
+Bistrot Ben et Kei|Restaurant|undefined|4.9|undefined|19 Av. Georges Clemenceau, 94300 Vincennes|undefined|48.84892|2.42292|0|
+La Cantine Arkose|Restaurant|undefined|4.9|undefined|33 Rue du Progrès, 93100 Montreuil|undefined|48.85163|2.41928|0|
+Le Bouche à Oreille|Restaurant|undefined|4.5|undefined|26 Rue Georges Huchon, 94300 Vincennes|undefined|48.84888|2.42212|0|
+Papilla|Restaurant|undefined|4.6|undefined|58 Av. du Général Leclerc, 92100 Boulogne-Billancourt|undefined|48.83226|2.23831|0|
+Mano|Restaurant|undefined|4.8|undefined|46 Rue de l’Ancienne Mairie, 92100 Boulogne-Billancourt|undefined|48.8383|2.234|0|
+L’Usine de Boulogne|Restaurant|undefined|4.8|undefined|60 Bd de la République, 92100 Boulogne-Billancourt|undefined|48.83281|2.24858|0|
+Bonnotte|Restaurant|undefined|4.8|undefined|1 Rue de Billancourt, 92100 Boulogne-Billancourt|undefined|48.84454|2.23463|0|
+L’Abreuvoir|Restaurant|undefined|4.6|undefined|24 Rue du Dr Finlay, 75015 Paris|undefined|48.85194|2.28893|0|
+Kraft La Bonne Table|Goûter|undefined|4.7|undefined|37 Rue du Hameau, 75015 Paris|undefined|48.83369|2.28702|0|
+Bistrot Le Dôme|Restaurant|undefined|4.8|undefined|6 Rue du Hameau, 75015 Paris|undefined|48.83549|2.28927|0|
+Restaurant Biscotte|Restaurant|undefined|4.9|undefined|22 Rue Desnouettes, 75015 Paris|undefined|48.83616|2.29121|0|
+Boulangerie Maison Loquer|Goûter|undefined|4.8|undefined|65 Rue des Entrepreneurs, 75015 Paris|undefined|48.84523|2.28944|0|
+Boulangerie L’Équilibre|Goûter|undefined|4.5|undefined|108 Rue Blomet, 75015 Paris|undefined|48.84061|2.29936|0|
+Boulangerie Pâtisserie du Théâtre|Goûter|undefined|4.8|undefined|100 Rue du Théâtre, 75015 Paris|undefined|48.84658|2.29396|0|
+Tacos Vaugirard|Fast-food|undefined|4.8|undefined|8 Rue d’Alleray, 75015 Paris|undefined|48.83845|2.30076|0|
+O’Tacos Tour Eiffel|Fast-food|undefined|4.4|undefined|105 Bd de Grenelle, 75015 Paris|undefined|48.84956|2.2972|0|
+XV Burger|Fast-food|undefined|4.8|undefined|179 Rue de Vaugirard, 75015 Paris|undefined|48.84304|2.31334|0|
+Le Comptoir Foch|Restaurant|undefined|4.7|undefined|176 Rue de la Pompe, 75016 Paris|undefined|48.87114|2.28364|0|
+Le Bois|Restaurant|undefined|4.4|undefined|29 Rue Bois le Vent, 75016 Paris|undefined|48.85759|2.274|0|
+Le petit Chaillot|Restaurant|undefined|4.8|undefined|7 Av. Pierre 1er de Serbie, 75116 Paris|undefined|48.8656|2.29519|0|
+La Petite Tour|Restaurant|undefined|4.7|undefined|11 Rue de la Tour, 75016 Paris|undefined|48.85914|2.28314|0|
+Boulangerie Sainte Périne|Goûter|undefined|4.7|undefined|118 Av. de Versailles, 75016 Paris|undefined|48.84267|2.26839|0|
+O’Tacos Versailles|Fast-food|undefined|4.3|undefined|11 Av. de Versailles, 75016 Paris|undefined|48.8505|2.27747|0|
+Café Dose|Goûter|undefined|4.7|undefined|82 Pl. du Dr Félix Lobligeois, 75017 Paris|undefined|48.88709|2.3179|0|
+Cactus Coffee & Brunch|Goûter|undefined|4.8|undefined|59 Rue Sauffroy, 75017 Paris|undefined|48.8934|2.32242|0|
+Chez Marie|Restaurant|undefined|4.8|undefined|22 Rue Lepic, 75018 Paris|undefined|48.88495|2.33414|0|
+Sacrée Fleur Montmartre|Restaurant|undefined|4.8|undefined|50 Rue de Clignancourt, 75018 Paris|undefined|48.88762|2.34799|0|
+Le Poulbot|Restaurant|undefined|4.7|undefined|3 Rue Poulbot, 75018 Paris|undefined|48.88693|2.33997|0|
+L’Almanach Montmartre|Restaurant|undefined|4.8|undefined|35 Rue Ramey, 75018 Paris|undefined|48.88906|2.34631|0|
+P1 Bouche|Goûter|undefined|4.9|undefined|151 bis Rue Marcadet, 75018 Paris|undefined|48.89124|2.33851|0|
+Botza|Restaurant|undefined|4.7|undefined|86 Rue Botzaris, 75019 Paris|undefined|48.87941|2.38952|0|
+Chez Mémé|Restaurant|undefined|4.7|undefined|5 Rue du Général Brunet, 75019 Paris|undefined|48.88003|2.38991|0|
+La Terrasse|Restaurant|undefined|4.6|undefined|41 Av. de Laumière, 75019 Paris|undefined|48.88487|2.37941|0|
+La Forge|Restaurant|undefined|4.7|undefined|26 Av. Mathurin Moreau, 75019 Paris|undefined|48.87824|2.3738|0|
+Döni Berliner|Fast-food|undefined|4.8|undefined|17 Av. Secrétan, 75019 Paris|undefined|48.88205|2.37185|0|
+Gyros Paris 19|Fast-food|undefined|4.9|undefined|48 Rue Cesária Évora, 75019 Paris|undefined|48.89778|2.37552|0|
+Orient dürüm|Fast-food|undefined|4.8|undefined|4 Rue Mathis, 75019 Paris|undefined|48.89073|2.37623|0|
+Istanbul Gourmand|Fast-food|undefined|3|undefined|206 Av. Jean Jaurès, 75019 Paris|undefined|48.88848|2.39269|0|
+Le Jardin de Mademoiselle|Goûter|undefined|4.6|undefined|69 bis Rue Saint-Dominique, 75007 Paris|undefined|48.85986|2.31055|0|
+The Tea Caddy|Goûter|undefined|4.2|undefined|14 Rue Saint-Julien le Pauvre, 75005 Paris|undefined|48.85234|2.34684|0|
+Le Tê|Goûter|undefined|4.6|undefined|41 bis Rue de Montpensier, 75001 Paris|undefined|48.86613|2.33737|0|
+Camelia Coffee Shop et salon de thé|Goûter|undefined|4.6|undefined|12 Rue Dupetit-Thouars, 75003 Paris|undefined|48.86549|2.36198|0|
+Kozy Lafayette|Goûter|undefined|4.8|undefined|46 Rue La Fayette, 75009 Paris|undefined|48.87478|2.34014|0|
+Café Marlette|Goûter|undefined|4.6|undefined|51 Rue des Martyrs, 75009 Paris|undefined|48.88022|2.3402|0|
+Papilles|Goûter|undefined|4.7|undefined|77 Rue Marguerite de Rochechouart, 75009 Paris|undefined|48.88165|2.34645|0|
+Kozy Petit Pont|Goûter|undefined|4.8|undefined|6 Rue du Petit Pont, 75005 Paris|undefined|48.85241|2.34628|0|
+Moka Brunch & Coffee|Goûter|undefined|4.9|undefined|11 Rue du Colisée, 75008 Paris|undefined|48.87066|2.30793|0|
+Le Beef Steakhouse|Restaurant|undefined|4.3|undefined|33 Rue des Rosiers, 75004 Paris|undefined|48.8578|2.358|0|
+Beef Club & Co|Restaurant|undefined|4.6|undefined|8 Rue Coquillière, 75001 Paris|undefined|48.86357|2.34364|0|
+La Maison de l’Aubrac|Restaurant|undefined|4.5|undefined|37 Rue Marbeuf, 75008 Paris|undefined|48.86962|2.3052|0|
+À Côté|Restaurant|undefined|4.6|undefined|16 Rue La Fayette, 75009 Paris|undefined|48.8734|2.33503|0|
+Huge|Fast-food|undefined|5|undefined|24 Rue Godefroy Cavaignac, 75011 Paris|undefined|48.85539|2.38119|0|
+District Burger|Fast-food|undefined|4.6|undefined|64 Rue Sedaine, 75011 Paris|undefined|48.85802|2.3774|0|
+Bill’s Burger Oberkampf|Fast-food|undefined|4.6|undefined|126 Rue Oberkampf, 75011 Paris|undefined|48.86618|2.38002|0|
+Sold Out Burger|Fast-food|undefined|4.7|undefined|2 Rue Lucien Sampaix, 75010 Paris|undefined|48.87072|2.35977|0|
+Sucre Glace|Goûter|undefined|4.7|undefined|61 Quai de Valmy, 75010 Paris|undefined|48.87105|2.36495|0|
+Une Glace à Paris|Goûter|undefined|4.4|undefined|15 Rue Sainte-Croix de la Bretonnerie, 75004 Paris|undefined|48.85812|2.35633|0|
+Le Glacier de Notre-Dame|Goûter|undefined|4.8|undefined|20 Rue Domat, 75005 Paris|undefined|48.85096|2.34673|0|
+Bältis Artisan Glacier|Goûter|undefined|4.7|undefined|54 Rue Tiquetonne, 75002 Paris|undefined|48.86486|2.34665|0|
+Bontemps|Goûter|undefined|4.4|undefined|57 Rue de Bretagne, 75003 Paris|undefined|48.86389|2.36064|0|
+Trà Art|Goûter|undefined|4.8|undefined|34 bis Rue Bichat, 75010 Paris|undefined|48.87141|2.36822|0|
+Le Loir dans la Théière|Goûter|undefined|4.3|undefined|3 Rue des Rosiers, 75004 Paris|undefined|48.85623|2.36108|0|
+Comme à Lisbonne|Goûter|undefined|4.6|undefined|37 Rue du Roi de Sicile, 75004 Paris|undefined|48.85667|2.35634|0|
+Adam et Ève Café|Restaurant|undefined|4.8|undefined|41 Rue Saint-Honoré, 75001 Paris|undefined|48.86079|2.34548|0|
+Wild & The Moon|Restaurant|undefined|4.5|undefined|25 Rue des Gravilliers, 75003 Paris|undefined|48.86383|2.35653|0|
+The Friendly Kitchen|Restaurant|undefined|4.8|undefined|8 Rue Popincourt, 75011 Paris|undefined|48.85722|2.37762|0|
+Urban Greener|Restaurant|undefined|4.8|undefined|30 Rue Muller, 75018 Paris|undefined|48.88654|2.34549|0|
+Joayo 13|Restaurant|undefined|4.5|undefined|44 Av. de Choisy, 75013 Paris|undefined|48.82265|2.36292|0|
+Namoo|Restaurant|undefined|4.4|undefined|125 Rue de Tolbiac, 75013 Paris|undefined|48.82621|2.36166|0|
+Dannbi|Restaurant|undefined|4.7|undefined|64 Rue Cantagrel, 75013 Paris|undefined|48.8276|2.37213|0|
+Mugunghwa|Restaurant|undefined|4.7|undefined|128 Rue de Tolbiac, 75013 Paris|undefined|48.82627|2.35906|0|
+La Crêperie Bretonne|Goûter|undefined|4.5|undefined|56 Rue du Montparnasse, 75014 Paris|undefined|48.842|2.32535|0|
+Numidia 20e|Restaurant|undefined|4.7|undefined|126 Rue d’Avron, 75020 Paris|undefined|48.853|2.40853|0|
+Numidia 11e|Restaurant|undefined|4.9|undefined|7 Bd de Belleville, 75011 Paris|undefined|48.86759|2.38202|0|
+Chez Younice|Restaurant|undefined|4.7|undefined|13 Rue d’Avron, 75020 Paris|undefined|48.85162|2.39927|0|
+La Grilladz|Restaurant|undefined|3.9|undefined|53 Bd de Belleville, 75011 Paris|undefined|48.86964|2.37945|0|
+Chēz Coffee & Brunch|Goûter|undefined|4.4|undefined|38 Rue de Sévigné, 75003 Paris|undefined|48.85719|2.36331|0|
+La Petite Bleue|Goûter|undefined|4.7|undefined|13 Rue Auber, 75009 Paris|undefined|48.87271|2.3288|0|
+Baguett’s Café Molière|Goûter|undefined|4.7|undefined|30 Rue de Richelieu, 75001 Paris|undefined|48.86537|2.3369|0|
+Séson|Restaurant|undefined|4.5|undefined|Av. des Géomètres, 93300 Aubervilliers|undefined|48.90367|2.36818|0|
+Casa Rosa|Restaurant|undefined|4.8|undefined|212 Bd Macdonald, 75019 Paris|undefined|48.89891|2.37255|0|
+Le Clos Aubervilliers|Restaurant|undefined|4.7|undefined|28 Rue Waldeck Rochet, 93300 Aubervilliers|undefined|48.9072|2.36717|0|
+Le Restaurant de la Commune|Restaurant|undefined|4.6|undefined|2 Rue Édouard Poisson, 93300 Aubervilliers|undefined|48.91076|2.38362|0|
+Marché couvert Saint-Quentin|Marché|undefined|4.5|undefined|85 bis Bd de Magenta, 75010 Paris|undefined|48.87696|2.35512|0|
+Marché Alimentaire Saint-Germain|Marché|undefined|4.3|undefined|4-6 Rue Lobineau, 75006 Paris|undefined|48.85186|2.33626|0|
+Marché Ottino|Marché|undefined|4|undefined|6-8 Rue Alfred Ottino, 93400 Saint-Ouen-sur-Seine|undefined|48.90442|2.33242|0|
+Marché de Landy|Marché|undefined|4.1|undefined|Saint-Ouen-sur-Seine 93400|undefined|48.91748|2.33289|0|
+Marché de la Plaine|Marché|undefined|4.1|undefined|28 Av. de la Métallurgie, 93210 Saint-Denis|undefined|48.90911|2.36308|0|
+Marché Ordener|Marché|undefined|4.1|undefined|152-190 Rue Ordener, 75018 Paris|undefined|48.89363|2.33709|0|
+Marché Ornano|Marché|undefined|3.9|undefined|Bd Ornano, 75018 Paris|undefined|48.89469|2.34702|0|
+Le Food Market|Marché|undefined|4|undefined|1 Bd de Belleville, 75020 Paris|undefined|48.86726|2.38256|0|
+Communale Saint-Ouen|Marché|undefined|4.4|undefined|10 bis Rue de l’Hippodrome, 93400 Saint-Ouen-sur-Seine|undefined|48.91294|2.32926|0|
+Food Court Galeries Lafayette Champs-Élysées|Marché|undefined|3.8|undefined|60 Av. des Champs-Élysées, 75008 Paris|undefined|48.87045|2.3063|0|
+KFC Stade de France|Fast-food|undefined|4.1|undefined|23 Av. Jules Rimet, 93200 Saint-Denis|undefined|48.92395|2.36261|0|
+KFC Bd Ney|Fast-food|undefined|3.9|undefined|35 Bd Ney, 75018 Paris|undefined|48.89775|2.34404|0|
+KFC Barbès|Fast-food|undefined|3.4|undefined|46 Bd Barbès, 75018 Paris|undefined|48.88726|2.34996|0|
+KFC Pigalle|Fast-food|undefined|4.1|undefined|16 Bd de Clichy, 75009 Paris|undefined|48.88253|2.33816|0|
+McDonald’s Saint-Ouen Gabriel Péri|Fast-food|undefined|3.2|undefined|65 bis Av. Gabriel Péri, 93400 Saint-Ouen-sur-Seine|undefined|48.90612|2.33209|0|
+McDonald’s Saint-Denis Stade de France|Fast-food|undefined|3.7|undefined|2 Rue des Trémies, 93200 Saint-Denis|undefined|48.92146|2.36302|0|
+McDonald’s Ornano|Fast-food|undefined|3.6|undefined|77 Bd Ornano, 75018 Paris|undefined|48.89727|2.34462|0|
+McDonald’s Pigalle rue d’Orsel|Fast-food|undefined|3.2|undefined|2 Rue d’Orsel, 75018 Paris|undefined|48.8839|2.34691|0|
+McDonald’s Avenue de Clichy|Fast-food|undefined|3.6|undefined|57 Av. de Clichy, 75017 Paris|undefined|48.88752|2.32514|0|
+McDonald’s Les Halles rue Berger|Fast-food|undefined|3.6|undefined|12 Rue Berger, 75001 Paris|undefined|48.86097|2.34824|0|
+McDonald’s Bastille|Fast-food|undefined|3.5|undefined|4 Bd Richard Lenoir, 75011 Paris|undefined|48.85394|2.37|0|
+Burger King Saint-Ouen|Fast-food|undefined|4.5|undefined|45 Bd Jean Jaurès, 93400 Saint-Ouen-sur-Seine|undefined|48.91227|2.33482|0|
+Burger King Barbès|Fast-food|undefined|3.8|undefined|3 Bd Barbès, 75018 Paris|undefined|48.88392|2.34922|0|
+Burger King Avenue de Clichy|Fast-food|undefined|3.9|undefined|187 Av. de Clichy, 75017 Paris|undefined|48.89411|2.31362|0|
+Burger King Gare du Nord|Fast-food|undefined|4.2|undefined|25 Rue de Dunkerque, 75010 Paris|undefined|48.87981|2.35425|0|
+Burger King Les Halles|Fast-food|undefined|4.1|undefined|2 Rue Pierre Lescot, 75001 Paris|undefined|48.86117|2.34796|0|
+Burger King Strasbourg-Saint-Denis|Fast-food|undefined|4|undefined|93 Bd de Strasbourg, 75010 Paris|undefined|48.87611|2.35745|0|
+KFB Saint-Denis|Fast-food|undefined|4.8|undefined|8 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.9305|2.35531|0|
+KFB Crispy & Box Paris 1|Fast-food|undefined|4.9|undefined|125 Rue de Rivoli, 75001 Paris|undefined|48.86789|2.3404|0|
+Chicken Street Cheese Naan Paris 2|Fast-food|undefined|4.8|undefined|89 Rue Montorgueil, 75002 Paris|undefined|48.86857|2.35518|0|
+Wesh Bro Korean Fried Halal Paris 3|Fast-food|undefined|4.9|undefined|37 Rue de Bretagne, 75003 Paris|undefined|48.85424|2.35198|0|
+Smash Halal Burger Co. Paris 4|Fast-food|undefined|4.8|undefined|6 Rue des Rosiers, 75004 Paris|undefined|48.85484|2.34619|0|
+Dumbo Style Smash Paris 5|Fast-food|undefined|4.7|undefined|66 Rue Mouffetard, 75005 Paris|undefined|48.84669|2.34962|0|
+Nach & Tacos Loaded Box Paris 6|Fast-food|undefined|4.7|undefined|73 Bd Saint-Germain, 75006 Paris|undefined|48.85661|2.34146|0|
+O'Tacos Supreme Paris 7|Fast-food|undefined|4.4|undefined|98 Rue Saint-Dominique, 75007 Paris|undefined|48.86086|2.31015|0|
+Berliner Kebab Gourmet Halal Paris 8|Fast-food|undefined|4.8|undefined|150 Av. des Champs-Élysées, 75008 Paris|undefined|48.86985|2.32345|0|
+Mezzé & Shawarma Al-Basha Paris 9|Restaurant|undefined|4.7|undefined|75 Rue des Martyrs, 75009 Paris|undefined|48.87472|2.34527|0|
+Le Royal Couscous & Grillades Paris 10|Restaurant|undefined|4.7|undefined|125 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88197|2.35707|0|
+Tajine d'Or & Pâtisseries Paris 11|Restaurant|undefined|4.8|undefined|85 Rue Oberkampf, 75011 Paris|undefined|48.85699|2.38303|0|
+Taj Mahal & Tandoori Naan Paris 12|Restaurant|undefined|4.7|undefined|18 Rue de Charenton, 75012 Paris|undefined|48.83704|2.4036|0|
+Afro Grill & Thiéboudienne Paris 13|Restaurant|undefined|4.8|undefined|113 Av. de Choisy, 75013 Paris|undefined|48.81796|2.35942|0|
+Bouillon Ancien de Paris Paris 14|Restaurant|undefined|4.5|undefined|142 Rue Daguerre, 75014 Paris|undefined|48.83254|2.31649|0|
+Pizzeria Napoletana Forno Paris 15|Restaurant|undefined|4.7|undefined|159 Rue de Vaugirard, 75015 Paris|undefined|48.83672|2.2796|0|
+Ramen Bar & Gyoza House Paris 16|Restaurant|undefined|4.6|undefined|161 Rue de Passy, 75016 Paris|undefined|48.86653|2.2744|0|
+Pho Saigon Canteen Paris 17|Restaurant|undefined|4.5|undefined|148 Rue des Batignolles, 75017 Paris|undefined|48.88372|2.31245|0|
+Café & Brunch Factory Paris 18|Goûter|undefined|5|undefined|118 Rue Lepic, 75018 Paris|undefined|48.89343|2.35609|0|
+Boulangerie Tradition & Levain Paris 19|Goûter|undefined|4.6|undefined|183 Av. Jean Jaurès, 75019 Paris|undefined|48.88685|2.37806|0|
+Atelier Sucré & Babka Virale Paris 20|Goûter|undefined|4.8|undefined|194 Rue de Belleville, 75020 Paris|undefined|48.87037|2.41749|0|
+Halle Marché & Food Court Saint-Denis|Marché|undefined|4.8|undefined|87 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.92557|2.35595|0|
+Marché Bio & Terroir Saint-Ouen|Marché|undefined|4.5|undefined|186 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91421|2.33992|0|
+KFB Crispy & Box Montreuil|Fast-food|undefined|4.8|undefined|26 Rue de Paris, 93100 Montreuil|undefined|48.87038|2.43167|0|
+Chicken Street Cheese Naan Boulogne|Fast-food|undefined|4.7|undefined|154 Route de la Reine, 92100 Boulogne|undefined|48.83148|2.2273|0|
+Wesh Bro Korean Fried Halal Vincennes|Fast-food|undefined|4.9|undefined|139 Av. de Paris, 94300 Vincennes|undefined|48.85035|2.43582|0|
+Smash Halal Burger Co. Aubervilliers|Fast-food|undefined|4.8|undefined|176 Av. de la République, 93300 Aubervilliers|undefined|48.91634|2.38646|0|
+Dumbo Style Smash Pantin|Fast-food|undefined|4.8|undefined|33 Av. Jean Lolive, 93500 Pantin|undefined|48.89692|2.40425|0|
+Nach & Tacos Loaded Box Levallois|Fast-food|undefined|4.7|undefined|142 Rue Aristide Briand, 92300 Levallois|undefined|48.88515|2.28341|0|
+O'Tacos Supreme Neuilly|Fast-food|undefined|4.6|undefined|171 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88082|2.2682|0|
+Berliner Kebab Gourmet Halal Clichy|Fast-food|undefined|4.8|undefined|191 Bd Jean Jaurès, 92110 Clichy|undefined|48.90218|2.30926|0|
+Mezzé & Shawarma Al-Basha Ivry|Restaurant|undefined|4.8|undefined|149 Av. Maurice Thorez, 94200 Ivry|undefined|48.81283|2.38236|0|
+Le Royal Couscous & Grillades Paris 1|Restaurant|undefined|4.7|undefined|38 Rue de Rivoli, 75001 Paris|undefined|48.86573|2.33507|0|
+Tajine d'Or & Pâtisseries Paris 2|Restaurant|undefined|4.7|undefined|34 Rue Montorgueil, 75002 Paris|undefined|48.87884|2.34686|0|
+Taj Mahal & Tandoori Naan Paris 3|Restaurant|undefined|4.8|undefined|112 Rue de Bretagne, 75003 Paris|undefined|48.85793|2.37065|0|
+Afro Grill & Thiéboudienne Paris 4|Restaurant|undefined|4.7|undefined|77 Rue des Rosiers, 75004 Paris|undefined|48.85379|2.3416|0|
+Bouillon Ancien de Paris Paris 5|Restaurant|undefined|4.6|undefined|110 Rue Mouffetard, 75005 Paris|undefined|48.8456|2.33874|0|
+Pizzeria Napoletana Forno Paris 6|Restaurant|undefined|5|undefined|37 Bd Saint-Germain, 75006 Paris|undefined|48.83723|2.3351|0|
+Ramen Bar & Gyoza House Paris 7|Restaurant|undefined|4.7|undefined|90 Rue Saint-Dominique, 75007 Paris|undefined|48.85428|2.31304|0|
+Pho Saigon Canteen Paris 8|Restaurant|undefined|4.8|undefined|119 Av. des Champs-Élysées, 75008 Paris|undefined|48.86751|2.29782|0|
+Café & Brunch Factory Paris 9|Goûter|undefined|4.6|undefined|163 Rue des Martyrs, 75009 Paris|undefined|48.87138|2.35488|0|
+Boulangerie Tradition & Levain Paris 10|Goûter|undefined|4.7|undefined|187 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.86659|2.36906|0|
+Atelier Sucré & Babka Virale Paris 11|Goûter|undefined|4.9|undefined|140 Rue Oberkampf, 75011 Paris|undefined|48.86314|2.36048|0|
+Halle Marché & Food Court Paris 12|Marché|undefined|4.7|undefined|114 Rue de Charenton, 75012 Paris|undefined|48.8365|2.39283|0|
+Marché Bio & Terroir Paris 13|Marché|undefined|4.7|undefined|16 Av. de Choisy, 75013 Paris|undefined|48.83503|2.35769|0|
+KFB Crispy & Box Paris 14|Fast-food|undefined|4.8|undefined|71 Rue Daguerre, 75014 Paris|undefined|48.83684|2.31694|0|
+Chicken Street Cheese Naan Paris 15|Fast-food|undefined|4.8|undefined|134 Rue de Vaugirard, 75015 Paris|undefined|48.84047|2.29613|0|
+Wesh Bro Korean Fried Halal Paris 16|Fast-food|undefined|5|undefined|77 Rue de Passy, 75016 Paris|undefined|48.86475|2.28537|0|
+Smash Halal Burger Co. Paris 17|Fast-food|undefined|4.7|undefined|113 Rue des Batignolles, 75017 Paris|undefined|48.89536|2.31036|0|
+Dumbo Style Smash Paris 18|Fast-food|undefined|4.7|undefined|178 Rue Lepic, 75018 Paris|undefined|48.89089|2.35502|0|
+Nach & Tacos Loaded Box Paris 19|Fast-food|undefined|4.8|undefined|22 Av. Jean Jaurès, 75019 Paris|undefined|48.88624|2.37593|0|
+O'Tacos Supreme Paris 20|Fast-food|undefined|4.6|undefined|15 Rue de Belleville, 75020 Paris|undefined|48.86423|2.383|0|
+Berliner Kebab Gourmet Halal Saint-Denis|Fast-food|undefined|5|undefined|173 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93874|2.35427|0|
+Mezzé & Shawarma Al-Basha Saint-Ouen|Restaurant|undefined|4.6|undefined|178 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91455|2.3335|0|
+Le Royal Couscous & Grillades Montreuil|Restaurant|undefined|4.8|undefined|78 Rue de Paris, 93100 Montreuil|undefined|48.85684|2.43981|0|
+Tajine d'Or & Pâtisseries Boulogne|Restaurant|undefined|4.8|undefined|183 Route de la Reine, 92100 Boulogne|undefined|48.83098|2.23678|0|
+Taj Mahal & Tandoori Naan Vincennes|Restaurant|undefined|4.7|undefined|132 Av. de Paris, 94300 Vincennes|undefined|48.86027|2.44236|0|
+Afro Grill & Thiéboudienne Aubervilliers|Restaurant|undefined|4.8|undefined|78 Av. de la République, 93300 Aubervilliers|undefined|48.90845|2.36339|0|
+Bouillon Ancien de Paris Pantin|Restaurant|undefined|4.8|undefined|64 Av. Jean Lolive, 93500 Pantin|undefined|48.88403|2.40961|0|
+Pizzeria Napoletana Forno Levallois|Restaurant|undefined|5|undefined|94 Rue Aristide Briand, 92300 Levallois|undefined|48.88537|2.29285|0|
+Ramen Bar & Gyoza House Neuilly|Restaurant|undefined|4.9|undefined|40 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88635|2.26229|0|
+Pho Saigon Canteen Clichy|Restaurant|undefined|4.7|undefined|136 Bd Jean Jaurès, 92110 Clichy|undefined|48.90029|2.325|0|
+Café & Brunch Factory Ivry|Goûter|undefined|4.6|undefined|167 Av. Maurice Thorez, 94200 Ivry|undefined|48.82386|2.388|0|
+Boulangerie Tradition & Levain Paris 1|Goûter|undefined|4.8|undefined|127 Rue de Rivoli, 75001 Paris|undefined|48.87292|2.34923|0|
+Atelier Sucré & Babka Virale Paris 2|Goûter|undefined|4.7|undefined|113 Rue Montorgueil, 75002 Paris|undefined|48.86455|2.33887|0|
+Halle Marché & Food Court Paris 3|Marché|undefined|4.8|undefined|19 Rue de Bretagne, 75003 Paris|undefined|48.87123|2.37707|0|
+Marché Bio & Terroir Paris 4|Marché|undefined|4.7|undefined|58 Rue des Rosiers, 75004 Paris|undefined|48.84808|2.3458|0|
+KFB Crispy & Box Paris 5|Fast-food|undefined|4.7|undefined|115 Rue Mouffetard, 75005 Paris|undefined|48.84323|2.35592|0|
+Chicken Street Cheese Naan Paris 6|Fast-food|undefined|4.6|undefined|151 Bd Saint-Germain, 75006 Paris|undefined|48.85754|2.33262|0|
+Wesh Bro Korean Fried Halal Paris 7|Fast-food|undefined|4.9|undefined|29 Rue Saint-Dominique, 75007 Paris|undefined|48.85991|2.30901|0|
+Smash Halal Burger Co. Paris 8|Fast-food|undefined|4.9|undefined|126 Av. des Champs-Élysées, 75008 Paris|undefined|48.87303|2.30044|0|
+Dumbo Style Smash Paris 9|Fast-food|undefined|4.6|undefined|114 Rue des Martyrs, 75009 Paris|undefined|48.88277|2.3547|0|
+Nach & Tacos Loaded Box Paris 10|Fast-food|undefined|4.7|undefined|165 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88063|2.35267|0|
+O'Tacos Supreme Paris 11|Fast-food|undefined|4.5|undefined|124 Rue Oberkampf, 75011 Paris|undefined|48.87344|2.37865|0|
+Berliner Kebab Gourmet Halal Paris 12|Fast-food|undefined|4.9|undefined|142 Rue de Charenton, 75012 Paris|undefined|48.83921|2.41195|0|
+Mezzé & Shawarma Al-Basha Paris 13|Restaurant|undefined|4.7|undefined|9 Av. de Choisy, 75013 Paris|undefined|48.83385|2.37559|0|
+Le Royal Couscous & Grillades Paris 14|Restaurant|undefined|4.9|undefined|72 Rue Daguerre, 75014 Paris|undefined|48.83059|2.31851|0|
+Tajine d'Or & Pâtisseries Paris 15|Restaurant|undefined|4.6|undefined|78 Rue de Vaugirard, 75015 Paris|undefined|48.84134|2.31173|0|
+Taj Mahal & Tandoori Naan Paris 16|Restaurant|undefined|4.6|undefined|128 Rue de Passy, 75016 Paris|undefined|48.87235|2.2623|0|
+Afro Grill & Thiéboudienne Paris 17|Restaurant|undefined|4.8|undefined|171 Rue des Batignolles, 75017 Paris|undefined|48.8763|2.29633|0|
+Bouillon Ancien de Paris Paris 18|Restaurant|undefined|4.6|undefined|147 Rue Lepic, 75018 Paris|undefined|48.89665|2.33555|0|
+Pizzeria Napoletana Forno Paris 19|Restaurant|undefined|4.6|undefined|66 Av. Jean Jaurès, 75019 Paris|undefined|48.89061|2.38854|0|
+Ramen Bar & Gyoza House Paris 20|Restaurant|undefined|4.6|undefined|131 Rue de Belleville, 75020 Paris|undefined|48.86903|2.39286|0|
+Pho Saigon Canteen Saint-Denis|Restaurant|undefined|4.6|undefined|44 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.92755|2.3745|0|
+Café & Brunch Factory Saint-Ouen|Goûter|undefined|4.8|undefined|175 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91982|2.32075|0|
+Boulangerie Tradition & Levain Montreuil|Goûter|undefined|4.8|undefined|12 Rue de Paris, 93100 Montreuil|undefined|48.85651|2.43791|0|
+Atelier Sucré & Babka Virale Boulogne|Goûter|undefined|5.1|undefined|131 Route de la Reine, 92100 Boulogne|undefined|48.83987|2.23412|0|
+Halle Marché & Food Court Vincennes|Marché|undefined|4.7|undefined|134 Av. de Paris, 94300 Vincennes|undefined|48.84848|2.44085|0|
+Marché Bio & Terroir Aubervilliers|Marché|undefined|4.7|undefined|82 Av. de la République, 93300 Aubervilliers|undefined|48.91286|2.37728|0|
+KFB Crispy & Box Pantin|Fast-food|undefined|4.7|undefined|58 Av. Jean Lolive, 93500 Pantin|undefined|48.8932|2.39756|0|
+Chicken Street Cheese Naan Levallois|Fast-food|undefined|4.7|undefined|19 Rue Aristide Briand, 92300 Levallois|undefined|48.88549|2.2945|0|
+Wesh Bro Korean Fried Halal Neuilly|Fast-food|undefined|5.1|undefined|103 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.87733|2.27064|0|
+Smash Halal Burger Co. Clichy|Fast-food|undefined|4.6|undefined|39 Bd Jean Jaurès, 92110 Clichy|undefined|48.90179|2.31434|0|
+Dumbo Style Smash Ivry|Fast-food|undefined|4.6|undefined|162 Av. Maurice Thorez, 94200 Ivry|undefined|48.80915|2.39225|0|
+Nach & Tacos Loaded Box Paris 1|Fast-food|undefined|4.7|undefined|111 Rue de Rivoli, 75001 Paris|undefined|48.8517|2.32622|0|
+O'Tacos Supreme Paris 2|Fast-food|undefined|4.5|undefined|49 Rue Montorgueil, 75002 Paris|undefined|48.86902|2.34629|0|
+Berliner Kebab Gourmet Halal Paris 3|Fast-food|undefined|5|undefined|20 Rue de Bretagne, 75003 Paris|undefined|48.85597|2.3765|0|
+Mezzé & Shawarma Al-Basha Paris 4|Restaurant|undefined|4.8|undefined|122 Rue des Rosiers, 75004 Paris|undefined|48.86123|2.36099|0|
+Le Royal Couscous & Grillades Paris 5|Restaurant|undefined|4.8|undefined|29 Rue Mouffetard, 75005 Paris|undefined|48.83572|2.33969|0|
+Tajine d'Or & Pâtisseries Paris 6|Restaurant|undefined|4.8|undefined|110 Bd Saint-Germain, 75006 Paris|undefined|48.8455|2.33222|0|
+Taj Mahal & Tandoori Naan Paris 7|Restaurant|undefined|4.7|undefined|129 Rue Saint-Dominique, 75007 Paris|undefined|48.86066|2.31416|0|
+Afro Grill & Thiéboudienne Paris 8|Restaurant|undefined|4.7|undefined|159 Av. des Champs-Élysées, 75008 Paris|undefined|48.88815|2.30326|0|
+Bouillon Ancien de Paris Paris 9|Restaurant|undefined|4.8|undefined|106 Rue des Martyrs, 75009 Paris|undefined|48.88276|2.32438|0|
+Pizzeria Napoletana Forno Paris 10|Restaurant|undefined|4.9|undefined|108 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.86933|2.35194|0|
+Ramen Bar & Gyoza House Paris 11|Restaurant|undefined|4.9|undefined|187 Rue Oberkampf, 75011 Paris|undefined|48.86256|2.3651|0|
+Pho Saigon Canteen Paris 12|Restaurant|undefined|4.5|undefined|75 Rue de Charenton, 75012 Paris|undefined|48.84253|2.3951|0|
+Café & Brunch Factory Paris 13|Goûter|undefined|4.9|undefined|176 Av. de Choisy, 75013 Paris|undefined|48.81703|2.36799|0|
+Boulangerie Tradition & Levain Paris 14|Goûter|undefined|4.8|undefined|64 Rue Daguerre, 75014 Paris|undefined|48.82742|2.33299|0|
+Atelier Sucré & Babka Virale Paris 15|Goûter|undefined|4.7|undefined|57 Rue de Vaugirard, 75015 Paris|undefined|48.83555|2.28797|0|
+Halle Marché & Food Court Paris 16|Marché|undefined|4.8|undefined|64 Rue de Passy, 75016 Paris|undefined|48.86387|2.28292|0|
+Marché Bio & Terroir Paris 17|Marché|undefined|4.6|undefined|163 Rue des Batignolles, 75017 Paris|undefined|48.89019|2.31307|0|
+KFB Crispy & Box Paris 18|Fast-food|undefined|4.6|undefined|67 Rue Lepic, 75018 Paris|undefined|48.89578|2.35587|0|
+Chicken Street Cheese Naan Paris 19|Fast-food|undefined|4.5|undefined|166 Av. Jean Jaurès, 75019 Paris|undefined|48.88996|2.38682|0|
+Wesh Bro Korean Fried Halal Paris 20|Fast-food|undefined|4.9|undefined|130 Rue de Belleville, 75020 Paris|undefined|48.86758|2.38092|0|
+Smash Halal Burger Co. Saint-Denis|Fast-food|undefined|4.6|undefined|178 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.92629|2.36479|0|
+Dumbo Style Smash Saint-Ouen|Fast-food|undefined|4.7|undefined|110 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91045|2.32996|0|
+Nach & Tacos Loaded Box Montreuil|Fast-food|undefined|4.7|undefined|189 Rue de Paris, 93100 Montreuil|undefined|48.86073|2.43471|0|
+O'Tacos Supreme Boulogne|Fast-food|undefined|4.5|undefined|54 Route de la Reine, 92100 Boulogne|undefined|48.83996|2.25092|0|
+Berliner Kebab Gourmet Halal Vincennes|Fast-food|undefined|4.7|undefined|72 Av. de Paris, 94300 Vincennes|undefined|48.84042|2.43046|0|
+Mezzé & Shawarma Al-Basha Aubervilliers|Restaurant|undefined|4.9|undefined|31 Av. de la République, 93300 Aubervilliers|undefined|48.9207|2.36462|0|
+Le Royal Couscous & Grillades Pantin|Restaurant|undefined|4.7|undefined|20 Av. Jean Lolive, 93500 Pantin|undefined|48.89245|2.40398|0|
+Tajine d'Or & Pâtisseries Levallois|Restaurant|undefined|4.5|undefined|152 Rue Aristide Briand, 92300 Levallois|undefined|48.89086|2.28597|0|
+Taj Mahal & Tandoori Naan Neuilly|Restaurant|undefined|4.6|undefined|174 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.87909|2.27232|0|
+Afro Grill & Thiéboudienne Clichy|Restaurant|undefined|4.6|undefined|59 Bd Jean Jaurès, 92110 Clichy|undefined|48.89073|2.29919|0|
+Bouillon Ancien de Paris Ivry|Restaurant|undefined|4.6|undefined|168 Av. Maurice Thorez, 94200 Ivry|undefined|48.81131|2.37452|0|
+Pizzeria Napoletana Forno Paris 1|Restaurant|undefined|4.8|undefined|38 Rue de Rivoli, 75001 Paris|undefined|48.8648|2.33561|0|
+Ramen Bar & Gyoza House Paris 2|Restaurant|undefined|4.7|undefined|115 Rue Montorgueil, 75002 Paris|undefined|48.86841|2.34098|0|
+Pho Saigon Canteen Paris 3|Restaurant|undefined|4.5|undefined|129 Rue de Bretagne, 75003 Paris|undefined|48.86549|2.35134|0|
+Café & Brunch Factory Paris 4|Goûter|undefined|4.7|undefined|77 Rue des Rosiers, 75004 Paris|undefined|48.85793|2.34342|0|
+Boulangerie Tradition & Levain Paris 5|Goûter|undefined|4.9|undefined|116 Rue Mouffetard, 75005 Paris|undefined|48.84899|2.36343|0|
+Atelier Sucré & Babka Virale Paris 6|Goûter|undefined|4.8|undefined|64 Bd Saint-Germain, 75006 Paris|undefined|48.85895|2.3345|0|
+Halle Marché & Food Court Paris 7|Marché|undefined|4.6|undefined|134 Rue Saint-Dominique, 75007 Paris|undefined|48.85068|2.2961|0|
+Marché Bio & Terroir Paris 8|Marché|undefined|4.7|undefined|142 Av. des Champs-Élysées, 75008 Paris|undefined|48.87984|2.31619|0|
+KFB Crispy & Box Paris 9|Fast-food|undefined|4.9|undefined|58 Rue des Martyrs, 75009 Paris|undefined|48.87558|2.3475|0|
+Chicken Street Cheese Naan Paris 10|Fast-food|undefined|4.7|undefined|31 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87604|2.35769|0|
+Wesh Bro Korean Fried Halal Paris 11|Fast-food|undefined|5|undefined|25 Rue Oberkampf, 75011 Paris|undefined|48.86529|2.37432|0|
+Smash Halal Burger Co. Paris 12|Fast-food|undefined|4.9|undefined|20 Rue de Charenton, 75012 Paris|undefined|48.84206|2.41137|0|
+Dumbo Style Smash Paris 13|Fast-food|undefined|4.9|undefined|52 Av. de Choisy, 75013 Paris|undefined|48.83766|2.36365|0|
+Nach & Tacos Loaded Box Paris 14|Fast-food|undefined|4.7|undefined|39 Rue Daguerre, 75014 Paris|undefined|48.8222|2.32236|0|
+O'Tacos Supreme Paris 15|Fast-food|undefined|4.7|undefined|154 Rue de Vaugirard, 75015 Paris|undefined|48.83726|2.30217|0|
+Berliner Kebab Gourmet Halal Paris 16|Fast-food|undefined|4.6|undefined|115 Rue de Passy, 75016 Paris|undefined|48.86389|2.28866|0|
+Mezzé & Shawarma Al-Basha Paris 17|Restaurant|undefined|4.9|undefined|107 Rue des Batignolles, 75017 Paris|undefined|48.88431|2.30712|0|
+Le Royal Couscous & Grillades Paris 18|Restaurant|undefined|4.7|undefined|9 Rue Lepic, 75018 Paris|undefined|48.90317|2.3511|0|
+Tajine d'Or & Pâtisseries Paris 19|Restaurant|undefined|4.7|undefined|143 Av. Jean Jaurès, 75019 Paris|undefined|48.89146|2.38965|0|
+Taj Mahal & Tandoori Naan Paris 20|Restaurant|undefined|4.7|undefined|181 Rue de Belleville, 75020 Paris|undefined|48.85907|2.40897|0|
+Afro Grill & Thiéboudienne Saint-Denis|Restaurant|undefined|4.7|undefined|62 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.92727|2.36635|0|
+Bouillon Ancien de Paris Saint-Ouen|Restaurant|undefined|4.4|undefined|1 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.92493|2.33738|0|
+Pizzeria Napoletana Forno Montreuil|Restaurant|undefined|4.8|undefined|16 Rue de Paris, 93100 Montreuil|undefined|48.84997|2.45331|0|
+Ramen Bar & Gyoza House Boulogne|Restaurant|undefined|4.8|undefined|183 Route de la Reine, 92100 Boulogne|undefined|48.83876|2.24098|0|
+Pho Saigon Canteen Vincennes|Restaurant|undefined|4.8|undefined|168 Av. de Paris, 94300 Vincennes|undefined|48.84576|2.43749|0|
+Café & Brunch Factory Aubervilliers|Goûter|undefined|4.8|undefined|47 Av. de la République, 93300 Aubervilliers|undefined|48.90322|2.3907|0|
+Boulangerie Tradition & Levain Pantin|Goûter|undefined|4.7|undefined|115 Av. Jean Lolive, 93500 Pantin|undefined|48.89921|2.41174|0|
+Atelier Sucré & Babka Virale Levallois|Goûter|undefined|5|undefined|106 Rue Aristide Briand, 92300 Levallois|undefined|48.89022|2.29949|0|
+Halle Marché & Food Court Neuilly|Marché|undefined|4.8|undefined|41 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88491|2.26491|0|
+Marché Bio & Terroir Clichy|Marché|undefined|4.6|undefined|42 Bd Jean Jaurès, 92110 Clichy|undefined|48.89358|2.30319|0|
+KFB Crispy & Box Ivry|Fast-food|undefined|4.9|undefined|135 Av. Maurice Thorez, 94200 Ivry|undefined|48.82117|2.38882|0|
+Chicken Street Cheese Naan Paris 1|Fast-food|undefined|4.7|undefined|126 Rue de Rivoli, 75001 Paris|undefined|48.86517|2.33718|0|
+Wesh Bro Korean Fried Halal Paris 2|Fast-food|undefined|5|undefined|146 Rue Montorgueil, 75002 Paris|undefined|48.86546|2.34833|0|
+Smash Halal Burger Co. Paris 3|Fast-food|undefined|4.9|undefined|171 Rue de Bretagne, 75003 Paris|undefined|48.86457|2.35448|0|
+Dumbo Style Smash Paris 4|Fast-food|undefined|4.6|undefined|57 Rue des Rosiers, 75004 Paris|undefined|48.85178|2.37075|0|
+Nach & Tacos Loaded Box Paris 5|Fast-food|undefined|4.8|undefined|103 Rue Mouffetard, 75005 Paris|undefined|48.84645|2.34162|0|
+O'Tacos Supreme Paris 6|Fast-food|undefined|4.4|undefined|10 Bd Saint-Germain, 75006 Paris|undefined|48.85349|2.33842|0|
+Berliner Kebab Gourmet Halal Paris 7|Fast-food|undefined|4.7|undefined|163 Rue Saint-Dominique, 75007 Paris|undefined|48.85571|2.32682|0|
+Mezzé & Shawarma Al-Basha Paris 8|Restaurant|undefined|4.8|undefined|151 Av. des Champs-Élysées, 75008 Paris|undefined|48.88111|2.31329|0|
+Le Royal Couscous & Grillades Paris 9|Restaurant|undefined|4.7|undefined|40 Rue des Martyrs, 75009 Paris|undefined|48.87578|2.33348|0|
+Tajine d'Or & Pâtisseries Paris 10|Restaurant|undefined|4.9|undefined|20 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.877|2.37841|0|
+Taj Mahal & Tandoori Naan Paris 11|Restaurant|undefined|4.7|undefined|28 Rue Oberkampf, 75011 Paris|undefined|48.86304|2.39142|0|
+Afro Grill & Thiéboudienne Paris 12|Restaurant|undefined|4.6|undefined|67 Rue de Charenton, 75012 Paris|undefined|48.83729|2.39695|0|
+Bouillon Ancien de Paris Paris 13|Restaurant|undefined|4.5|undefined|6 Av. de Choisy, 75013 Paris|undefined|48.81576|2.36644|0|
+Pizzeria Napoletana Forno Paris 14|Restaurant|undefined|4.7|undefined|187 Rue Daguerre, 75014 Paris|undefined|48.83483|2.3191|0|
+Ramen Bar & Gyoza House Paris 15|Restaurant|undefined|4.6|undefined|31 Rue de Vaugirard, 75015 Paris|undefined|48.82955|2.28787|0|
+Pho Saigon Canteen Paris 16|Restaurant|undefined|4.8|undefined|36 Rue de Passy, 75016 Paris|undefined|48.86431|2.27027|0|
+Café & Brunch Factory Paris 17|Goûter|undefined|4.6|undefined|122 Rue des Batignolles, 75017 Paris|undefined|48.88378|2.30432|0|
+Boulangerie Tradition & Levain Paris 18|Goûter|undefined|4.8|undefined|155 Rue Lepic, 75018 Paris|undefined|48.88782|2.36362|0|
+Atelier Sucré & Babka Virale Paris 19|Goûter|undefined|4.8|undefined|52 Av. Jean Jaurès, 75019 Paris|undefined|48.8819|2.3916|0|
+Halle Marché & Food Court Paris 20|Marché|undefined|4.7|undefined|35 Rue de Belleville, 75020 Paris|undefined|48.86704|2.40481|0|
+Marché Bio & Terroir Saint-Denis|Marché|undefined|4.5|undefined|105 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.94682|2.34952|0|
+KFB Crispy & Box Saint-Ouen|Fast-food|undefined|4.9|undefined|194 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90998|2.34262|0|
+Chicken Street Cheese Naan Montreuil|Fast-food|undefined|4.6|undefined|115 Rue de Paris, 93100 Montreuil|undefined|48.85206|2.44904|0|
+Wesh Bro Korean Fried Halal Boulogne|Fast-food|undefined|4.8|undefined|189 Route de la Reine, 92100 Boulogne|undefined|48.83223|2.25085|0|
+Smash Halal Burger Co. Vincennes|Fast-food|undefined|4.7|undefined|107 Av. de Paris, 94300 Vincennes|undefined|48.8469|2.43716|0|
+Dumbo Style Smash Aubervilliers|Fast-food|undefined|4.7|undefined|163 Av. de la République, 93300 Aubervilliers|undefined|48.90877|2.3852|0|
+Nach & Tacos Loaded Box Pantin|Fast-food|undefined|4.7|undefined|52 Av. Jean Lolive, 93500 Pantin|undefined|48.88518|2.39974|0|
+O'Tacos Supreme Levallois|Fast-food|undefined|4.5|undefined|109 Rue Aristide Briand, 92300 Levallois|undefined|48.88791|2.27085|0|
+Berliner Kebab Gourmet Halal Neuilly|Fast-food|undefined|4.6|undefined|167 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.87844|2.2551|0|
+Mezzé & Shawarma Al-Basha Clichy|Restaurant|undefined|4.9|undefined|139 Bd Jean Jaurès, 92110 Clichy|undefined|48.89313|2.29493|0|
+Le Royal Couscous & Grillades Ivry|Restaurant|undefined|4.7|undefined|98 Av. Maurice Thorez, 94200 Ivry|undefined|48.82491|2.38172|0|
+Tajine d'Or & Pâtisseries Paris 1|Restaurant|undefined|4.9|undefined|102 Rue de Rivoli, 75001 Paris|undefined|48.86362|2.32453|0|
+Taj Mahal & Tandoori Naan Paris 2|Restaurant|undefined|4.6|undefined|15 Rue Montorgueil, 75002 Paris|undefined|48.86102|2.3269|0|
+Afro Grill & Thiéboudienne Paris 3|Restaurant|undefined|4.6|undefined|140 Rue de Bretagne, 75003 Paris|undefined|48.85901|2.37381|0|
+Bouillon Ancien de Paris Paris 4|Restaurant|undefined|4.6|undefined|165 Rue des Rosiers, 75004 Paris|undefined|48.85351|2.37348|0|
+Pizzeria Napoletana Forno Paris 5|Restaurant|undefined|4.9|undefined|190 Rue Mouffetard, 75005 Paris|undefined|48.8575|2.35386|0|
+Ramen Bar & Gyoza House Paris 6|Restaurant|undefined|4.7|undefined|73 Bd Saint-Germain, 75006 Paris|undefined|48.85098|2.35135|0|
+Pho Saigon Canteen Paris 7|Restaurant|undefined|4.7|undefined|34 Rue Saint-Dominique, 75007 Paris|undefined|48.86757|2.32551|0|
+Café & Brunch Factory Paris 8|Goûter|undefined|4.8|undefined|23 Av. des Champs-Élysées, 75008 Paris|undefined|48.87619|2.31431|0|
+Boulangerie Tradition & Levain Paris 9|Goûter|undefined|4.6|undefined|27 Rue des Martyrs, 75009 Paris|undefined|48.87532|2.32794|0|
+Atelier Sucré & Babka Virale Paris 10|Goûter|undefined|5|undefined|185 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88097|2.38045|0|
+Halle Marché & Food Court Paris 11|Marché|undefined|4.8|undefined|21 Rue Oberkampf, 75011 Paris|undefined|48.85993|2.37648|0|
+Marché Bio & Terroir Paris 12|Marché|undefined|4.6|undefined|47 Rue de Charenton, 75012 Paris|undefined|48.83717|2.4064|0|
+KFB Crispy & Box Paris 13|Fast-food|undefined|4.9|undefined|75 Av. de Choisy, 75013 Paris|undefined|48.84065|2.36121|0|
+Chicken Street Cheese Naan Paris 14|Fast-food|undefined|4.8|undefined|63 Rue Daguerre, 75014 Paris|undefined|48.82832|2.34181|0|
+Wesh Bro Korean Fried Halal Paris 15|Fast-food|undefined|4.8|undefined|12 Rue de Vaugirard, 75015 Paris|undefined|48.85385|2.28986|0|
+Smash Halal Burger Co. Paris 16|Fast-food|undefined|4.8|undefined|169 Rue de Passy, 75016 Paris|undefined|48.86759|2.28447|0|
+Dumbo Style Smash Paris 17|Fast-food|undefined|4.8|undefined|193 Rue des Batignolles, 75017 Paris|undefined|48.88821|2.31425|0|
+Nach & Tacos Loaded Box Paris 18|Fast-food|undefined|4.9|undefined|77 Rue Lepic, 75018 Paris|undefined|48.89316|2.36048|0|
+O'Tacos Supreme Paris 19|Fast-food|undefined|4.6|undefined|154 Av. Jean Jaurès, 75019 Paris|undefined|48.88629|2.39601|0|
+Berliner Kebab Gourmet Halal Paris 20|Fast-food|undefined|4.9|undefined|88 Rue de Belleville, 75020 Paris|undefined|48.8518|2.39583|0|
+Mezzé & Shawarma Al-Basha Saint-Denis|Restaurant|undefined|4.9|undefined|100 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.94695|2.35873|0|
+Le Royal Couscous & Grillades Saint-Ouen|Restaurant|undefined|4.7|undefined|22 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91054|2.35257|0|
+Tajine d'Or & Pâtisseries Montreuil|Restaurant|undefined|4.8|undefined|184 Rue de Paris, 93100 Montreuil|undefined|48.86102|2.45132|0|
+Taj Mahal & Tandoori Naan Boulogne|Restaurant|undefined|4.6|undefined|138 Route de la Reine, 92100 Boulogne|undefined|48.84449|2.22425|0|
+Afro Grill & Thiéboudienne Vincennes|Restaurant|undefined|4.9|undefined|83 Av. de Paris, 94300 Vincennes|undefined|48.84232|2.42961|0|
+Bouillon Ancien de Paris Aubervilliers|Restaurant|undefined|4.7|undefined|82 Av. de la République, 93300 Aubervilliers|undefined|48.9082|2.38095|0|
+Pizzeria Napoletana Forno Pantin|Restaurant|undefined|4.8|undefined|68 Av. Jean Lolive, 93500 Pantin|undefined|48.89064|2.39665|0|
+Ramen Bar & Gyoza House Levallois|Restaurant|undefined|4.6|undefined|42 Rue Aristide Briand, 92300 Levallois|undefined|48.89086|2.28204|0|
+Pho Saigon Canteen Neuilly|Restaurant|undefined|4.8|undefined|120 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.87354|2.26378|0|
+Café & Brunch Factory Clichy|Goûter|undefined|4.7|undefined|28 Bd Jean Jaurès, 92110 Clichy|undefined|48.9041|2.29983|0|
+Boulangerie Tradition & Levain Ivry|Goûter|undefined|4.8|undefined|50 Av. Maurice Thorez, 94200 Ivry|undefined|48.81356|2.37502|0|
+Atelier Sucré & Babka Virale Paris 1|Goûter|undefined|5|undefined|46 Rue de Rivoli, 75001 Paris|undefined|48.86585|2.35218|0|
+Halle Marché & Food Court Paris 2|Marché|undefined|4.8|undefined|14 Rue Montorgueil, 75002 Paris|undefined|48.86825|2.34725|0|
+Marché Bio & Terroir Paris 3|Marché|undefined|4.4|undefined|190 Rue de Bretagne, 75003 Paris|undefined|48.8727|2.34601|0|
+KFB Crispy & Box Paris 4|Fast-food|undefined|4.7|undefined|110 Rue des Rosiers, 75004 Paris|undefined|48.86226|2.35353|0|
+Chicken Street Cheese Naan Paris 5|Fast-food|undefined|4.8|undefined|63 Rue Mouffetard, 75005 Paris|undefined|48.85185|2.33929|0|
+Wesh Bro Korean Fried Halal Paris 6|Fast-food|undefined|5|undefined|175 Bd Saint-Germain, 75006 Paris|undefined|48.84051|2.32026|0|
+Smash Halal Burger Co. Paris 7|Fast-food|undefined|4.7|undefined|46 Rue Saint-Dominique, 75007 Paris|undefined|48.84483|2.3034|0|
+Dumbo Style Smash Paris 8|Fast-food|undefined|4.8|undefined|154 Av. des Champs-Élysées, 75008 Paris|undefined|48.8641|2.31541|0|
+Nach & Tacos Loaded Box Paris 9|Fast-food|undefined|4.8|undefined|28 Rue des Martyrs, 75009 Paris|undefined|48.8834|2.34544|0|
+O'Tacos Supreme Paris 10|Fast-food|undefined|4.6|undefined|82 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87523|2.35789|0|
+Berliner Kebab Gourmet Halal Paris 11|Fast-food|undefined|4.6|undefined|184 Rue Oberkampf, 75011 Paris|undefined|48.85954|2.37148|0|
+Mezzé & Shawarma Al-Basha Paris 12|Restaurant|undefined|4.8|undefined|117 Rue de Charenton, 75012 Paris|undefined|48.84195|2.39773|0|
+Le Royal Couscous & Grillades Paris 13|Restaurant|undefined|4.9|undefined|151 Av. de Choisy, 75013 Paris|undefined|48.82534|2.35697|0|
+Tajine d'Or & Pâtisseries Paris 14|Restaurant|undefined|4.6|undefined|15 Rue Daguerre, 75014 Paris|undefined|48.83195|2.33025|0|
+Taj Mahal & Tandoori Naan Paris 15|Restaurant|undefined|4.8|undefined|45 Rue de Vaugirard, 75015 Paris|undefined|48.83544|2.30465|0|
+Afro Grill & Thiéboudienne Paris 16|Restaurant|undefined|4.8|undefined|160 Rue de Passy, 75016 Paris|undefined|48.87019|2.26092|0|
+Bouillon Ancien de Paris Paris 17|Restaurant|undefined|4.8|undefined|37 Rue des Batignolles, 75017 Paris|undefined|48.89367|2.32437|0|
+Pizzeria Napoletana Forno Paris 18|Restaurant|undefined|4.9|undefined|194 Rue Lepic, 75018 Paris|undefined|48.89496|2.34042|0|
+Ramen Bar & Gyoza House Paris 19|Restaurant|undefined|4.8|undefined|193 Av. Jean Jaurès, 75019 Paris|undefined|48.88527|2.39188|0|
+Pho Saigon Canteen Paris 20|Restaurant|undefined|4.8|undefined|87 Rue de Belleville, 75020 Paris|undefined|48.86268|2.38281|0|
+Café & Brunch Factory Saint-Denis|Goûter|undefined|4.8|undefined|4 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93239|2.35171|0|
+Boulangerie Tradition & Levain Saint-Ouen|Goûter|undefined|4.6|undefined|70 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90811|2.33125|0|
+Atelier Sucré & Babka Virale Montreuil|Goûter|undefined|5|undefined|131 Rue de Paris, 93100 Montreuil|undefined|48.85106|2.43385|0|
+Halle Marché & Food Court Boulogne|Marché|undefined|4.9|undefined|128 Route de la Reine, 92100 Boulogne|undefined|48.82442|2.2309|0|
+Marché Bio & Terroir Vincennes|Marché|undefined|4.5|undefined|76 Av. de Paris, 94300 Vincennes|undefined|48.84476|2.43133|0|
+KFB Crispy & Box Aubervilliers|Fast-food|undefined|4.8|undefined|53 Av. de la République, 93300 Aubervilliers|undefined|48.91748|2.39764|0|
+Chicken Street Cheese Naan Pantin|Fast-food|undefined|4.5|undefined|7 Av. Jean Lolive, 93500 Pantin|undefined|48.90134|2.40873|0|
+Wesh Bro Korean Fried Halal Levallois|Fast-food|undefined|4.7|undefined|189 Rue Aristide Briand, 92300 Levallois|undefined|48.88628|2.28151|0|
+Smash Halal Burger Co. Neuilly|Fast-food|undefined|4.9|undefined|129 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88034|2.26128|0|
+Dumbo Style Smash Clichy|Fast-food|undefined|4.8|undefined|103 Bd Jean Jaurès, 92110 Clichy|undefined|48.90445|2.32464|0|
+Nach & Tacos Loaded Box Ivry|Fast-food|undefined|4.7|undefined|14 Av. Maurice Thorez, 94200 Ivry|undefined|48.8151|2.39696|0|
+O'Tacos Supreme Paris 1|Fast-food|undefined|4.5|undefined|113 Rue de Rivoli, 75001 Paris|undefined|48.85949|2.32263|0|
+Berliner Kebab Gourmet Halal Paris 2|Fast-food|undefined|4.8|undefined|106 Rue Montorgueil, 75002 Paris|undefined|48.879|2.33709|0|
+Mezzé & Shawarma Al-Basha Paris 3|Restaurant|undefined|4.7|undefined|156 Rue de Bretagne, 75003 Paris|undefined|48.86248|2.35279|0|
+Le Royal Couscous & Grillades Paris 4|Restaurant|undefined|4.8|undefined|186 Rue des Rosiers, 75004 Paris|undefined|48.8483|2.35687|0|
+Tajine d'Or & Pâtisseries Paris 5|Restaurant|undefined|4.7|undefined|137 Rue Mouffetard, 75005 Paris|undefined|48.84628|2.36583|0|
+Taj Mahal & Tandoori Naan Paris 6|Restaurant|undefined|4.8|undefined|54 Bd Saint-Germain, 75006 Paris|undefined|48.84605|2.33683|0|
+Afro Grill & Thiéboudienne Paris 7|Restaurant|undefined|4.8|undefined|164 Rue Saint-Dominique, 75007 Paris|undefined|48.85998|2.31642|0|
+Bouillon Ancien de Paris Paris 8|Restaurant|undefined|4.4|undefined|56 Av. des Champs-Élysées, 75008 Paris|undefined|48.86751|2.31246|0|
+Pizzeria Napoletana Forno Paris 9|Restaurant|undefined|4.6|undefined|156 Rue des Martyrs, 75009 Paris|undefined|48.87426|2.34506|0|
+Ramen Bar & Gyoza House Paris 10|Restaurant|undefined|4.7|undefined|85 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.877|2.35429|0|
+Pho Saigon Canteen Paris 11|Restaurant|undefined|4.8|undefined|116 Rue Oberkampf, 75011 Paris|undefined|48.85865|2.37248|0|
+Café & Brunch Factory Paris 12|Goûter|undefined|5|undefined|85 Rue de Charenton, 75012 Paris|undefined|48.84852|2.3841|0|
+Boulangerie Tradition & Levain Paris 13|Goûter|undefined|4.7|undefined|66 Av. de Choisy, 75013 Paris|undefined|48.82792|2.36775|0|
+Atelier Sucré & Babka Virale Paris 14|Goûter|undefined|5|undefined|106 Rue Daguerre, 75014 Paris|undefined|48.8369|2.32952|0|
+Halle Marché & Food Court Paris 15|Marché|undefined|4.9|undefined|99 Rue de Vaugirard, 75015 Paris|undefined|48.83869|2.28463|0|
+Marché Bio & Terroir Paris 16|Marché|undefined|4.8|undefined|57 Rue de Passy, 75016 Paris|undefined|48.87399|2.27963|0|
+KFB Crispy & Box Paris 17|Fast-food|undefined|5|undefined|12 Rue des Batignolles, 75017 Paris|undefined|48.89341|2.29762|0|
+Chicken Street Cheese Naan Paris 18|Fast-food|undefined|4.6|undefined|74 Rue Lepic, 75018 Paris|undefined|48.88248|2.34202|0|
+Wesh Bro Korean Fried Halal Paris 19|Fast-food|undefined|4.9|undefined|175 Av. Jean Jaurès, 75019 Paris|undefined|48.89206|2.36898|0|
+Smash Halal Burger Co. Paris 20|Fast-food|undefined|4.8|undefined|121 Rue de Belleville, 75020 Paris|undefined|48.85762|2.39369|0|
+Dumbo Style Smash Saint-Denis|Fast-food|undefined|4.7|undefined|99 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.92946|2.36674|0|
+Nach & Tacos Loaded Box Saint-Ouen|Fast-food|undefined|5|undefined|170 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91178|2.33642|0|
+O'Tacos Supreme Montreuil|Fast-food|undefined|4.4|undefined|7 Rue de Paris, 93100 Montreuil|undefined|48.86921|2.4392|0|
+Berliner Kebab Gourmet Halal Boulogne|Fast-food|undefined|4.9|undefined|57 Route de la Reine, 92100 Boulogne|undefined|48.82812|2.25501|0|
+Mezzé & Shawarma Al-Basha Vincennes|Restaurant|undefined|4.6|undefined|111 Av. de Paris, 94300 Vincennes|undefined|48.85052|2.42928|0|
+Le Royal Couscous & Grillades Aubervilliers|Restaurant|undefined|5|undefined|11 Av. de la République, 93300 Aubervilliers|undefined|48.90296|2.37001|0|
+Tajine d'Or & Pâtisseries Pantin|Restaurant|undefined|4.7|undefined|36 Av. Jean Lolive, 93500 Pantin|undefined|48.89442|2.41534|0|
+Taj Mahal & Tandoori Naan Levallois|Restaurant|undefined|4.6|undefined|24 Rue Aristide Briand, 92300 Levallois|undefined|48.88657|2.26926|0|
+Afro Grill & Thiéboudienne Neuilly|Restaurant|undefined|4.7|undefined|163 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.878|2.26277|0|
+Bouillon Ancien de Paris Clichy|Restaurant|undefined|4.5|undefined|1 Bd Jean Jaurès, 92110 Clichy|undefined|48.90236|2.29072|0|
+Pizzeria Napoletana Forno Ivry|Restaurant|undefined|4.7|undefined|151 Av. Maurice Thorez, 94200 Ivry|undefined|48.82248|2.40206|0|
+Ramen Bar & Gyoza House Paris 1|Restaurant|undefined|4.9|undefined|6 Rue de Rivoli, 75001 Paris|undefined|48.86984|2.34667|0|
+Pho Saigon Canteen Paris 2|Restaurant|undefined|4.5|undefined|25 Rue Montorgueil, 75002 Paris|undefined|48.8582|2.34827|0|
+Café & Brunch Factory Paris 3|Goûter|undefined|4.9|undefined|170 Rue de Bretagne, 75003 Paris|undefined|48.85853|2.37393|0|
+Boulangerie Tradition & Levain Paris 4|Goûter|undefined|4.7|undefined|19 Rue des Rosiers, 75004 Paris|undefined|48.85371|2.36131|0|
+Atelier Sucré & Babka Virale Paris 5|Goûter|undefined|5|undefined|37 Rue Mouffetard, 75005 Paris|undefined|48.83754|2.33757|0|
+Halle Marché & Food Court Paris 6|Marché|undefined|4.9|undefined|88 Bd Saint-Germain, 75006 Paris|undefined|48.85954|2.33812|0|
+Marché Bio & Terroir Paris 7|Marché|undefined|4.8|undefined|160 Rue Saint-Dominique, 75007 Paris|undefined|48.85115|2.32211|0|
+KFB Crispy & Box Paris 8|Fast-food|undefined|4.9|undefined|17 Av. des Champs-Élysées, 75008 Paris|undefined|48.87333|2.32328|0|
+Chicken Street Cheese Naan Paris 9|Fast-food|undefined|4.7|undefined|43 Rue des Martyrs, 75009 Paris|undefined|48.87243|2.33782|0|
+Wesh Bro Korean Fried Halal Paris 10|Fast-food|undefined|4.9|undefined|180 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87436|2.36962|0|
+Smash Halal Burger Co. Paris 11|Fast-food|undefined|4.7|undefined|160 Rue Oberkampf, 75011 Paris|undefined|48.84999|2.36328|0|
+Dumbo Style Smash Paris 12|Fast-food|undefined|4.5|undefined|94 Rue de Charenton, 75012 Paris|undefined|48.83717|2.41149|0|
+Nach & Tacos Loaded Box Paris 13|Fast-food|undefined|4.9|undefined|183 Av. de Choisy, 75013 Paris|undefined|48.83566|2.3507|0|
+O'Tacos Supreme Paris 14|Fast-food|undefined|4.5|undefined|187 Rue Daguerre, 75014 Paris|undefined|48.84574|2.32981|0|
+Berliner Kebab Gourmet Halal Paris 15|Fast-food|undefined|4.8|undefined|187 Rue de Vaugirard, 75015 Paris|undefined|48.83168|2.28682|0|
+Mezzé & Shawarma Al-Basha Paris 16|Restaurant|undefined|4.8|undefined|144 Rue de Passy, 75016 Paris|undefined|48.8663|2.28548|0|
+Le Royal Couscous & Grillades Paris 17|Restaurant|undefined|4.9|undefined|129 Rue des Batignolles, 75017 Paris|undefined|48.89256|2.30308|0|
+Tajine d'Or & Pâtisseries Paris 18|Restaurant|undefined|4.5|undefined|41 Rue Lepic, 75018 Paris|undefined|48.89322|2.36161|0|
+Taj Mahal & Tandoori Naan Paris 19|Restaurant|undefined|4.8|undefined|27 Av. Jean Jaurès, 75019 Paris|undefined|48.8817|2.39789|0|
+Afro Grill & Thiéboudienne Paris 20|Restaurant|undefined|4.8|undefined|115 Rue de Belleville, 75020 Paris|undefined|48.86438|2.41185|0|
+Bouillon Ancien de Paris Saint-Denis|Restaurant|undefined|4.7|undefined|151 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93419|2.37574|0|
+Pizzeria Napoletana Forno Saint-Ouen|Restaurant|undefined|4.8|undefined|115 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90349|2.31899|0|
+Ramen Bar & Gyoza House Montreuil|Restaurant|undefined|4.7|undefined|140 Rue de Paris, 93100 Montreuil|undefined|48.8586|2.42426|0|
+Pho Saigon Canteen Boulogne|Restaurant|undefined|4.7|undefined|60 Route de la Reine, 92100 Boulogne|undefined|48.83294|2.23427|0|
+Café & Brunch Factory Vincennes|Goûter|undefined|4.6|undefined|186 Av. de Paris, 94300 Vincennes|undefined|48.83571|2.43764|0|
+Boulangerie Tradition & Levain Aubervilliers|Goûter|undefined|4.6|undefined|107 Av. de la République, 93300 Aubervilliers|undefined|48.90417|2.38383|0|
+Atelier Sucré & Babka Virale Pantin|Goûter|undefined|4.9|undefined|43 Av. Jean Lolive, 93500 Pantin|undefined|48.89641|2.40678|0|
+Halle Marché & Food Court Levallois|Marché|undefined|4.8|undefined|31 Rue Aristide Briand, 92300 Levallois|undefined|48.8965|2.29577|0|
+Marché Bio & Terroir Neuilly|Marché|undefined|4.7|undefined|19 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.89103|2.27508|0|
+KFB Crispy & Box Clichy|Fast-food|undefined|4.6|undefined|135 Bd Jean Jaurès, 92110 Clichy|undefined|48.89907|2.30496|0|
+Chicken Street Cheese Naan Ivry|Fast-food|undefined|4.7|undefined|115 Av. Maurice Thorez, 94200 Ivry|undefined|48.81544|2.40047|0|
+Wesh Bro Korean Fried Halal Paris 1|Fast-food|undefined|4.8|undefined|21 Rue de Rivoli, 75001 Paris|undefined|48.86334|2.32588|0|
+Smash Halal Burger Co. Paris 2|Fast-food|undefined|4.7|undefined|89 Rue Montorgueil, 75002 Paris|undefined|48.86747|2.33746|0|
+Dumbo Style Smash Paris 3|Fast-food|undefined|4.7|undefined|99 Rue de Bretagne, 75003 Paris|undefined|48.85615|2.35354|0|
+Nach & Tacos Loaded Box Paris 4|Fast-food|undefined|4.8|undefined|85 Rue des Rosiers, 75004 Paris|undefined|48.8521|2.36379|0|
+O'Tacos Supreme Paris 5|Fast-food|undefined|4.6|undefined|187 Rue Mouffetard, 75005 Paris|undefined|48.83296|2.35978|0|
+Berliner Kebab Gourmet Halal Paris 6|Fast-food|undefined|4.8|undefined|122 Bd Saint-Germain, 75006 Paris|undefined|48.84116|2.33216|0|
+Mezzé & Shawarma Al-Basha Paris 7|Restaurant|undefined|4.8|undefined|109 Rue Saint-Dominique, 75007 Paris|undefined|48.85799|2.32559|0|
+Le Royal Couscous & Grillades Paris 8|Restaurant|undefined|4.8|undefined|12 Av. des Champs-Élysées, 75008 Paris|undefined|48.86878|2.30973|0|
+Tajine d'Or & Pâtisseries Paris 9|Restaurant|undefined|4.9|undefined|187 Rue des Martyrs, 75009 Paris|undefined|48.86814|2.34867|0|
+Taj Mahal & Tandoori Naan Paris 10|Restaurant|undefined|4.6|undefined|100 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88888|2.35619|0|
+Afro Grill & Thiéboudienne Paris 11|Restaurant|undefined|4.5|undefined|139 Rue Oberkampf, 75011 Paris|undefined|48.8701|2.3708|0|
+Bouillon Ancien de Paris Paris 12|Restaurant|undefined|4.6|undefined|54 Rue de Charenton, 75012 Paris|undefined|48.83557|2.4125|0|
+Pizzeria Napoletana Forno Paris 13|Restaurant|undefined|4.8|undefined|108 Av. de Choisy, 75013 Paris|undefined|48.82357|2.38221|0|
+Ramen Bar & Gyoza House Paris 14|Restaurant|undefined|5|undefined|148 Rue Daguerre, 75014 Paris|undefined|48.82104|2.33455|0|
+Pho Saigon Canteen Paris 15|Restaurant|undefined|4.7|undefined|182 Rue de Vaugirard, 75015 Paris|undefined|48.83403|2.2964|0|
+Café & Brunch Factory Paris 16|Goûter|undefined|5|undefined|12 Rue de Passy, 75016 Paris|undefined|48.86119|2.28292|0|
+Boulangerie Tradition & Levain Paris 17|Goûter|undefined|4.8|undefined|11 Rue des Batignolles, 75017 Paris|undefined|48.89109|2.30356|0|
+Atelier Sucré & Babka Virale Paris 18|Goûter|undefined|5|undefined|24 Rue Lepic, 75018 Paris|undefined|48.89316|2.3542|0|
+Halle Marché & Food Court Paris 19|Marché|undefined|4.6|undefined|168 Av. Jean Jaurès, 75019 Paris|undefined|48.88572|2.38637|0|
+Marché Bio & Terroir Paris 20|Marché|undefined|4.5|undefined|165 Rue de Belleville, 75020 Paris|undefined|48.86197|2.39906|0|
+KFB Crispy & Box Saint-Denis|Fast-food|undefined|4.7|undefined|11 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.94143|2.35312|0|
+Chicken Street Cheese Naan Saint-Ouen|Fast-food|undefined|4.9|undefined|55 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90518|2.34359|0|
+Wesh Bro Korean Fried Halal Montreuil|Fast-food|undefined|4.9|undefined|25 Rue de Paris, 93100 Montreuil|undefined|48.85883|2.44822|0|
+Smash Halal Burger Co. Boulogne|Fast-food|undefined|4.7|undefined|9 Route de la Reine, 92100 Boulogne|undefined|48.83823|2.23862|0|
+Dumbo Style Smash Vincennes|Fast-food|undefined|4.9|undefined|127 Av. de Paris, 94300 Vincennes|undefined|48.85016|2.42956|0|
+Nach & Tacos Loaded Box Aubervilliers|Fast-food|undefined|4.9|undefined|69 Av. de la République, 93300 Aubervilliers|undefined|48.91314|2.36405|0|
+O'Tacos Supreme Pantin|Fast-food|undefined|4.6|undefined|111 Av. Jean Lolive, 93500 Pantin|undefined|48.88595|2.40001|0|
+Berliner Kebab Gourmet Halal Levallois|Fast-food|undefined|4.9|undefined|51 Rue Aristide Briand, 92300 Levallois|undefined|48.8987|2.26848|0|
+Mezzé & Shawarma Al-Basha Neuilly|Restaurant|undefined|4.8|undefined|110 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88896|2.2838|0|
+Le Royal Couscous & Grillades Clichy|Restaurant|undefined|4.7|undefined|74 Bd Jean Jaurès, 92110 Clichy|undefined|48.91009|2.29741|0|
+Tajine d'Or & Pâtisseries Ivry|Restaurant|undefined|4.5|undefined|159 Av. Maurice Thorez, 94200 Ivry|undefined|48.80875|2.38011|0|
+Taj Mahal & Tandoori Naan Paris 1|Restaurant|undefined|4.8|undefined|23 Rue de Rivoli, 75001 Paris|undefined|48.86442|2.33498|0|
+Afro Grill & Thiéboudienne Paris 2|Restaurant|undefined|4.7|undefined|78 Rue Montorgueil, 75002 Paris|undefined|48.86649|2.33101|0|
+Bouillon Ancien de Paris Paris 3|Restaurant|undefined|4.5|undefined|96 Rue de Bretagne, 75003 Paris|undefined|48.86378|2.38026|0|
+Pizzeria Napoletana Forno Paris 4|Restaurant|undefined|4.8|undefined|29 Rue des Rosiers, 75004 Paris|undefined|48.8499|2.34915|0|
+Ramen Bar & Gyoza House Paris 5|Restaurant|undefined|4.7|undefined|3 Rue Mouffetard, 75005 Paris|undefined|48.84179|2.33512|0|
+Pho Saigon Canteen Paris 6|Restaurant|undefined|4.7|undefined|136 Bd Saint-Germain, 75006 Paris|undefined|48.85008|2.32298|0|
+Café & Brunch Factory Paris 7|Goûter|undefined|4.6|undefined|13 Rue Saint-Dominique, 75007 Paris|undefined|48.85649|2.29568|0|

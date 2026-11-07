@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@layer base {
+  :root {
+    --font-heading: "Plus Jakarta Sans", "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: "Plus Jakarta Sans", "Outfit", "DM Sans", system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    background-color: #08080C;
+    color: #F8FAFC;
+  }
+
+  h1, h2, h3, .font-serif-display {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Luminous 24K Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-metallic {
+  background: linear-gradient(135deg, #FFFBEB 0%, #FCD34D 35%, #F59E0B 70%, #B45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Luxury Black & Gold Card Borders */
+.border-gold-subtle {
+  border: 1px solid rgba(245, 158, 11, 0.22);
+}
+
+.border-gold-glow {
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.15);
+}
+
+/* Custom shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(24, 24, 32, 0.5) 0%, rgba(245, 158, 11, 0.15) 50%, rgba(24, 24, 32, 0.5) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite linear;
+}
+
+/* Pulse beacon for Gold GPS dot */
+@keyframes gold-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 14px rgba(245, 158, 11, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+.gps-beacon {
+  animation: gold-pulse 2s infinite;
+}
+
+/* Luxury Obsidian & Gold scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08080C;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #F59E0B, #B45309);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FBBF24;
+}

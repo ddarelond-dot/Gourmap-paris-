@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A0F08"/>
+      <stop offset="100%" stop-color="#0E0704"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A45"/>
+      <stop offset="50%" stop-color="#FF4D2E"/>
+      <stop offset="100%" stop-color="#E0245E"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#FF4D2E" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Background squircle -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+  <!-- Central Badge -->
+  <rect x="76" y="76" width="360" height="360" rx="90" fill="url(#flameGrad)" filter="url(#glow)"/>
+  <!-- Compass / Pin / Fork Motif -->
+  <path d="M256 130 C195 130 146 179 146 240 C146 312 242 388 251 395 C254 397 258 397 261 395 C270 388 366 312 366 240 C366 179 317 130 256 130 Z" fill="#FFFFFF" fill-opacity="0.96"/>
+  <!-- Inner Cutout -->
+  <circle cx="256" cy="235" r="48" fill="url(#flameGrad)"/>
+  <!-- Star / Sparkle in center -->
+  <path d="M256 215 L261 230 L276 235 L261 240 L256 255 L251 240 L236 235 L251 230 Z" fill="#FFFFFF"/>
+</svg>

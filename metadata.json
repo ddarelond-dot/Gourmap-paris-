@@ -1,0 +1,6 @@
+{
+  "name": "GourMap – Le GPS de la Food",
+  "description": "Le GPS culinaire d'élite : spots viraux TikTok, box à moins de 10€, recherche IA conversationnelle, carte interactive en direct et synchronisation multi-appareils.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

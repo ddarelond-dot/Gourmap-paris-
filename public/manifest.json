@@ -1,0 +1,32 @@
+{
+  "id": "/",
+  "name": "GourMap – Le GPS de la Food",
+  "short_name": "GourMap",
+  "description": "Le GPS culinaire : spots viraux TikTok, box à moins de 10€, recherche IA conversationnelle et 2 050 adresses.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#070A11",
+  "background_color": "#070A11",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

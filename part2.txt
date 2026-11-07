@@ -1,0 +1,881 @@
+
+Boulangerie Tradition & Levain Paris 8|Goûter|undefined|4.7|undefined|174 Av. des Champs-Élysées, 75008 Paris|undefined|48.88322|2.30844|0|
+Atelier Sucré & Babka Virale Paris 9|Goûter|undefined|5|undefined|123 Rue des Martyrs, 75009 Paris|undefined|48.87791|2.33385|0|
+Halle Marché & Food Court Paris 10|Marché|undefined|4.5|undefined|193 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87629|2.35671|0|
+Marché Bio & Terroir Paris 11|Marché|undefined|4.6|undefined|23 Rue Oberkampf, 75011 Paris|undefined|48.85137|2.38187|0|
+KFB Crispy & Box Paris 12|Fast-food|undefined|4.6|undefined|162 Rue de Charenton, 75012 Paris|undefined|48.837|2.39953|0|
+Chicken Street Cheese Naan Paris 13|Fast-food|undefined|4.6|undefined|173 Av. de Choisy, 75013 Paris|undefined|48.82754|2.37136|0|
+Wesh Bro Korean Fried Halal Paris 14|Fast-food|undefined|4.7|undefined|65 Rue Daguerre, 75014 Paris|undefined|48.83134|2.32131|0|
+Smash Halal Burger Co. Paris 15|Fast-food|undefined|4.8|undefined|19 Rue de Vaugirard, 75015 Paris|undefined|48.84271|2.2971|0|
+Dumbo Style Smash Paris 16|Fast-food|undefined|4.6|undefined|167 Rue de Passy, 75016 Paris|undefined|48.87702|2.27072|0|
+Nach & Tacos Loaded Box Paris 17|Fast-food|undefined|4.9|undefined|36 Rue des Batignolles, 75017 Paris|undefined|48.88812|2.328|0|
+O'Tacos Supreme Paris 18|Fast-food|undefined|4.5|undefined|194 Rue Lepic, 75018 Paris|undefined|48.89247|2.32765|0|
+Berliner Kebab Gourmet Halal Paris 19|Fast-food|undefined|4.6|undefined|153 Av. Jean Jaurès, 75019 Paris|undefined|48.88845|2.38528|0|
+Mezzé & Shawarma Al-Basha Paris 20|Restaurant|undefined|5|undefined|167 Rue de Belleville, 75020 Paris|undefined|48.87293|2.39277|0|
+Le Royal Couscous & Grillades Saint-Denis|Restaurant|undefined|5|undefined|25 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93382|2.35398|0|
+Tajine d'Or & Pâtisseries Saint-Ouen|Restaurant|undefined|4.7|undefined|49 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.92|2.33392|0|
+Taj Mahal & Tandoori Naan Montreuil|Restaurant|undefined|4.8|undefined|31 Rue de Paris, 93100 Montreuil|undefined|48.8671|2.44663|0|
+Afro Grill & Thiéboudienne Boulogne|Restaurant|undefined|4.7|undefined|92 Route de la Reine, 92100 Boulogne|undefined|48.8262|2.22845|0|
+Bouillon Ancien de Paris Vincennes|Restaurant|undefined|4.8|undefined|13 Av. de Paris, 94300 Vincennes|undefined|48.84661|2.42489|0|
+Pizzeria Napoletana Forno Aubervilliers|Restaurant|undefined|5|undefined|169 Av. de la République, 93300 Aubervilliers|undefined|48.91982|2.37234|0|
+Ramen Bar & Gyoza House Pantin|Restaurant|undefined|4.9|undefined|12 Av. Jean Lolive, 93500 Pantin|undefined|48.88434|2.4102|0|
+Pho Saigon Canteen Levallois|Restaurant|undefined|4.8|undefined|132 Rue Aristide Briand, 92300 Levallois|undefined|48.89679|2.27669|0|
+Café & Brunch Factory Neuilly|Goûter|undefined|4.8|undefined|138 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.87611|2.28058|0|
+Boulangerie Tradition & Levain Clichy|Goûter|undefined|4.6|undefined|183 Bd Jean Jaurès, 92110 Clichy|undefined|48.90879|2.3109|0|
+Atelier Sucré & Babka Virale Ivry|Goûter|undefined|4.8|undefined|71 Av. Maurice Thorez, 94200 Ivry|undefined|48.81975|2.40254|0|
+Halle Marché & Food Court Paris 1|Marché|undefined|4.8|undefined|94 Rue de Rivoli, 75001 Paris|undefined|48.84816|2.33511|0|
+Marché Bio & Terroir Paris 2|Marché|undefined|4.4|undefined|82 Rue Montorgueil, 75002 Paris|undefined|48.86135|2.34479|0|
+KFB Crispy & Box Paris 3|Fast-food|undefined|5|undefined|160 Rue de Bretagne, 75003 Paris|undefined|48.87339|2.36548|0|
+Chicken Street Cheese Naan Paris 4|Fast-food|undefined|4.7|undefined|6 Rue des Rosiers, 75004 Paris|undefined|48.84746|2.36977|0|
+Wesh Bro Korean Fried Halal Paris 5|Fast-food|undefined|4.9|undefined|194 Rue Mouffetard, 75005 Paris|undefined|48.83219|2.34577|0|
+Smash Halal Burger Co. Paris 6|Fast-food|undefined|4.9|undefined|14 Bd Saint-Germain, 75006 Paris|undefined|48.84497|2.33097|0|
+Dumbo Style Smash Paris 7|Fast-food|undefined|4.6|undefined|31 Rue Saint-Dominique, 75007 Paris|undefined|48.85424|2.29248|0|
+Nach & Tacos Loaded Box Paris 8|Fast-food|undefined|4.7|undefined|6 Av. des Champs-Élysées, 75008 Paris|undefined|48.87124|2.29415|0|
+O'Tacos Supreme Paris 9|Fast-food|undefined|4.5|undefined|110 Rue des Martyrs, 75009 Paris|undefined|48.86757|2.34369|0|
+Berliner Kebab Gourmet Halal Paris 10|Fast-food|undefined|4.9|undefined|185 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87713|2.36236|0|
+Mezzé & Shawarma Al-Basha Paris 11|Restaurant|undefined|4.7|undefined|145 Rue Oberkampf, 75011 Paris|undefined|48.84575|2.37683|0|
+Le Royal Couscous & Grillades Paris 12|Restaurant|undefined|4.6|undefined|12 Rue de Charenton, 75012 Paris|undefined|48.84527|2.3749|0|
+Tajine d'Or & Pâtisseries Paris 13|Restaurant|undefined|4.5|undefined|24 Av. de Choisy, 75013 Paris|undefined|48.81902|2.36045|0|
+Taj Mahal & Tandoori Naan Paris 14|Restaurant|undefined|4.8|undefined|121 Rue Daguerre, 75014 Paris|undefined|48.84053|2.31803|0|
+Afro Grill & Thiéboudienne Paris 15|Restaurant|undefined|4.6|undefined|177 Rue de Vaugirard, 75015 Paris|undefined|48.83779|2.27822|0|
+Bouillon Ancien de Paris Paris 16|Restaurant|undefined|4.4|undefined|185 Rue de Passy, 75016 Paris|undefined|48.85104|2.26821|0|
+Pizzeria Napoletana Forno Paris 17|Restaurant|undefined|4.9|undefined|32 Rue des Batignolles, 75017 Paris|undefined|48.8872|2.32579|0|
+Ramen Bar & Gyoza House Paris 18|Restaurant|undefined|4.9|undefined|149 Rue Lepic, 75018 Paris|undefined|48.883|2.34894|0|
+Pho Saigon Canteen Paris 19|Restaurant|undefined|4.8|undefined|98 Av. Jean Jaurès, 75019 Paris|undefined|48.8753|2.38747|0|
+Café & Brunch Factory Paris 20|Goûter|undefined|4.6|undefined|74 Rue de Belleville, 75020 Paris|undefined|48.87086|2.40834|0|
+Boulangerie Tradition & Levain Saint-Denis|Goûter|undefined|4.8|undefined|80 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.9299|2.35561|0|
+Atelier Sucré & Babka Virale Saint-Ouen|Goûter|undefined|4.9|undefined|104 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.92248|2.32211|0|
+Halle Marché & Food Court Montreuil|Marché|undefined|4.6|undefined|90 Rue de Paris, 93100 Montreuil|undefined|48.859|2.42827|0|
+Marché Bio & Terroir Boulogne|Marché|undefined|4.5|undefined|142 Route de la Reine, 92100 Boulogne|undefined|48.8377|2.24514|0|
+KFB Crispy & Box Vincennes|Fast-food|undefined|4.8|undefined|189 Av. de Paris, 94300 Vincennes|undefined|48.83855|2.42058|0|
+Chicken Street Cheese Naan Aubervilliers|Fast-food|undefined|4.6|undefined|59 Av. de la République, 93300 Aubervilliers|undefined|48.91748|2.38417|0|
+Wesh Bro Korean Fried Halal Pantin|Fast-food|undefined|4.7|undefined|74 Av. Jean Lolive, 93500 Pantin|undefined|48.89907|2.40958|0|
+Smash Halal Burger Co. Levallois|Fast-food|undefined|5|undefined|144 Rue Aristide Briand, 92300 Levallois|undefined|48.90041|2.29008|0|
+Dumbo Style Smash Neuilly|Fast-food|undefined|4.8|undefined|146 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88511|2.27248|0|
+Nach & Tacos Loaded Box Clichy|Fast-food|undefined|4.9|undefined|187 Bd Jean Jaurès, 92110 Clichy|undefined|48.89353|2.31787|0|
+O'Tacos Supreme Ivry|Fast-food|undefined|4.4|undefined|110 Av. Maurice Thorez, 94200 Ivry|undefined|48.81356|2.38059|0|
+Berliner Kebab Gourmet Halal Paris 1|Fast-food|undefined|4.9|undefined|86 Rue de Rivoli, 75001 Paris|undefined|48.86507|2.33575|0|
+Mezzé & Shawarma Al-Basha Paris 2|Restaurant|undefined|4.9|undefined|166 Rue Montorgueil, 75002 Paris|undefined|48.86751|2.33498|0|
+Le Royal Couscous & Grillades Paris 3|Restaurant|undefined|4.8|undefined|81 Rue de Bretagne, 75003 Paris|undefined|48.8666|2.36918|0|
+Tajine d'Or & Pâtisseries Paris 4|Restaurant|undefined|4.8|undefined|13 Rue des Rosiers, 75004 Paris|undefined|48.84948|2.36111|0|
+Taj Mahal & Tandoori Naan Paris 5|Restaurant|undefined|4.7|undefined|112 Rue Mouffetard, 75005 Paris|undefined|48.84685|2.33129|0|
+Afro Grill & Thiéboudienne Paris 6|Restaurant|undefined|4.5|undefined|97 Bd Saint-Germain, 75006 Paris|undefined|48.85302|2.32593|0|
+Bouillon Ancien de Paris Paris 7|Restaurant|undefined|4.6|undefined|113 Rue Saint-Dominique, 75007 Paris|undefined|48.8473|2.30578|0|
+Pizzeria Napoletana Forno Paris 8|Restaurant|undefined|4.9|undefined|94 Av. des Champs-Élysées, 75008 Paris|undefined|48.8877|2.31401|0|
+Ramen Bar & Gyoza House Paris 9|Restaurant|undefined|4.8|undefined|149 Rue des Martyrs, 75009 Paris|undefined|48.87784|2.32302|0|
+Pho Saigon Canteen Paris 10|Restaurant|undefined|4.7|undefined|18 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87037|2.34537|0|
+Café & Brunch Factory Paris 11|Goûter|undefined|4.9|undefined|67 Rue Oberkampf, 75011 Paris|undefined|48.86702|2.38466|0|
+Boulangerie Tradition & Levain Paris 12|Goûter|undefined|5|undefined|75 Rue de Charenton, 75012 Paris|undefined|48.83763|2.39396|0|
+Atelier Sucré & Babka Virale Paris 13|Goûter|undefined|4.9|undefined|49 Av. de Choisy, 75013 Paris|undefined|48.82604|2.37783|0|
+Halle Marché & Food Court Paris 14|Marché|undefined|4.5|undefined|29 Rue Daguerre, 75014 Paris|undefined|48.82489|2.32474|0|
+Marché Bio & Terroir Paris 15|Marché|undefined|4.6|undefined|176 Rue de Vaugirard, 75015 Paris|undefined|48.83292|2.27816|0|
+KFB Crispy & Box Paris 16|Fast-food|undefined|5|undefined|195 Rue de Passy, 75016 Paris|undefined|48.85928|2.27536|0|
+Chicken Street Cheese Naan Paris 17|Fast-food|undefined|4.7|undefined|6 Rue des Batignolles, 75017 Paris|undefined|48.88449|2.31775|0|
+Wesh Bro Korean Fried Halal Paris 18|Fast-food|undefined|5.1|undefined|150 Rue Lepic, 75018 Paris|undefined|48.89464|2.35107|0|
+Smash Halal Burger Co. Paris 19|Fast-food|undefined|4.8|undefined|170 Av. Jean Jaurès, 75019 Paris|undefined|48.88597|2.39394|0|
+Dumbo Style Smash Paris 20|Fast-food|undefined|4.7|undefined|110 Rue de Belleville, 75020 Paris|undefined|48.86301|2.39727|0|
+Nach & Tacos Loaded Box Saint-Denis|Fast-food|undefined|4.7|undefined|99 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93046|2.35311|0|
+O'Tacos Supreme Saint-Ouen|Fast-food|undefined|4.5|undefined|38 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91432|2.33904|0|
+Berliner Kebab Gourmet Halal Montreuil|Fast-food|undefined|4.9|undefined|70 Rue de Paris, 93100 Montreuil|undefined|48.85906|2.43783|0|
+Mezzé & Shawarma Al-Basha Boulogne|Restaurant|undefined|4.9|undefined|105 Route de la Reine, 92100 Boulogne|undefined|48.83138|2.23674|0|
+Le Royal Couscous & Grillades Vincennes|Restaurant|undefined|4.8|undefined|182 Av. de Paris, 94300 Vincennes|undefined|48.84781|2.44055|0|
+Tajine d'Or & Pâtisseries Aubervilliers|Restaurant|undefined|4.9|undefined|122 Av. de la République, 93300 Aubervilliers|undefined|48.90962|2.36081|0|
+Taj Mahal & Tandoori Naan Pantin|Restaurant|undefined|4.7|undefined|18 Av. Jean Lolive, 93500 Pantin|undefined|48.88242|2.40986|0|
+Afro Grill & Thiéboudienne Levallois|Restaurant|undefined|4.5|undefined|89 Rue Aristide Briand, 92300 Levallois|undefined|48.89459|2.2887|0|
+Bouillon Ancien de Paris Neuilly|Restaurant|undefined|4.4|undefined|72 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.89384|2.25967|0|
+Pizzeria Napoletana Forno Clichy|Restaurant|undefined|4.8|undefined|94 Bd Jean Jaurès, 92110 Clichy|undefined|48.91629|2.29845|0|
+Ramen Bar & Gyoza House Ivry|Restaurant|undefined|4.6|undefined|145 Av. Maurice Thorez, 94200 Ivry|undefined|48.81915|2.38149|0|
+Pho Saigon Canteen Paris 1|Restaurant|undefined|4.6|undefined|85 Rue de Rivoli, 75001 Paris|undefined|48.87125|2.34497|0|
+Café & Brunch Factory Paris 2|Goûter|undefined|4.8|undefined|94 Rue Montorgueil, 75002 Paris|undefined|48.86258|2.32855|0|
+Boulangerie Tradition & Levain Paris 3|Goûter|undefined|4.9|undefined|8 Rue de Bretagne, 75003 Paris|undefined|48.87126|2.34805|0|
+Atelier Sucré & Babka Virale Paris 4|Goûter|undefined|5.1|undefined|24 Rue des Rosiers, 75004 Paris|undefined|48.8537|2.35938|0|
+Halle Marché & Food Court Paris 5|Marché|undefined|4.6|undefined|142 Rue Mouffetard, 75005 Paris|undefined|48.84557|2.34727|0|
+Marché Bio & Terroir Paris 6|Marché|undefined|4.6|undefined|69 Bd Saint-Germain, 75006 Paris|undefined|48.8421|2.32147|0|
+KFB Crispy & Box Paris 7|Fast-food|undefined|4.8|undefined|124 Rue Saint-Dominique, 75007 Paris|undefined|48.84528|2.32314|0|
+Chicken Street Cheese Naan Paris 8|Fast-food|undefined|4.7|undefined|194 Av. des Champs-Élysées, 75008 Paris|undefined|48.87251|2.29665|0|
+Wesh Bro Korean Fried Halal Paris 9|Fast-food|undefined|4.9|undefined|156 Rue des Martyrs, 75009 Paris|undefined|48.88342|2.3283|0|
+Smash Halal Burger Co. Paris 10|Fast-food|undefined|4.7|undefined|75 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88029|2.35945|0|
+Dumbo Style Smash Paris 11|Fast-food|undefined|4.9|undefined|108 Rue Oberkampf, 75011 Paris|undefined|48.85895|2.37377|0|
+Nach & Tacos Loaded Box Paris 12|Fast-food|undefined|4.9|undefined|94 Rue de Charenton, 75012 Paris|undefined|48.83704|2.38394|0|
+O'Tacos Supreme Paris 13|Fast-food|undefined|4.5|undefined|168 Av. de Choisy, 75013 Paris|undefined|48.82114|2.34674|0|
+Berliner Kebab Gourmet Halal Paris 14|Fast-food|undefined|4.9|undefined|146 Rue Daguerre, 75014 Paris|undefined|48.83596|2.32676|0|
+Mezzé & Shawarma Al-Basha Paris 15|Restaurant|undefined|4.8|undefined|73 Rue de Vaugirard, 75015 Paris|undefined|48.83832|2.2835|0|
+Le Royal Couscous & Grillades Paris 16|Restaurant|undefined|4.9|undefined|146 Rue de Passy, 75016 Paris|undefined|48.86275|2.2714|0|
+Tajine d'Or & Pâtisseries Paris 17|Restaurant|undefined|4.8|undefined|63 Rue des Batignolles, 75017 Paris|undefined|48.88335|2.29381|0|
+Taj Mahal & Tandoori Naan Paris 18|Restaurant|undefined|4.9|undefined|187 Rue Lepic, 75018 Paris|undefined|48.88421|2.35163|0|
+Afro Grill & Thiéboudienne Paris 19|Restaurant|undefined|4.6|undefined|25 Av. Jean Jaurès, 75019 Paris|undefined|48.88987|2.38451|0|
+Bouillon Ancien de Paris Paris 20|Restaurant|undefined|4.6|undefined|123 Rue de Belleville, 75020 Paris|undefined|48.86447|2.40235|0|
+Pizzeria Napoletana Forno Saint-Denis|Restaurant|undefined|4.7|undefined|110 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.92194|2.35533|0|
+Ramen Bar & Gyoza House Saint-Ouen|Restaurant|undefined|4.8|undefined|5 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90613|2.3248|0|
+Pho Saigon Canteen Montreuil|Restaurant|undefined|4.8|undefined|145 Rue de Paris, 93100 Montreuil|undefined|48.86128|2.42312|0|
+Café & Brunch Factory Boulogne|Goûter|undefined|4.9|undefined|98 Route de la Reine, 92100 Boulogne|undefined|48.83252|2.22454|0|
+Boulangerie Tradition & Levain Vincennes|Goûter|undefined|4.7|undefined|41 Av. de Paris, 94300 Vincennes|undefined|48.84806|2.44662|0|
+Atelier Sucré & Babka Virale Aubervilliers|Goûter|undefined|4.8|undefined|83 Av. de la République, 93300 Aubervilliers|undefined|48.90053|2.3876|0|
+Halle Marché & Food Court Pantin|Marché|undefined|4.8|undefined|37 Av. Jean Lolive, 93500 Pantin|undefined|48.89733|2.40622|0|
+Marché Bio & Terroir Levallois|Marché|undefined|4.6|undefined|76 Rue Aristide Briand, 92300 Levallois|undefined|48.89755|2.28569|0|
+KFB Crispy & Box Neuilly|Fast-food|undefined|4.9|undefined|60 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88344|2.28029|0|
+Chicken Street Cheese Naan Clichy|Fast-food|undefined|4.8|undefined|189 Bd Jean Jaurès, 92110 Clichy|undefined|48.89979|2.29918|0|
+Wesh Bro Korean Fried Halal Ivry|Fast-food|undefined|5|undefined|85 Av. Maurice Thorez, 94200 Ivry|undefined|48.81045|2.37318|0|
+Smash Halal Burger Co. Paris 1|Fast-food|undefined|4.7|undefined|132 Rue de Rivoli, 75001 Paris|undefined|48.86322|2.35639|0|
+Dumbo Style Smash Paris 2|Fast-food|undefined|4.9|undefined|93 Rue Montorgueil, 75002 Paris|undefined|48.87013|2.34161|0|
+Nach & Tacos Loaded Box Paris 3|Fast-food|undefined|4.7|undefined|112 Rue de Bretagne, 75003 Paris|undefined|48.86535|2.3658|0|
+O'Tacos Supreme Paris 4|Fast-food|undefined|4.4|undefined|128 Rue des Rosiers, 75004 Paris|undefined|48.85601|2.35638|0|
+Berliner Kebab Gourmet Halal Paris 5|Fast-food|undefined|4.7|undefined|165 Rue Mouffetard, 75005 Paris|undefined|48.8457|2.35702|0|
+Mezzé & Shawarma Al-Basha Paris 6|Restaurant|undefined|4.8|undefined|61 Bd Saint-Germain, 75006 Paris|undefined|48.84609|2.34982|0|
+Le Royal Couscous & Grillades Paris 7|Restaurant|undefined|4.9|undefined|46 Rue Saint-Dominique, 75007 Paris|undefined|48.86428|2.31042|0|
+Tajine d'Or & Pâtisseries Paris 8|Restaurant|undefined|4.7|undefined|152 Av. des Champs-Élysées, 75008 Paris|undefined|48.87979|2.305|0|
+Taj Mahal & Tandoori Naan Paris 9|Restaurant|undefined|4.6|undefined|122 Rue des Martyrs, 75009 Paris|undefined|48.86901|2.32449|0|
+Afro Grill & Thiéboudienne Paris 10|Restaurant|undefined|4.8|undefined|73 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.86991|2.36203|0|
+Bouillon Ancien de Paris Paris 11|Restaurant|undefined|4.5|undefined|190 Rue Oberkampf, 75011 Paris|undefined|48.86544|2.36437|0|
+Pizzeria Napoletana Forno Paris 12|Restaurant|undefined|4.9|undefined|101 Rue de Charenton, 75012 Paris|undefined|48.84158|2.39593|0|
+Ramen Bar & Gyoza House Paris 13|Restaurant|undefined|4.8|undefined|122 Av. de Choisy, 75013 Paris|undefined|48.84121|2.36541|0|
+Pho Saigon Canteen Paris 14|Restaurant|undefined|4.7|undefined|157 Rue Daguerre, 75014 Paris|undefined|48.82962|2.32099|0|
+Café & Brunch Factory Paris 15|Goûter|undefined|4.7|undefined|159 Rue de Vaugirard, 75015 Paris|undefined|48.84327|2.30246|0|
+Boulangerie Tradition & Levain Paris 16|Goûter|undefined|4.7|undefined|182 Rue de Passy, 75016 Paris|undefined|48.86815|2.289|0|
+Atelier Sucré & Babka Virale Paris 17|Goûter|undefined|4.9|undefined|170 Rue des Batignolles, 75017 Paris|undefined|48.88896|2.31009|0|
+Halle Marché & Food Court Paris 18|Marché|undefined|4.6|undefined|113 Rue Lepic, 75018 Paris|undefined|48.89691|2.35319|0|
+Marché Bio & Terroir Paris 19|Marché|undefined|4.8|undefined|63 Av. Jean Jaurès, 75019 Paris|undefined|48.87868|2.39788|0|
+KFB Crispy & Box Paris 20|Fast-food|undefined|4.9|undefined|101 Rue de Belleville, 75020 Paris|undefined|48.86446|2.41524|0|
+Chicken Street Cheese Naan Saint-Denis|Fast-food|undefined|4.8|undefined|63 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.94726|2.36243|0|
+Wesh Bro Korean Fried Halal Saint-Ouen|Fast-food|undefined|4.8|undefined|52 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91658|2.33571|0|
+Smash Halal Burger Co. Montreuil|Fast-food|undefined|4.8|undefined|180 Rue de Paris, 93100 Montreuil|undefined|48.86045|2.42771|0|
+Dumbo Style Smash Boulogne|Fast-food|undefined|4.8|undefined|132 Route de la Reine, 92100 Boulogne|undefined|48.8337|2.2561|0|
+Nach & Tacos Loaded Box Vincennes|Fast-food|undefined|5|undefined|69 Av. de Paris, 94300 Vincennes|undefined|48.85364|2.42299|0|
+O'Tacos Supreme Aubervilliers|Fast-food|undefined|4.5|undefined|82 Av. de la République, 93300 Aubervilliers|undefined|48.90845|2.39393|0|
+Berliner Kebab Gourmet Halal Pantin|Fast-food|undefined|4.8|undefined|118 Av. Jean Lolive, 93500 Pantin|undefined|48.90206|2.40541|0|
+Mezzé & Shawarma Al-Basha Levallois|Restaurant|undefined|4.7|undefined|162 Rue Aristide Briand, 92300 Levallois|undefined|48.89364|2.28172|0|
+Le Royal Couscous & Grillades Neuilly|Restaurant|undefined|4.9|undefined|36 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88676|2.26784|0|
+Tajine d'Or & Pâtisseries Clichy|Restaurant|undefined|4.6|undefined|84 Bd Jean Jaurès, 92110 Clichy|undefined|48.91273|2.29895|0|
+Taj Mahal & Tandoori Naan Ivry|Restaurant|undefined|4.6|undefined|136 Av. Maurice Thorez, 94200 Ivry|undefined|48.81244|2.37235|0|
+Afro Grill & Thiéboudienne Paris 1|Restaurant|undefined|4.7|undefined|89 Rue de Rivoli, 75001 Paris|undefined|48.85614|2.35029|0|
+Bouillon Ancien de Paris Paris 2|Restaurant|undefined|4.5|undefined|121 Rue Montorgueil, 75002 Paris|undefined|48.86993|2.34194|0|
+Pizzeria Napoletana Forno Paris 3|Restaurant|undefined|4.8|undefined|83 Rue de Bretagne, 75003 Paris|undefined|48.85345|2.34755|0|
+Ramen Bar & Gyoza House Paris 4|Restaurant|undefined|4.6|undefined|178 Rue des Rosiers, 75004 Paris|undefined|48.85607|2.34949|0|
+Pho Saigon Canteen Paris 5|Restaurant|undefined|4.7|undefined|63 Rue Mouffetard, 75005 Paris|undefined|48.85073|2.36202|0|
+Café & Brunch Factory Paris 6|Goûter|undefined|4.8|undefined|125 Bd Saint-Germain, 75006 Paris|undefined|48.8521|2.32981|0|
+Boulangerie Tradition & Levain Paris 7|Goûter|undefined|4.7|undefined|154 Rue Saint-Dominique, 75007 Paris|undefined|48.85098|2.30404|0|
+Atelier Sucré & Babka Virale Paris 8|Goûter|undefined|5|undefined|94 Av. des Champs-Élysées, 75008 Paris|undefined|48.88047|2.31001|0|
+Halle Marché & Food Court Paris 9|Marché|undefined|4.8|undefined|147 Rue des Martyrs, 75009 Paris|undefined|48.87763|2.34553|0|
+Marché Bio & Terroir Paris 10|Marché|undefined|4.8|undefined|97 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88112|2.35872|0|
+KFB Crispy & Box Paris 11|Fast-food|undefined|4.8|undefined|19 Rue Oberkampf, 75011 Paris|undefined|48.8534|2.377|0|
+Chicken Street Cheese Naan Paris 12|Fast-food|undefined|4.5|undefined|103 Rue de Charenton, 75012 Paris|undefined|48.83081|2.38234|0|
+Wesh Bro Korean Fried Halal Paris 13|Fast-food|undefined|4.7|undefined|166 Av. de Choisy, 75013 Paris|undefined|48.83826|2.35328|0|
+Smash Halal Burger Co. Paris 14|Fast-food|undefined|4.6|undefined|117 Rue Daguerre, 75014 Paris|undefined|48.83371|2.34159|0|
+Dumbo Style Smash Paris 15|Fast-food|undefined|4.7|undefined|51 Rue de Vaugirard, 75015 Paris|undefined|48.83355|2.30322|0|
+Nach & Tacos Loaded Box Paris 16|Fast-food|undefined|4.9|undefined|165 Rue de Passy, 75016 Paris|undefined|48.8508|2.28007|0|
+O'Tacos Supreme Paris 17|Fast-food|undefined|4.6|undefined|71 Rue des Batignolles, 75017 Paris|undefined|48.88461|2.30294|0|
+Berliner Kebab Gourmet Halal Paris 18|Fast-food|undefined|5|undefined|66 Rue Lepic, 75018 Paris|undefined|48.88221|2.34033|0|
+Mezzé & Shawarma Al-Basha Paris 19|Restaurant|undefined|4.9|undefined|104 Av. Jean Jaurès, 75019 Paris|undefined|48.88103|2.38563|0|
+Le Royal Couscous & Grillades Paris 20|Restaurant|undefined|4.7|undefined|169 Rue de Belleville, 75020 Paris|undefined|48.86873|2.41794|0|
+Tajine d'Or & Pâtisseries Saint-Denis|Restaurant|undefined|4.6|undefined|87 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93069|2.37463|0|
+Taj Mahal & Tandoori Naan Saint-Ouen|Restaurant|undefined|4.7|undefined|26 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90918|2.33754|0|
+Afro Grill & Thiéboudienne Montreuil|Restaurant|undefined|4.8|undefined|112 Rue de Paris, 93100 Montreuil|undefined|48.85827|2.44618|0|
+Bouillon Ancien de Paris Boulogne|Restaurant|undefined|4.5|undefined|32 Route de la Reine, 92100 Boulogne|undefined|48.84416|2.23178|0|
+Pizzeria Napoletana Forno Vincennes|Restaurant|undefined|4.9|undefined|51 Av. de Paris, 94300 Vincennes|undefined|48.85885|2.43242|0|
+Ramen Bar & Gyoza House Aubervilliers|Restaurant|undefined|4.9|undefined|164 Av. de la République, 93300 Aubervilliers|undefined|48.90517|2.3821|0|
+Pho Saigon Canteen Pantin|Restaurant|undefined|4.7|undefined|132 Av. Jean Lolive, 93500 Pantin|undefined|48.88722|2.40806|0|
+Café & Brunch Factory Levallois|Goûter|undefined|4.9|undefined|35 Rue Aristide Briand, 92300 Levallois|undefined|48.89426|2.3054|0|
+Boulangerie Tradition & Levain Neuilly|Goûter|undefined|4.8|undefined|40 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.89544|2.27536|0|
+Atelier Sucré & Babka Virale Clichy|Goûter|undefined|4.9|undefined|63 Bd Jean Jaurès, 92110 Clichy|undefined|48.90249|2.30216|0|
+Halle Marché & Food Court Ivry|Marché|undefined|4.9|undefined|48 Av. Maurice Thorez, 94200 Ivry|undefined|48.80825|2.37922|0|
+Marché Bio & Terroir Paris 1|Marché|undefined|4.7|undefined|122 Rue de Rivoli, 75001 Paris|undefined|48.8664|2.32828|0|
+KFB Crispy & Box Paris 2|Fast-food|undefined|4.9|undefined|23 Rue Montorgueil, 75002 Paris|undefined|48.87115|2.35326|0|
+Chicken Street Cheese Naan Paris 3|Fast-food|undefined|4.7|undefined|181 Rue de Bretagne, 75003 Paris|undefined|48.85612|2.35507|0|
+Wesh Bro Korean Fried Halal Paris 4|Fast-food|undefined|4.8|undefined|135 Rue des Rosiers, 75004 Paris|undefined|48.86183|2.35978|0|
+Smash Halal Burger Co. Paris 5|Fast-food|undefined|4.6|undefined|184 Rue Mouffetard, 75005 Paris|undefined|48.84163|2.36761|0|
+Dumbo Style Smash Paris 6|Fast-food|undefined|4.7|undefined|118 Bd Saint-Germain, 75006 Paris|undefined|48.84126|2.34461|0|
+Nach & Tacos Loaded Box Paris 7|Fast-food|undefined|5|undefined|68 Rue Saint-Dominique, 75007 Paris|undefined|48.85897|2.30723|0|
+O'Tacos Supreme Paris 8|Fast-food|undefined|4.3|undefined|76 Av. des Champs-Élysées, 75008 Paris|undefined|48.8763|2.30965|0|
+Berliner Kebab Gourmet Halal Paris 9|Fast-food|undefined|4.9|undefined|141 Rue des Martyrs, 75009 Paris|undefined|48.88084|2.35681|0|
+Mezzé & Shawarma Al-Basha Paris 10|Restaurant|undefined|4.6|undefined|118 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87655|2.34775|0|
+Le Royal Couscous & Grillades Paris 11|Restaurant|undefined|4.7|undefined|106 Rue Oberkampf, 75011 Paris|undefined|48.84607|2.37753|0|
+Tajine d'Or & Pâtisseries Paris 12|Restaurant|undefined|4.8|undefined|110 Rue de Charenton, 75012 Paris|undefined|48.84939|2.38745|0|
+Taj Mahal & Tandoori Naan Paris 13|Restaurant|undefined|4.6|undefined|52 Av. de Choisy, 75013 Paris|undefined|48.82036|2.35257|0|
+Afro Grill & Thiéboudienne Paris 14|Restaurant|undefined|4.8|undefined|171 Rue Daguerre, 75014 Paris|undefined|48.83607|2.32671|0|
+Bouillon Ancien de Paris Paris 15|Restaurant|undefined|4.7|undefined|154 Rue de Vaugirard, 75015 Paris|undefined|48.85254|2.28304|0|
+Pizzeria Napoletana Forno Paris 16|Restaurant|undefined|4.8|undefined|65 Rue de Passy, 75016 Paris|undefined|48.86681|2.25903|0|
+Ramen Bar & Gyoza House Paris 17|Restaurant|undefined|4.7|undefined|24 Rue des Batignolles, 75017 Paris|undefined|48.88963|2.31448|0|
+Pho Saigon Canteen Paris 18|Restaurant|undefined|4.8|undefined|4 Rue Lepic, 75018 Paris|undefined|48.88131|2.35345|0|
+Café & Brunch Factory Paris 19|Goûter|undefined|4.8|undefined|182 Av. Jean Jaurès, 75019 Paris|undefined|48.87503|2.39378|0|
+Boulangerie Tradition & Levain Paris 20|Goûter|undefined|4.8|undefined|188 Rue de Belleville, 75020 Paris|undefined|48.85615|2.40872|0|
+Atelier Sucré & Babka Virale Saint-Denis|Goûter|undefined|5|undefined|121 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.94336|2.3455|0|
+Halle Marché & Food Court Saint-Ouen|Marché|undefined|4.7|undefined|148 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90211|2.3394|0|
+Marché Bio & Terroir Montreuil|Marché|undefined|4.5|undefined|84 Rue de Paris, 93100 Montreuil|undefined|48.85646|2.44241|0|
+KFB Crispy & Box Boulogne|Fast-food|undefined|4.8|undefined|11 Route de la Reine, 92100 Boulogne|undefined|48.83651|2.25114|0|
+Chicken Street Cheese Naan Vincennes|Fast-food|undefined|4.8|undefined|152 Av. de Paris, 94300 Vincennes|undefined|48.83691|2.43789|0|
+Wesh Bro Korean Fried Halal Aubervilliers|Fast-food|undefined|5.1|undefined|58 Av. de la République, 93300 Aubervilliers|undefined|48.91529|2.40032|0|
+Smash Halal Burger Co. Pantin|Fast-food|undefined|4.9|undefined|63 Av. Jean Lolive, 93500 Pantin|undefined|48.89583|2.40288|0|
+Dumbo Style Smash Levallois|Fast-food|undefined|4.6|undefined|53 Rue Aristide Briand, 92300 Levallois|undefined|48.88177|2.28984|0|
+Nach & Tacos Loaded Box Neuilly|Fast-food|undefined|4.8|undefined|67 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88729|2.26771|0|
+O'Tacos Supreme Clichy|Fast-food|undefined|4.5|undefined|144 Bd Jean Jaurès, 92110 Clichy|undefined|48.90448|2.31001|0|
+Berliner Kebab Gourmet Halal Ivry|Fast-food|undefined|4.7|undefined|157 Av. Maurice Thorez, 94200 Ivry|undefined|48.81687|2.38362|0|
+Mezzé & Shawarma Al-Basha Paris 1|Restaurant|undefined|4.8|undefined|74 Rue de Rivoli, 75001 Paris|undefined|48.86441|2.34187|0|
+Le Royal Couscous & Grillades Paris 2|Restaurant|undefined|4.8|undefined|25 Rue Montorgueil, 75002 Paris|undefined|48.86236|2.36308|0|
+Tajine d'Or & Pâtisseries Paris 3|Restaurant|undefined|4.8|undefined|66 Rue de Bretagne, 75003 Paris|undefined|48.85107|2.35658|0|
+Taj Mahal & Tandoori Naan Paris 4|Restaurant|undefined|4.7|undefined|159 Rue des Rosiers, 75004 Paris|undefined|48.85928|2.3601|0|
+Afro Grill & Thiéboudienne Paris 5|Restaurant|undefined|4.6|undefined|12 Rue Mouffetard, 75005 Paris|undefined|48.84749|2.35499|0|
+Bouillon Ancien de Paris Paris 6|Restaurant|undefined|4.6|undefined|174 Bd Saint-Germain, 75006 Paris|undefined|48.84849|2.33176|0|
+Pizzeria Napoletana Forno Paris 7|Restaurant|undefined|4.7|undefined|10 Rue Saint-Dominique, 75007 Paris|undefined|48.86513|2.31753|0|
+Ramen Bar & Gyoza House Paris 8|Restaurant|undefined|4.7|undefined|81 Av. des Champs-Élysées, 75008 Paris|undefined|48.86579|2.3204|0|
+Pho Saigon Canteen Paris 9|Restaurant|undefined|4.7|undefined|100 Rue des Martyrs, 75009 Paris|undefined|48.87876|2.34091|0|
+Café & Brunch Factory Paris 10|Goûter|undefined|4.8|undefined|126 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87761|2.35757|0|
+Boulangerie Tradition & Levain Paris 11|Goûter|undefined|4.9|undefined|47 Rue Oberkampf, 75011 Paris|undefined|48.85911|2.37705|0|
+Atelier Sucré & Babka Virale Paris 12|Goûter|undefined|4.9|undefined|91 Rue de Charenton, 75012 Paris|undefined|48.84774|2.39484|0|
+Halle Marché & Food Court Paris 13|Marché|undefined|4.8|undefined|151 Av. de Choisy, 75013 Paris|undefined|48.82267|2.34877|0|
+Marché Bio & Terroir Paris 14|Marché|undefined|4.5|undefined|171 Rue Daguerre, 75014 Paris|undefined|48.82821|2.34217|0|
+KFB Crispy & Box Paris 15|Fast-food|undefined|5|undefined|96 Rue de Vaugirard, 75015 Paris|undefined|48.84102|2.28813|0|
+Chicken Street Cheese Naan Paris 16|Fast-food|undefined|4.8|undefined|104 Rue de Passy, 75016 Paris|undefined|48.87235|2.28393|0|
+Wesh Bro Korean Fried Halal Paris 17|Fast-food|undefined|5|undefined|62 Rue des Batignolles, 75017 Paris|undefined|48.88153|2.30002|0|
+Smash Halal Burger Co. Paris 18|Fast-food|undefined|5|undefined|79 Rue Lepic, 75018 Paris|undefined|48.89524|2.35297|0|
+Dumbo Style Smash Paris 19|Fast-food|undefined|4.6|undefined|181 Av. Jean Jaurès, 75019 Paris|undefined|48.89178|2.39417|0|
+Nach & Tacos Loaded Box Paris 20|Fast-food|undefined|4.7|undefined|93 Rue de Belleville, 75020 Paris|undefined|48.87444|2.39326|0|
+O'Tacos Supreme Saint-Denis|Fast-food|undefined|4.6|undefined|151 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93334|2.36096|0|
+Berliner Kebab Gourmet Halal Saint-Ouen|Fast-food|undefined|5|undefined|123 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91144|2.3205|0|
+Mezzé & Shawarma Al-Basha Montreuil|Restaurant|undefined|4.7|undefined|187 Rue de Paris, 93100 Montreuil|undefined|48.87184|2.44481|0|
+Le Royal Couscous & Grillades Boulogne|Restaurant|undefined|5|undefined|95 Route de la Reine, 92100 Boulogne|undefined|48.83177|2.23309|0|
+Tajine d'Or & Pâtisseries Vincennes|Restaurant|undefined|4.9|undefined|68 Av. de Paris, 94300 Vincennes|undefined|48.83926|2.41806|0|
+Taj Mahal & Tandoori Naan Aubervilliers|Restaurant|undefined|4.9|undefined|48 Av. de la République, 93300 Aubervilliers|undefined|48.92355|2.3832|0|
+Afro Grill & Thiéboudienne Pantin|Restaurant|undefined|4.7|undefined|85 Av. Jean Lolive, 93500 Pantin|undefined|48.90135|2.39102|0|
+Bouillon Ancien de Paris Levallois|Restaurant|undefined|4.6|undefined|49 Rue Aristide Briand, 92300 Levallois|undefined|48.89906|2.29127|0|
+Pizzeria Napoletana Forno Neuilly|Restaurant|undefined|4.6|undefined|176 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.89316|2.26407|0|
+Ramen Bar & Gyoza House Clichy|Restaurant|undefined|4.6|undefined|132 Bd Jean Jaurès, 92110 Clichy|undefined|48.90914|2.31191|0|
+Pho Saigon Canteen Ivry|Restaurant|undefined|4.7|undefined|97 Av. Maurice Thorez, 94200 Ivry|undefined|48.81878|2.3834|0|
+Café & Brunch Factory Paris 1|Goûter|undefined|5|undefined|106 Rue de Rivoli, 75001 Paris|undefined|48.85978|2.32741|0|
+Boulangerie Tradition & Levain Paris 2|Goûter|undefined|4.7|undefined|50 Rue Montorgueil, 75002 Paris|undefined|48.87624|2.35653|0|
+Atelier Sucré & Babka Virale Paris 3|Goûter|undefined|4.9|undefined|115 Rue de Bretagne, 75003 Paris|undefined|48.8629|2.36716|0|
+Halle Marché & Food Court Paris 4|Marché|undefined|4.8|undefined|44 Rue des Rosiers, 75004 Paris|undefined|48.85474|2.36575|0|
+Marché Bio & Terroir Paris 5|Marché|undefined|4.5|undefined|68 Rue Mouffetard, 75005 Paris|undefined|48.84057|2.36251|0|
+KFB Crispy & Box Paris 6|Fast-food|undefined|4.7|undefined|150 Bd Saint-Germain, 75006 Paris|undefined|48.84972|2.33824|0|
+Chicken Street Cheese Naan Paris 7|Fast-food|undefined|4.6|undefined|5 Rue Saint-Dominique, 75007 Paris|undefined|48.85794|2.32575|0|
+Wesh Bro Korean Fried Halal Paris 8|Fast-food|undefined|4.9|undefined|96 Av. des Champs-Élysées, 75008 Paris|undefined|48.88607|2.32469|0|
+Smash Halal Burger Co. Paris 9|Fast-food|undefined|4.9|undefined|89 Rue des Martyrs, 75009 Paris|undefined|48.87734|2.33949|0|
+Dumbo Style Smash Paris 10|Fast-food|undefined|4.7|undefined|189 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87579|2.37531|0|
+Nach & Tacos Loaded Box Paris 11|Fast-food|undefined|4.6|undefined|63 Rue Oberkampf, 75011 Paris|undefined|48.86103|2.395|0|
+O'Tacos Supreme Paris 12|Fast-food|undefined|4.4|undefined|49 Rue de Charenton, 75012 Paris|undefined|48.83956|2.38239|0|
+Berliner Kebab Gourmet Halal Paris 13|Fast-food|undefined|4.9|undefined|47 Av. de Choisy, 75013 Paris|undefined|48.83188|2.36384|0|
+Mezzé & Shawarma Al-Basha Paris 14|Restaurant|undefined|4.9|undefined|162 Rue Daguerre, 75014 Paris|undefined|48.8319|2.3399|0|
+Le Royal Couscous & Grillades Paris 15|Restaurant|undefined|4.7|undefined|68 Rue de Vaugirard, 75015 Paris|undefined|48.85086|2.30428|0|
+Tajine d'Or & Pâtisseries Paris 16|Restaurant|undefined|4.6|undefined|128 Rue de Passy, 75016 Paris|undefined|48.86153|2.27067|0|
+Taj Mahal & Tandoori Naan Paris 17|Restaurant|undefined|4.5|undefined|174 Rue des Batignolles, 75017 Paris|undefined|48.87731|2.30627|0|
+Afro Grill & Thiéboudienne Paris 18|Restaurant|undefined|4.6|undefined|37 Rue Lepic, 75018 Paris|undefined|48.89718|2.35316|0|
+Bouillon Ancien de Paris Paris 19|Restaurant|undefined|4.5|undefined|156 Av. Jean Jaurès, 75019 Paris|undefined|48.87847|2.39179|0|
+Pizzeria Napoletana Forno Paris 20|Restaurant|undefined|4.7|undefined|55 Rue de Belleville, 75020 Paris|undefined|48.86275|2.39087|0|
+Ramen Bar & Gyoza House Saint-Denis|Restaurant|undefined|4.8|undefined|60 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.94079|2.35291|0|
+Pho Saigon Canteen Saint-Ouen|Restaurant|undefined|4.8|undefined|30 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91167|2.31449|0|
+Café & Brunch Factory Montreuil|Goûter|undefined|4.8|undefined|13 Rue de Paris, 93100 Montreuil|undefined|48.86004|2.43075|0|
+Boulangerie Tradition & Levain Boulogne|Goûter|undefined|4.7|undefined|147 Route de la Reine, 92100 Boulogne|undefined|48.83486|2.24906|0|
+Atelier Sucré & Babka Virale Vincennes|Goûter|undefined|4.9|undefined|98 Av. de Paris, 94300 Vincennes|undefined|48.84835|2.4328|0|
+Halle Marché & Food Court Aubervilliers|Marché|undefined|4.7|undefined|153 Av. de la République, 93300 Aubervilliers|undefined|48.92692|2.38498|0|
+Marché Bio & Terroir Pantin|Marché|undefined|4.4|undefined|82 Av. Jean Lolive, 93500 Pantin|undefined|48.88932|2.40461|0|
+KFB Crispy & Box Levallois|Fast-food|undefined|4.9|undefined|165 Rue Aristide Briand, 92300 Levallois|undefined|48.8935|2.29235|0|
+Chicken Street Cheese Naan Neuilly|Fast-food|undefined|4.7|undefined|80 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88118|2.27592|0|
+Wesh Bro Korean Fried Halal Clichy|Fast-food|undefined|5|undefined|145 Bd Jean Jaurès, 92110 Clichy|undefined|48.90895|2.28736|0|
+Smash Halal Burger Co. Ivry|Fast-food|undefined|4.7|undefined|35 Av. Maurice Thorez, 94200 Ivry|undefined|48.81167|2.39003|0|
+Dumbo Style Smash Paris 1|Fast-food|undefined|4.5|undefined|176 Rue de Rivoli, 75001 Paris|undefined|48.8602|2.3172|0|
+Nach & Tacos Loaded Box Paris 2|Fast-food|undefined|4.7|undefined|120 Rue Montorgueil, 75002 Paris|undefined|48.8704|2.32305|0|
+O'Tacos Supreme Paris 3|Fast-food|undefined|4.4|undefined|154 Rue de Bretagne, 75003 Paris|undefined|48.86422|2.37206|0|
+Berliner Kebab Gourmet Halal Paris 4|Fast-food|undefined|4.7|undefined|124 Rue des Rosiers, 75004 Paris|undefined|48.85525|2.36024|0|
+Mezzé & Shawarma Al-Basha Paris 5|Restaurant|undefined|5|undefined|191 Rue Mouffetard, 75005 Paris|undefined|48.84264|2.34655|0|
+Le Royal Couscous & Grillades Paris 6|Restaurant|undefined|4.7|undefined|138 Bd Saint-Germain, 75006 Paris|undefined|48.84108|2.3497|0|
+Tajine d'Or & Pâtisseries Paris 7|Restaurant|undefined|4.6|undefined|143 Rue Saint-Dominique, 75007 Paris|undefined|48.85952|2.31141|0|
+Taj Mahal & Tandoori Naan Paris 8|Restaurant|undefined|4.8|undefined|70 Av. des Champs-Élysées, 75008 Paris|undefined|48.87826|2.31702|0|
+Afro Grill & Thiéboudienne Paris 9|Restaurant|undefined|4.6|undefined|128 Rue des Martyrs, 75009 Paris|undefined|48.87601|2.34201|0|
+Bouillon Ancien de Paris Paris 10|Restaurant|undefined|4.4|undefined|184 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87707|2.34893|0|
+Pizzeria Napoletana Forno Paris 11|Restaurant|undefined|4.8|undefined|24 Rue Oberkampf, 75011 Paris|undefined|48.86023|2.36603|0|
+Ramen Bar & Gyoza House Paris 12|Restaurant|undefined|4.9|undefined|31 Rue de Charenton, 75012 Paris|undefined|48.85074|2.40026|0|
+Pho Saigon Canteen Paris 13|Restaurant|undefined|4.8|undefined|177 Av. de Choisy, 75013 Paris|undefined|48.83434|2.37929|0|
+Café & Brunch Factory Paris 14|Goûter|undefined|4.8|undefined|89 Rue Daguerre, 75014 Paris|undefined|48.84507|2.32383|0|
+Boulangerie Tradition & Levain Paris 15|Goûter|undefined|4.9|undefined|25 Rue de Vaugirard, 75015 Paris|undefined|48.84045|2.30138|0|
+Atelier Sucré & Babka Virale Paris 16|Goûter|undefined|4.8|undefined|120 Rue de Passy, 75016 Paris|undefined|48.87013|2.28322|0|
+Halle Marché & Food Court Paris 17|Marché|undefined|4.5|undefined|108 Rue des Batignolles, 75017 Paris|undefined|48.88062|2.29776|0|
+Marché Bio & Terroir Paris 18|Marché|undefined|4.8|undefined|40 Rue Lepic, 75018 Paris|undefined|48.8892|2.33864|0|
+KFB Crispy & Box Paris 19|Fast-food|undefined|4.7|undefined|111 Av. Jean Jaurès, 75019 Paris|undefined|48.87975|2.376|0|
+Chicken Street Cheese Naan Paris 20|Fast-food|undefined|4.7|undefined|171 Rue de Belleville, 75020 Paris|undefined|48.86591|2.42071|0|
+Wesh Bro Korean Fried Halal Saint-Denis|Fast-food|undefined|5|undefined|8 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.9262|2.35367|0|
+Smash Halal Burger Co. Saint-Ouen|Fast-food|undefined|4.7|undefined|92 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91782|2.34536|0|
+Dumbo Style Smash Montreuil|Fast-food|undefined|4.9|undefined|106 Rue de Paris, 93100 Montreuil|undefined|48.86258|2.44487|0|
+Nach & Tacos Loaded Box Boulogne|Fast-food|undefined|4.7|undefined|22 Route de la Reine, 92100 Boulogne|undefined|48.84563|2.23681|0|
+O'Tacos Supreme Vincennes|Fast-food|undefined|4.5|undefined|75 Av. de Paris, 94300 Vincennes|undefined|48.84681|2.42954|0|
+Berliner Kebab Gourmet Halal Aubervilliers|Fast-food|undefined|4.6|undefined|83 Av. de la République, 93300 Aubervilliers|undefined|48.92211|2.37327|0|
+Mezzé & Shawarma Al-Basha Pantin|Restaurant|undefined|4.6|undefined|195 Av. Jean Lolive, 93500 Pantin|undefined|48.89468|2.40842|0|
+Le Royal Couscous & Grillades Levallois|Restaurant|undefined|4.8|undefined|152 Rue Aristide Briand, 92300 Levallois|undefined|48.89658|2.2817|0|
+Tajine d'Or & Pâtisseries Neuilly|Restaurant|undefined|4.5|undefined|66 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.89023|2.26171|0|
+Taj Mahal & Tandoori Naan Clichy|Restaurant|undefined|4.5|undefined|114 Bd Jean Jaurès, 92110 Clichy|undefined|48.9036|2.30972|0|
+Afro Grill & Thiéboudienne Ivry|Restaurant|undefined|4.8|undefined|166 Av. Maurice Thorez, 94200 Ivry|undefined|48.81653|2.38846|0|
+Bouillon Ancien de Paris Paris 1|Restaurant|undefined|4.5|undefined|143 Rue de Rivoli, 75001 Paris|undefined|48.86898|2.34026|0|
+Pizzeria Napoletana Forno Paris 2|Restaurant|undefined|5|undefined|42 Rue Montorgueil, 75002 Paris|undefined|48.87245|2.34657|0|
+Ramen Bar & Gyoza House Paris 3|Restaurant|undefined|5|undefined|96 Rue de Bretagne, 75003 Paris|undefined|48.85889|2.35887|0|
+Pho Saigon Canteen Paris 4|Restaurant|undefined|4.9|undefined|1 Rue des Rosiers, 75004 Paris|undefined|48.85064|2.34972|0|
+Café & Brunch Factory Paris 5|Goûter|undefined|4.9|undefined|20 Rue Mouffetard, 75005 Paris|undefined|48.8483|2.34819|0|
+Boulangerie Tradition & Levain Paris 6|Goûter|undefined|4.8|undefined|30 Bd Saint-Germain, 75006 Paris|undefined|48.84559|2.33313|0|
+Atelier Sucré & Babka Virale Paris 7|Goûter|undefined|4.7|undefined|57 Rue Saint-Dominique, 75007 Paris|undefined|48.8461|2.30818|0|
+Halle Marché & Food Court Paris 8|Marché|undefined|4.7|undefined|191 Av. des Champs-Élysées, 75008 Paris|undefined|48.87228|2.31901|0|
+Marché Bio & Terroir Paris 9|Marché|undefined|4.5|undefined|37 Rue des Martyrs, 75009 Paris|undefined|48.88397|2.34689|0|
+KFB Crispy & Box Paris 10|Fast-food|undefined|4.9|undefined|41 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87377|2.35994|0|
+Chicken Street Cheese Naan Paris 11|Fast-food|undefined|4.6|undefined|148 Rue Oberkampf, 75011 Paris|undefined|48.86178|2.3803|0|
+Wesh Bro Korean Fried Halal Paris 12|Fast-food|undefined|5.1|undefined|176 Rue de Charenton, 75012 Paris|undefined|48.82958|2.40015|0|
+Smash Halal Burger Co. Paris 13|Fast-food|undefined|4.7|undefined|122 Av. de Choisy, 75013 Paris|undefined|48.835|2.36676|0|
+Dumbo Style Smash Paris 14|Fast-food|undefined|4.6|undefined|150 Rue Daguerre, 75014 Paris|undefined|48.8315|2.32767|0|
+Nach & Tacos Loaded Box Paris 15|Fast-food|undefined|4.7|undefined|183 Rue de Vaugirard, 75015 Paris|undefined|48.85453|2.28741|0|
+O'Tacos Supreme Paris 16|Fast-food|undefined|4.6|undefined|20 Rue de Passy, 75016 Paris|undefined|48.87366|2.28151|0|
+Berliner Kebab Gourmet Halal Paris 17|Fast-food|undefined|5|undefined|106 Rue des Batignolles, 75017 Paris|undefined|48.8844|2.3074|0|
+Mezzé & Shawarma Al-Basha Paris 18|Restaurant|undefined|4.9|undefined|49 Rue Lepic, 75018 Paris|undefined|48.89201|2.34564|0|
+Le Royal Couscous & Grillades Paris 19|Restaurant|undefined|4.7|undefined|162 Av. Jean Jaurès, 75019 Paris|undefined|48.88296|2.38015|0|
+Tajine d'Or & Pâtisseries Paris 20|Restaurant|undefined|4.8|undefined|55 Rue de Belleville, 75020 Paris|undefined|48.86781|2.40423|0|
+Taj Mahal & Tandoori Naan Saint-Denis|Restaurant|undefined|4.7|undefined|63 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93768|2.35712|0|
+Afro Grill & Thiéboudienne Saint-Ouen|Restaurant|undefined|4.6|undefined|28 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91691|2.34204|0|
+Bouillon Ancien de Paris Montreuil|Restaurant|undefined|4.6|undefined|141 Rue de Paris, 93100 Montreuil|undefined|48.86294|2.45187|0|
+Pizzeria Napoletana Forno Boulogne|Restaurant|undefined|4.8|undefined|118 Route de la Reine, 92100 Boulogne|undefined|48.84064|2.24064|0|
+Ramen Bar & Gyoza House Vincennes|Restaurant|undefined|4.8|undefined|174 Av. de Paris, 94300 Vincennes|undefined|48.84631|2.43559|0|
+Pho Saigon Canteen Aubervilliers|Restaurant|undefined|4.6|undefined|68 Av. de la République, 93300 Aubervilliers|undefined|48.91529|2.36066|0|
+Café & Brunch Factory Pantin|Goûter|undefined|4.6|undefined|32 Av. Jean Lolive, 93500 Pantin|undefined|48.894|2.38674|0|
+Boulangerie Tradition & Levain Levallois|Goûter|undefined|4.8|undefined|154 Rue Aristide Briand, 92300 Levallois|undefined|48.88897|2.28317|0|
+Atelier Sucré & Babka Virale Neuilly|Goûter|undefined|4.9|undefined|62 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88382|2.28454|0|
+Halle Marché & Food Court Clichy|Marché|undefined|4.7|undefined|78 Bd Jean Jaurès, 92110 Clichy|undefined|48.90404|2.30329|0|
+Marché Bio & Terroir Ivry|Marché|undefined|4.6|undefined|3 Av. Maurice Thorez, 94200 Ivry|undefined|48.81895|2.39575|0|
+KFB Crispy & Box Paris 1 #2|Fast-food|undefined|4.7|undefined|39 Rue de Rivoli, 75001 Paris|undefined|48.86918|2.332|0|
+Chicken Street Cheese Naan Paris 2 #2|Fast-food|undefined|4.9|undefined|60 Rue Montorgueil, 75002 Paris|undefined|48.86753|2.35947|0|
+Wesh Bro Korean Fried Halal Paris 3 #2|Fast-food|undefined|4.9|undefined|33 Rue de Bretagne, 75003 Paris|undefined|48.86461|2.37061|0|
+Smash Halal Burger Co. Paris 4 #2|Fast-food|undefined|4.7|undefined|51 Rue des Rosiers, 75004 Paris|undefined|48.85508|2.35115|0|
+Dumbo Style Smash Paris 5 #2|Fast-food|undefined|4.8|undefined|82 Rue Mouffetard, 75005 Paris|undefined|48.84806|2.34283|0|
+Nach & Tacos Loaded Box Paris 6 #2|Fast-food|undefined|4.8|undefined|125 Bd Saint-Germain, 75006 Paris|undefined|48.84862|2.33599|0|
+O'Tacos Supreme Paris 7 #2|Fast-food|undefined|4.6|undefined|153 Rue Saint-Dominique, 75007 Paris|undefined|48.8649|2.32626|0|
+Berliner Kebab Gourmet Halal Paris 8 #2|Fast-food|undefined|4.8|undefined|98 Av. des Champs-Élysées, 75008 Paris|undefined|48.87442|2.30258|0|
+Mezzé & Shawarma Al-Basha Paris 9 #2|Restaurant|undefined|4.8|undefined|138 Rue des Martyrs, 75009 Paris|undefined|48.88216|2.33348|0|
+Le Royal Couscous & Grillades Paris 10 #2|Restaurant|undefined|4.8|undefined|51 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87425|2.35627|0|
+Tajine d'Or & Pâtisseries Paris 11 #2|Restaurant|undefined|4.7|undefined|40 Rue Oberkampf, 75011 Paris|undefined|48.85579|2.37832|0|
+Taj Mahal & Tandoori Naan Paris 12 #2|Restaurant|undefined|4.9|undefined|146 Rue de Charenton, 75012 Paris|undefined|48.83151|2.41197|0|
+Afro Grill & Thiéboudienne Paris 13 #2|Restaurant|undefined|4.6|undefined|141 Av. de Choisy, 75013 Paris|undefined|48.83624|2.36347|0|
+Bouillon Ancien de Paris Paris 14 #2|Restaurant|undefined|4.6|undefined|137 Rue Daguerre, 75014 Paris|undefined|48.83138|2.33875|0|
+Pizzeria Napoletana Forno Paris 15 #2|Restaurant|undefined|4.9|undefined|45 Rue de Vaugirard, 75015 Paris|undefined|48.84679|2.3007|0|
+Ramen Bar & Gyoza House Paris 16 #2|Restaurant|undefined|4.9|undefined|192 Rue de Passy, 75016 Paris|undefined|48.85298|2.27859|0|
+Pho Saigon Canteen Paris 17 #2|Restaurant|undefined|4.5|undefined|61 Rue des Batignolles, 75017 Paris|undefined|48.88553|2.30114|0|
+Café & Brunch Factory Paris 18 #2|Goûter|undefined|4.8|undefined|104 Rue Lepic, 75018 Paris|undefined|48.90261|2.33309|0|
+Boulangerie Tradition & Levain Paris 19 #2|Goûter|undefined|4.7|undefined|103 Av. Jean Jaurès, 75019 Paris|undefined|48.8906|2.3909|0|
+Atelier Sucré & Babka Virale Paris 20 #2|Goûter|undefined|4.7|undefined|165 Rue de Belleville, 75020 Paris|undefined|48.85785|2.41176|0|
+Halle Marché & Food Court Saint-Denis #2|Marché|undefined|4.7|undefined|97 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93589|2.35212|0|
+Marché Bio & Terroir Saint-Ouen #2|Marché|undefined|4.6|undefined|100 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90275|2.35014|0|
+KFB Crispy & Box Montreuil #2|Fast-food|undefined|4.9|undefined|71 Rue de Paris, 93100 Montreuil|undefined|48.86398|2.45812|0|
+Chicken Street Cheese Naan Boulogne #2|Fast-food|undefined|4.8|undefined|84 Route de la Reine, 92100 Boulogne|undefined|48.83474|2.24328|0|
+Wesh Bro Korean Fried Halal Vincennes #2|Fast-food|undefined|4.9|undefined|138 Av. de Paris, 94300 Vincennes|undefined|48.84749|2.43161|0|
+Smash Halal Burger Co. Aubervilliers #2|Fast-food|undefined|4.7|undefined|153 Av. de la République, 93300 Aubervilliers|undefined|48.91244|2.37507|0|
+Dumbo Style Smash Pantin #2|Fast-food|undefined|4.7|undefined|18 Av. Jean Lolive, 93500 Pantin|undefined|48.89652|2.40507|0|
+Nach & Tacos Loaded Box Levallois #2|Fast-food|undefined|4.9|undefined|42 Rue Aristide Briand, 92300 Levallois|undefined|48.8997|2.30125|0|
+O'Tacos Supreme Neuilly #2|Fast-food|undefined|4.5|undefined|142 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88137|2.2752|0|
+Berliner Kebab Gourmet Halal Clichy #2|Fast-food|undefined|4.6|undefined|32 Bd Jean Jaurès, 92110 Clichy|undefined|48.90046|2.32074|0|
+Mezzé & Shawarma Al-Basha Ivry #2|Restaurant|undefined|4.8|undefined|153 Av. Maurice Thorez, 94200 Ivry|undefined|48.81762|2.37091|0|
+Le Royal Couscous & Grillades Paris 1 #2|Restaurant|undefined|4.6|undefined|36 Rue de Rivoli, 75001 Paris|undefined|48.86227|2.31748|0|
+Tajine d'Or & Pâtisseries Paris 2 #2|Restaurant|undefined|4.8|undefined|58 Rue Montorgueil, 75002 Paris|undefined|48.86975|2.33399|0|
+Taj Mahal & Tandoori Naan Paris 3 #2|Restaurant|undefined|4.7|undefined|8 Rue de Bretagne, 75003 Paris|undefined|48.86594|2.34869|0|
+Afro Grill & Thiéboudienne Paris 4 #2|Restaurant|undefined|4.7|undefined|193 Rue des Rosiers, 75004 Paris|undefined|48.85745|2.36893|0|
+Bouillon Ancien de Paris Paris 5 #2|Restaurant|undefined|4.7|undefined|94 Rue Mouffetard, 75005 Paris|undefined|48.84438|2.32919|0|
+Pizzeria Napoletana Forno Paris 6 #2|Restaurant|undefined|4.8|undefined|80 Bd Saint-Germain, 75006 Paris|undefined|48.85951|2.32315|0|
+Ramen Bar & Gyoza House Paris 7 #2|Restaurant|undefined|4.8|undefined|4 Rue Saint-Dominique, 75007 Paris|undefined|48.85291|2.29284|0|
+Pho Saigon Canteen Paris 8 #2|Restaurant|undefined|4.7|undefined|4 Av. des Champs-Élysées, 75008 Paris|undefined|48.87681|2.32079|0|
+Café & Brunch Factory Paris 9 #2|Goûter|undefined|5|undefined|175 Rue des Martyrs, 75009 Paris|undefined|48.88242|2.33488|0|
+Boulangerie Tradition & Levain Paris 10 #2|Goûter|undefined|4.8|undefined|183 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.86268|2.35591|0|
+Atelier Sucré & Babka Virale Paris 11 #2|Goûter|undefined|5.1|undefined|156 Rue Oberkampf, 75011 Paris|undefined|48.85139|2.37484|0|
+Halle Marché & Food Court Paris 12 #2|Marché|undefined|4.7|undefined|140 Rue de Charenton, 75012 Paris|undefined|48.84096|2.40783|0|
+Marché Bio & Terroir Paris 13 #2|Marché|undefined|4.6|undefined|59 Av. de Choisy, 75013 Paris|undefined|48.8259|2.37509|0|
+KFB Crispy & Box Paris 14 #2|Fast-food|undefined|4.8|undefined|21 Rue Daguerre, 75014 Paris|undefined|48.82861|2.33762|0|
+Chicken Street Cheese Naan Paris 15 #2|Fast-food|undefined|4.6|undefined|156 Rue de Vaugirard, 75015 Paris|undefined|48.84944|2.29556|0|
+Wesh Bro Korean Fried Halal Paris 16 #2|Fast-food|undefined|5|undefined|110 Rue de Passy, 75016 Paris|undefined|48.86901|2.26246|0|
+Smash Halal Burger Co. Paris 17 #2|Fast-food|undefined|4.7|undefined|124 Rue des Batignolles, 75017 Paris|undefined|48.8756|2.29671|0|
+Dumbo Style Smash Paris 18 #2|Fast-food|undefined|4.6|undefined|189 Rue Lepic, 75018 Paris|undefined|48.89913|2.34953|0|
+Nach & Tacos Loaded Box Paris 19 #2|Fast-food|undefined|4.9|undefined|33 Av. Jean Jaurès, 75019 Paris|undefined|48.87816|2.37628|0|
+O'Tacos Supreme Paris 20 #2|Fast-food|undefined|4.5|undefined|173 Rue de Belleville, 75020 Paris|undefined|48.86479|2.4035|0|
+Berliner Kebab Gourmet Halal Saint-Denis #2|Fast-food|undefined|4.9|undefined|150 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93221|2.36794|0|
+Mezzé & Shawarma Al-Basha Saint-Ouen #2|Restaurant|undefined|4.9|undefined|37 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91371|2.32866|0|
+Le Royal Couscous & Grillades Montreuil #2|Restaurant|undefined|4.9|undefined|174 Rue de Paris, 93100 Montreuil|undefined|48.86533|2.43638|0|
+Tajine d'Or & Pâtisseries Boulogne #2|Restaurant|undefined|4.7|undefined|194 Route de la Reine, 92100 Boulogne|undefined|48.83598|2.22825|0|
+Taj Mahal & Tandoori Naan Vincennes #2|Restaurant|undefined|4.6|undefined|142 Av. de Paris, 94300 Vincennes|undefined|48.85952|2.43458|0|
+Afro Grill & Thiéboudienne Aubervilliers #2|Restaurant|undefined|4.6|undefined|23 Av. de la République, 93300 Aubervilliers|undefined|48.90207|2.38113|0|
+Bouillon Ancien de Paris Pantin #2|Restaurant|undefined|4.4|undefined|109 Av. Jean Lolive, 93500 Pantin|undefined|48.89379|2.39735|0|
+Pizzeria Napoletana Forno Levallois #2|Restaurant|undefined|5|undefined|165 Rue Aristide Briand, 92300 Levallois|undefined|48.89686|2.26713|0|
+Ramen Bar & Gyoza House Neuilly #2|Restaurant|undefined|4.7|undefined|59 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88079|2.25103|0|
+Pho Saigon Canteen Clichy #2|Restaurant|undefined|4.6|undefined|150 Bd Jean Jaurès, 92110 Clichy|undefined|48.89984|2.30887|0|
+Café & Brunch Factory Ivry #2|Goûter|undefined|5|undefined|87 Av. Maurice Thorez, 94200 Ivry|undefined|48.81668|2.38489|0|
+Boulangerie Tradition & Levain Paris 1 #2|Goûter|undefined|4.6|undefined|52 Rue de Rivoli, 75001 Paris|undefined|48.87187|2.33586|0|
+Atelier Sucré & Babka Virale Paris 2 #2|Goûter|undefined|4.9|undefined|161 Rue Montorgueil, 75002 Paris|undefined|48.86683|2.34092|0|
+Halle Marché & Food Court Paris 3 #2|Marché|undefined|4.7|undefined|79 Rue de Bretagne, 75003 Paris|undefined|48.86665|2.37075|0|
+Marché Bio & Terroir Paris 4 #2|Marché|undefined|4.5|undefined|14 Rue des Rosiers, 75004 Paris|undefined|48.85472|2.35076|0|
+KFB Crispy & Box Paris 5 #2|Fast-food|undefined|4.9|undefined|71 Rue Mouffetard, 75005 Paris|undefined|48.84991|2.3379|0|
+Chicken Street Cheese Naan Paris 6 #2|Fast-food|undefined|4.7|undefined|67 Bd Saint-Germain, 75006 Paris|undefined|48.83828|2.33496|0|
+Wesh Bro Korean Fried Halal Paris 7 #2|Fast-food|undefined|4.7|undefined|118 Rue Saint-Dominique, 75007 Paris|undefined|48.851|2.31142|0|
+Smash Halal Burger Co. Paris 8 #2|Fast-food|undefined|4.8|undefined|87 Av. des Champs-Élysées, 75008 Paris|undefined|48.88457|2.31417|0|
+Dumbo Style Smash Paris 9 #2|Fast-food|undefined|4.8|undefined|72 Rue des Martyrs, 75009 Paris|undefined|48.8751|2.33497|0|
+Nach & Tacos Loaded Box Paris 10 #2|Fast-food|undefined|4.7|undefined|168 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88044|2.35755|0|
+O'Tacos Supreme Paris 11 #2|Fast-food|undefined|4.4|undefined|167 Rue Oberkampf, 75011 Paris|undefined|48.86333|2.37628|0|
+Berliner Kebab Gourmet Halal Paris 12 #2|Fast-food|undefined|4.8|undefined|66 Rue de Charenton, 75012 Paris|undefined|48.84187|2.37497|0|
+Mezzé & Shawarma Al-Basha Paris 13 #2|Restaurant|undefined|4.8|undefined|72 Av. de Choisy, 75013 Paris|undefined|48.82739|2.37699|0|
+Le Royal Couscous & Grillades Paris 14 #2|Restaurant|undefined|4.7|undefined|36 Rue Daguerre, 75014 Paris|undefined|48.83813|2.34421|0|
+Tajine d'Or & Pâtisseries Paris 15 #2|Restaurant|undefined|4.8|undefined|184 Rue de Vaugirard, 75015 Paris|undefined|48.83419|2.28871|0|
+Taj Mahal & Tandoori Naan Paris 16 #2|Restaurant|undefined|4.5|undefined|182 Rue de Passy, 75016 Paris|undefined|48.85881|2.27873|0|
+Afro Grill & Thiéboudienne Paris 17 #2|Restaurant|undefined|4.6|undefined|162 Rue des Batignolles, 75017 Paris|undefined|48.88101|2.31587|0|
+Bouillon Ancien de Paris Paris 18 #2|Restaurant|undefined|4.7|undefined|10 Rue Lepic, 75018 Paris|undefined|48.89402|2.3476|0|
+Pizzeria Napoletana Forno Paris 19 #2|Restaurant|undefined|4.7|undefined|194 Av. Jean Jaurès, 75019 Paris|undefined|48.88947|2.38422|0|
+Ramen Bar & Gyoza House Paris 20 #2|Restaurant|undefined|4.6|undefined|175 Rue de Belleville, 75020 Paris|undefined|48.86952|2.41408|0|
+Pho Saigon Canteen Saint-Denis #2|Restaurant|undefined|4.7|undefined|4 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.9393|2.37331|0|
+Café & Brunch Factory Saint-Ouen #2|Goûter|undefined|4.9|undefined|29 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90251|2.33009|0|
+Boulangerie Tradition & Levain Montreuil #2|Goûter|undefined|4.9|undefined|25 Rue de Paris, 93100 Montreuil|undefined|48.86272|2.43428|0|
+Atelier Sucré & Babka Virale Boulogne #2|Goûter|undefined|5|undefined|164 Route de la Reine, 92100 Boulogne|undefined|48.83918|2.23627|0|
+Halle Marché & Food Court Vincennes #2|Marché|undefined|4.6|undefined|102 Av. de Paris, 94300 Vincennes|undefined|48.86027|2.4378|0|
+Marché Bio & Terroir Aubervilliers #2|Marché|undefined|4.6|undefined|68 Av. de la République, 93300 Aubervilliers|undefined|48.91827|2.3883|0|
+KFB Crispy & Box Pantin #2|Fast-food|undefined|4.9|undefined|70 Av. Jean Lolive, 93500 Pantin|undefined|48.89281|2.42123|0|
+Chicken Street Cheese Naan Levallois #2|Fast-food|undefined|4.8|undefined|52 Rue Aristide Briand, 92300 Levallois|undefined|48.89704|2.29548|0|
+Wesh Bro Korean Fried Halal Neuilly #2|Fast-food|undefined|4.8|undefined|135 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.8831|2.2637|0|
+Smash Halal Burger Co. Clichy #2|Fast-food|undefined|4.9|undefined|138 Bd Jean Jaurès, 92110 Clichy|undefined|48.90929|2.30713|0|
+Dumbo Style Smash Ivry #2|Fast-food|undefined|4.7|undefined|89 Av. Maurice Thorez, 94200 Ivry|undefined|48.80808|2.39333|0|
+Nach & Tacos Loaded Box Paris 1 #2|Fast-food|undefined|4.8|undefined|104 Rue de Rivoli, 75001 Paris|undefined|48.8546|2.3352|0|
+O'Tacos Supreme Paris 2 #2|Fast-food|undefined|4.6|undefined|179 Rue Montorgueil, 75002 Paris|undefined|48.86987|2.35395|0|
+Berliner Kebab Gourmet Halal Paris 3 #2|Fast-food|undefined|4.6|undefined|185 Rue de Bretagne, 75003 Paris|undefined|48.85989|2.34975|0|
+Mezzé & Shawarma Al-Basha Paris 4 #2|Restaurant|undefined|5|undefined|114 Rue des Rosiers, 75004 Paris|undefined|48.85805|2.33806|0|
+Le Royal Couscous & Grillades Paris 5 #2|Restaurant|undefined|4.8|undefined|145 Rue Mouffetard, 75005 Paris|undefined|48.83869|2.34252|0|
+Tajine d'Or & Pâtisseries Paris 6 #2|Restaurant|undefined|4.9|undefined|181 Bd Saint-Germain, 75006 Paris|undefined|48.84353|2.332|0|
+Taj Mahal & Tandoori Naan Paris 7 #2|Restaurant|undefined|4.6|undefined|46 Rue Saint-Dominique, 75007 Paris|undefined|48.86531|2.30457|0|
+Afro Grill & Thiéboudienne Paris 8 #2|Restaurant|undefined|4.7|undefined|39 Av. des Champs-Élysées, 75008 Paris|undefined|48.87274|2.31558|0|
+Bouillon Ancien de Paris Paris 9 #2|Restaurant|undefined|4.4|undefined|39 Rue des Martyrs, 75009 Paris|undefined|48.87466|2.33113|0|
+Pizzeria Napoletana Forno Paris 10 #2|Restaurant|undefined|4.9|undefined|95 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87752|2.3578|0|
+Ramen Bar & Gyoza House Paris 11 #2|Restaurant|undefined|4.7|undefined|54 Rue Oberkampf, 75011 Paris|undefined|48.85439|2.37857|0|
+Pho Saigon Canteen Paris 12 #2|Restaurant|undefined|4.8|undefined|23 Rue de Charenton, 75012 Paris|undefined|48.83654|2.39748|0|
+Café & Brunch Factory Paris 13 #2|Goûter|undefined|4.9|undefined|100 Av. de Choisy, 75013 Paris|undefined|48.82952|2.35893|0|
+Boulangerie Tradition & Levain Paris 14 #2|Goûter|undefined|5|undefined|3 Rue Daguerre, 75014 Paris|undefined|48.82805|2.3067|0|
+Atelier Sucré & Babka Virale Paris 15 #2|Goûter|undefined|5|undefined|43 Rue de Vaugirard, 75015 Paris|undefined|48.85357|2.29619|0|
+Halle Marché & Food Court Paris 16 #2|Marché|undefined|4.7|undefined|19 Rue de Passy, 75016 Paris|undefined|48.86261|2.27759|0|
+Marché Bio & Terroir Paris 17 #2|Marché|undefined|4.7|undefined|148 Rue des Batignolles, 75017 Paris|undefined|48.89128|2.30146|0|
+KFB Crispy & Box Paris 18 #2|Fast-food|undefined|4.6|undefined|112 Rue Lepic, 75018 Paris|undefined|48.89094|2.34979|0|
+Chicken Street Cheese Naan Paris 19 #2|Fast-food|undefined|4.8|undefined|18 Av. Jean Jaurès, 75019 Paris|undefined|48.88785|2.36662|0|
+Wesh Bro Korean Fried Halal Paris 20 #2|Fast-food|undefined|4.9|undefined|70 Rue de Belleville, 75020 Paris|undefined|48.8641|2.37902|0|
+Smash Halal Burger Co. Saint-Denis #2|Fast-food|undefined|4.9|undefined|164 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93402|2.36201|0|
+Dumbo Style Smash Saint-Ouen #2|Fast-food|undefined|4.6|undefined|132 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.91431|2.32502|0|
+Nach & Tacos Loaded Box Montreuil #2|Fast-food|undefined|4.7|undefined|105 Rue de Paris, 93100 Montreuil|undefined|48.85353|2.42119|0|
+O'Tacos Supreme Boulogne #2|Fast-food|undefined|4.6|undefined|22 Route de la Reine, 92100 Boulogne|undefined|48.82759|2.25529|0|
+Berliner Kebab Gourmet Halal Vincennes #2|Fast-food|undefined|4.9|undefined|17 Av. de Paris, 94300 Vincennes|undefined|48.85528|2.45283|0|
+Mezzé & Shawarma Al-Basha Aubervilliers #2|Restaurant|undefined|5|undefined|91 Av. de la République, 93300 Aubervilliers|undefined|48.90553|2.36684|0|
+Le Royal Couscous & Grillades Pantin #2|Restaurant|undefined|4.8|undefined|78 Av. Jean Lolive, 93500 Pantin|undefined|48.89418|2.40257|0|
+Tajine d'Or & Pâtisseries Levallois #2|Restaurant|undefined|4.8|undefined|47 Rue Aristide Briand, 92300 Levallois|undefined|48.89462|2.28539|0|
+Taj Mahal & Tandoori Naan Neuilly #2|Restaurant|undefined|4.6|undefined|17 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88406|2.28002|0|
+Afro Grill & Thiéboudienne Clichy #2|Restaurant|undefined|4.5|undefined|163 Bd Jean Jaurès, 92110 Clichy|undefined|48.90728|2.29898|0|
+Bouillon Ancien de Paris Ivry #2|Restaurant|undefined|4.7|undefined|60 Av. Maurice Thorez, 94200 Ivry|undefined|48.82102|2.39221|0|
+Pizzeria Napoletana Forno Paris 1 #2|Restaurant|undefined|4.7|undefined|39 Rue de Rivoli, 75001 Paris|undefined|48.86954|2.33103|0|
+Ramen Bar & Gyoza House Paris 2 #2|Restaurant|undefined|4.7|undefined|31 Rue Montorgueil, 75002 Paris|undefined|48.86936|2.32574|0|
+Pho Saigon Canteen Paris 3 #2|Restaurant|undefined|4.7|undefined|190 Rue de Bretagne, 75003 Paris|undefined|48.87521|2.36421|0|
+Café & Brunch Factory Paris 4 #2|Goûter|undefined|4.6|undefined|100 Rue des Rosiers, 75004 Paris|undefined|48.85633|2.3775|0|
+Boulangerie Tradition & Levain Paris 5 #2|Goûter|undefined|4.8|undefined|32 Rue Mouffetard, 75005 Paris|undefined|48.84927|2.3495|0|
+Atelier Sucré & Babka Virale Paris 6 #2|Goûter|undefined|5|undefined|33 Bd Saint-Germain, 75006 Paris|undefined|48.85735|2.32572|0|
+Halle Marché & Food Court Paris 7 #2|Marché|undefined|4.7|undefined|94 Rue Saint-Dominique, 75007 Paris|undefined|48.84462|2.32451|0|
+Marché Bio & Terroir Paris 8 #2|Marché|undefined|4.6|undefined|56 Av. des Champs-Élysées, 75008 Paris|undefined|48.8853|2.325|0|
+KFB Crispy & Box Paris 9 #2|Fast-food|undefined|4.8|undefined|92 Rue des Martyrs, 75009 Paris|undefined|48.87731|2.32298|0|
+Chicken Street Cheese Naan Paris 10 #2|Fast-food|undefined|4.8|undefined|148 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88011|2.35524|0|
+Wesh Bro Korean Fried Halal Paris 11 #2|Fast-food|undefined|5|undefined|66 Rue Oberkampf, 75011 Paris|undefined|48.86485|2.38299|0|
+Smash Halal Burger Co. Paris 12 #2|Fast-food|undefined|4.8|undefined|185 Rue de Charenton, 75012 Paris|undefined|48.84798|2.39676|0|
+Dumbo Style Smash Paris 13 #2|Fast-food|undefined|4.7|undefined|11 Av. de Choisy, 75013 Paris|undefined|48.83466|2.3559|0|
+Nach & Tacos Loaded Box Paris 14 #2|Fast-food|undefined|4.8|undefined|23 Rue Daguerre, 75014 Paris|undefined|48.84373|2.33635|0|
+O'Tacos Supreme Paris 15 #2|Fast-food|undefined|4.5|undefined|177 Rue de Vaugirard, 75015 Paris|undefined|48.8483|2.31048|0|
+Berliner Kebab Gourmet Halal Paris 16 #2|Fast-food|undefined|4.6|undefined|59 Rue de Passy, 75016 Paris|undefined|48.85353|2.28237|0|
+Mezzé & Shawarma Al-Basha Paris 17 #2|Restaurant|undefined|4.6|undefined|122 Rue des Batignolles, 75017 Paris|undefined|48.88985|2.29868|0|
+Le Royal Couscous & Grillades Paris 18 #2|Restaurant|undefined|4.9|undefined|19 Rue Lepic, 75018 Paris|undefined|48.89431|2.35373|0|
+Tajine d'Or & Pâtisseries Paris 19 #2|Restaurant|undefined|4.5|undefined|158 Av. Jean Jaurès, 75019 Paris|undefined|48.88223|2.39773|0|
+Taj Mahal & Tandoori Naan Paris 20 #2|Restaurant|undefined|4.7|undefined|56 Rue de Belleville, 75020 Paris|undefined|48.86578|2.40633|0|
+Afro Grill & Thiéboudienne Saint-Denis #2|Restaurant|undefined|4.6|undefined|48 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93748|2.36292|0|
+Bouillon Ancien de Paris Saint-Ouen #2|Restaurant|undefined|4.6|undefined|43 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90931|2.34478|0|
+Pizzeria Napoletana Forno Montreuil #2|Restaurant|undefined|5|undefined|138 Rue de Paris, 93100 Montreuil|undefined|48.85598|2.44863|0|
+Ramen Bar & Gyoza House Boulogne #2|Restaurant|undefined|4.9|undefined|107 Route de la Reine, 92100 Boulogne|undefined|48.83126|2.22646|0|
+Pho Saigon Canteen Vincennes #2|Restaurant|undefined|4.7|undefined|5 Av. de Paris, 94300 Vincennes|undefined|48.84163|2.43306|0|
+Café & Brunch Factory Aubervilliers #2|Goûter|undefined|4.7|undefined|165 Av. de la République, 93300 Aubervilliers|undefined|48.91421|2.37543|0|
+Boulangerie Tradition & Levain Pantin #2|Goûter|undefined|4.9|undefined|41 Av. Jean Lolive, 93500 Pantin|undefined|48.90659|2.40833|0|
+Atelier Sucré & Babka Virale Levallois #2|Goûter|undefined|4.7|undefined|155 Rue Aristide Briand, 92300 Levallois|undefined|48.8949|2.28476|0|
+Halle Marché & Food Court Neuilly #2|Marché|undefined|4.6|undefined|130 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.89168|2.27228|0|
+Marché Bio & Terroir Clichy #2|Marché|undefined|4.6|undefined|192 Bd Jean Jaurès, 92110 Clichy|undefined|48.90637|2.3138|0|
+KFB Crispy & Box Ivry #2|Fast-food|undefined|5|undefined|167 Av. Maurice Thorez, 94200 Ivry|undefined|48.82|2.3784|0|
+Chicken Street Cheese Naan Paris 1 #2|Fast-food|undefined|4.6|undefined|150 Rue de Rivoli, 75001 Paris|undefined|48.86421|2.32785|0|
+Wesh Bro Korean Fried Halal Paris 2 #2|Fast-food|undefined|5|undefined|47 Rue Montorgueil, 75002 Paris|undefined|48.86619|2.34076|0|
+Smash Halal Burger Co. Paris 3 #2|Fast-food|undefined|5|undefined|50 Rue de Bretagne, 75003 Paris|undefined|48.86585|2.34861|0|
+Dumbo Style Smash Paris 4 #2|Fast-food|undefined|4.9|undefined|3 Rue des Rosiers, 75004 Paris|undefined|48.85126|2.35332|0|
+Nach & Tacos Loaded Box Paris 5 #2|Fast-food|undefined|4.8|undefined|189 Rue Mouffetard, 75005 Paris|undefined|48.84066|2.33739|0|
+O'Tacos Supreme Paris 6 #2|Fast-food|undefined|4.5|undefined|190 Bd Saint-Germain, 75006 Paris|undefined|48.8454|2.33199|0|
+Berliner Kebab Gourmet Halal Paris 7 #2|Fast-food|undefined|5|undefined|68 Rue Saint-Dominique, 75007 Paris|undefined|48.85038|2.30304|0|
+Mezzé & Shawarma Al-Basha Paris 8 #2|Restaurant|undefined|4.9|undefined|104 Av. des Champs-Élysées, 75008 Paris|undefined|48.88239|2.30784|0|
+Le Royal Couscous & Grillades Paris 9 #2|Restaurant|undefined|4.8|undefined|66 Rue des Martyrs, 75009 Paris|undefined|48.8805|2.33902|0|
+Tajine d'Or & Pâtisseries Paris 10 #2|Restaurant|undefined|4.6|undefined|86 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88478|2.37623|0|
+Taj Mahal & Tandoori Naan Paris 11 #2|Restaurant|undefined|4.8|undefined|82 Rue Oberkampf, 75011 Paris|undefined|48.86223|2.3995|0|
+Afro Grill & Thiéboudienne Paris 12 #2|Restaurant|undefined|4.8|undefined|84 Rue de Charenton, 75012 Paris|undefined|48.84807|2.39813|0|
+Bouillon Ancien de Paris Paris 13 #2|Restaurant|undefined|4.6|undefined|53 Av. de Choisy, 75013 Paris|undefined|48.82242|2.36771|0|
+Pizzeria Napoletana Forno Paris 14 #2|Restaurant|undefined|4.7|undefined|174 Rue Daguerre, 75014 Paris|undefined|48.82703|2.33346|0|
+Ramen Bar & Gyoza House Paris 15 #2|Restaurant|undefined|5|undefined|82 Rue de Vaugirard, 75015 Paris|undefined|48.84538|2.27592|0|
+Pho Saigon Canteen Paris 16 #2|Restaurant|undefined|4.7|undefined|100 Rue de Passy, 75016 Paris|undefined|48.86757|2.27718|0|
+Café & Brunch Factory Paris 17 #2|Goûter|undefined|4.8|undefined|25 Rue des Batignolles, 75017 Paris|undefined|48.89143|2.29444|0|
+Boulangerie Tradition & Levain Paris 18 #2|Goûter|undefined|5|undefined|136 Rue Lepic, 75018 Paris|undefined|48.89019|2.35617|0|
+Atelier Sucré & Babka Virale Paris 19 #2|Goûter|undefined|4.7|undefined|52 Av. Jean Jaurès, 75019 Paris|undefined|48.8847|2.39293|0|
+Halle Marché & Food Court Paris 20 #2|Marché|undefined|4.9|undefined|65 Rue de Belleville, 75020 Paris|undefined|48.86745|2.40206|0|
+Marché Bio & Terroir Saint-Denis #2|Marché|undefined|4.7|undefined|156 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.92516|2.36336|0|
+KFB Crispy & Box Saint-Ouen #2|Fast-food|undefined|4.9|undefined|82 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.90817|2.33052|0|
+Chicken Street Cheese Naan Montreuil #2|Fast-food|undefined|4.8|undefined|104 Rue de Paris, 93100 Montreuil|undefined|48.86459|2.4221|0|
+Wesh Bro Korean Fried Halal Boulogne #2|Fast-food|undefined|4.8|undefined|148 Route de la Reine, 92100 Boulogne|undefined|48.84076|2.25673|0|
+Smash Halal Burger Co. Vincennes #2|Fast-food|undefined|4.7|undefined|137 Av. de Paris, 94300 Vincennes|undefined|48.83545|2.43447|0|
+Dumbo Style Smash Aubervilliers #2|Fast-food|undefined|4.9|undefined|178 Av. de la République, 93300 Aubervilliers|undefined|48.91987|2.36464|0|
+Nach & Tacos Loaded Box Pantin #2|Fast-food|undefined|4.6|undefined|19 Av. Jean Lolive, 93500 Pantin|undefined|48.89681|2.4035|0|
+O'Tacos Supreme Levallois #2|Fast-food|undefined|4.5|undefined|138 Rue Aristide Briand, 92300 Levallois|undefined|48.89219|2.27079|0|
+Berliner Kebab Gourmet Halal Neuilly #2|Fast-food|undefined|4.7|undefined|7 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88906|2.28782|0|
+Mezzé & Shawarma Al-Basha Clichy #2|Restaurant|undefined|4.8|undefined|40 Bd Jean Jaurès, 92110 Clichy|undefined|48.9108|2.30138|0|
+Le Royal Couscous & Grillades Ivry #2|Restaurant|undefined|4.7|undefined|29 Av. Maurice Thorez, 94200 Ivry|undefined|48.81537|2.36566|0|
+Tajine d'Or & Pâtisseries Paris 1 #2|Restaurant|undefined|4.5|undefined|171 Rue de Rivoli, 75001 Paris|undefined|48.86696|2.35172|0|
+Taj Mahal & Tandoori Naan Paris 2 #2|Restaurant|undefined|4.5|undefined|112 Rue Montorgueil, 75002 Paris|undefined|48.86794|2.34623|0|
+Afro Grill & Thiéboudienne Paris 3 #2|Restaurant|undefined|4.8|undefined|194 Rue de Bretagne, 75003 Paris|undefined|48.86127|2.3814|0|
+Bouillon Ancien de Paris Paris 4 #2|Restaurant|undefined|4.5|undefined|186 Rue des Rosiers, 75004 Paris|undefined|48.85519|2.35883|0|
+Pizzeria Napoletana Forno Paris 5 #2|Restaurant|undefined|4.7|undefined|111 Rue Mouffetard, 75005 Paris|undefined|48.84199|2.34213|0|
+Ramen Bar & Gyoza House Paris 6 #2|Restaurant|undefined|4.9|undefined|25 Bd Saint-Germain, 75006 Paris|undefined|48.85636|2.3151|0|
+Pho Saigon Canteen Paris 7 #2|Restaurant|undefined|4.6|undefined|14 Rue Saint-Dominique, 75007 Paris|undefined|48.84728|2.30043|0|
+Café & Brunch Factory Paris 8 #2|Goûter|undefined|4.8|undefined|47 Av. des Champs-Élysées, 75008 Paris|undefined|48.87783|2.29854|0|
+Boulangerie Tradition & Levain Paris 9 #2|Goûter|undefined|4.9|undefined|25 Rue des Martyrs, 75009 Paris|undefined|48.87702|2.35137|0|
+Atelier Sucré & Babka Virale Paris 10 #2|Goûter|undefined|4.8|undefined|56 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87277|2.36046|0|
+Halle Marché & Food Court Paris 11 #2|Marché|undefined|4.6|undefined|13 Rue Oberkampf, 75011 Paris|undefined|48.84845|2.37275|0|
+Marché Bio & Terroir Paris 12 #2|Marché|undefined|4.5|undefined|181 Rue de Charenton, 75012 Paris|undefined|48.85076|2.39028|0|
+KFB Crispy & Box Paris 13 #2|Fast-food|undefined|4.7|undefined|166 Av. de Choisy, 75013 Paris|undefined|48.82481|2.35705|0|
+Chicken Street Cheese Naan Paris 14 #2|Fast-food|undefined|4.9|undefined|90 Rue Daguerre, 75014 Paris|undefined|48.8297|2.31656|0|
+Wesh Bro Korean Fried Halal Paris 15 #2|Fast-food|undefined|4.9|undefined|61 Rue de Vaugirard, 75015 Paris|undefined|48.84889|2.29223|0|
+Smash Halal Burger Co. Paris 16 #2|Fast-food|undefined|4.8|undefined|191 Rue de Passy, 75016 Paris|undefined|48.86161|2.27098|0|
+Dumbo Style Smash Paris 17 #2|Fast-food|undefined|4.8|undefined|26 Rue des Batignolles, 75017 Paris|undefined|48.88325|2.29681|0|
+Nach & Tacos Loaded Box Paris 18 #2|Fast-food|undefined|4.8|undefined|62 Rue Lepic, 75018 Paris|undefined|48.88458|2.35232|0|
+O'Tacos Supreme Paris 19 #2|Fast-food|undefined|4.6|undefined|9 Av. Jean Jaurès, 75019 Paris|undefined|48.88295|2.39191|0|
+Berliner Kebab Gourmet Halal Paris 20 #2|Fast-food|undefined|4.7|undefined|4 Rue de Belleville, 75020 Paris|undefined|48.87259|2.40404|0|
+Mezzé & Shawarma Al-Basha Saint-Denis #2|Restaurant|undefined|4.8|undefined|74 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.93315|2.33761|0|
+Le Royal Couscous & Grillades Saint-Ouen #2|Restaurant|undefined|4.8|undefined|4 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.9045|2.33604|0|
+Tajine d'Or & Pâtisseries Montreuil #2|Restaurant|undefined|4.9|undefined|137 Rue de Paris, 93100 Montreuil|undefined|48.86443|2.4516|0|
+Taj Mahal & Tandoori Naan Boulogne #2|Restaurant|undefined|4.8|undefined|78 Route de la Reine, 92100 Boulogne|undefined|48.8301|2.22567|0|
+Afro Grill & Thiéboudienne Vincennes #2|Restaurant|undefined|4.8|undefined|132 Av. de Paris, 94300 Vincennes|undefined|48.84594|2.45303|0|
+Bouillon Ancien de Paris Aubervilliers #2|Restaurant|undefined|4.7|undefined|41 Av. de la République, 93300 Aubervilliers|undefined|48.90935|2.38208|0|
+Pizzeria Napoletana Forno Pantin #2|Restaurant|undefined|4.8|undefined|34 Av. Jean Lolive, 93500 Pantin|undefined|48.89123|2.39722|0|
+Ramen Bar & Gyoza House Levallois #2|Restaurant|undefined|4.9|undefined|78 Rue Aristide Briand, 92300 Levallois|undefined|48.90718|2.28471|0|
+Pho Saigon Canteen Neuilly #2|Restaurant|undefined|4.5|undefined|93 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.8728|2.26539|0|
+Café & Brunch Factory Clichy #2|Goûter|undefined|4.6|undefined|113 Bd Jean Jaurès, 92110 Clichy|undefined|48.89128|2.30079|0|
+Boulangerie Tradition & Levain Ivry #2|Goûter|undefined|4.9|undefined|148 Av. Maurice Thorez, 94200 Ivry|undefined|48.81217|2.39259|0|
+Atelier Sucré & Babka Virale Paris 1 #2|Goûter|undefined|4.9|undefined|5 Rue de Rivoli, 75001 Paris|undefined|48.85837|2.3366|0|
+Halle Marché & Food Court Paris 2 #2|Marché|undefined|4.9|undefined|130 Rue Montorgueil, 75002 Paris|undefined|48.85907|2.3593|0|
+Marché Bio & Terroir Paris 3 #2|Marché|undefined|4.5|undefined|163 Rue de Bretagne, 75003 Paris|undefined|48.86917|2.37634|0|
+KFB Crispy & Box Paris 4 #2|Fast-food|undefined|5|undefined|192 Rue des Rosiers, 75004 Paris|undefined|48.85429|2.33553|0|
+Chicken Street Cheese Naan Paris 5 #2|Fast-food|undefined|4.9|undefined|32 Rue Mouffetard, 75005 Paris|undefined|48.83998|2.33464|0|
+Wesh Bro Korean Fried Halal Paris 6 #2|Fast-food|undefined|4.8|undefined|77 Bd Saint-Germain, 75006 Paris|undefined|48.83963|2.32909|0|
+Smash Halal Burger Co. Paris 7 #2|Fast-food|undefined|4.9|undefined|146 Rue Saint-Dominique, 75007 Paris|undefined|48.85764|2.31472|0|
+Dumbo Style Smash Paris 8 #2|Fast-food|undefined|4.9|undefined|175 Av. des Champs-Élysées, 75008 Paris|undefined|48.88347|2.3209|0|
+Nach & Tacos Loaded Box Paris 9 #2|Fast-food|undefined|4.7|undefined|76 Rue des Martyrs, 75009 Paris|undefined|48.88269|2.34127|0|
+O'Tacos Supreme Paris 10 #2|Fast-food|undefined|4.6|undefined|152 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.87425|2.35615|0|
+Berliner Kebab Gourmet Halal Paris 11 #2|Fast-food|undefined|5|undefined|73 Rue Oberkampf, 75011 Paris|undefined|48.86489|2.38021|0|
+Mezzé & Shawarma Al-Basha Paris 12 #2|Restaurant|undefined|5|undefined|2 Rue de Charenton, 75012 Paris|undefined|48.84171|2.39327|0|
+Le Royal Couscous & Grillades Paris 13 #2|Restaurant|undefined|5|undefined|137 Av. de Choisy, 75013 Paris|undefined|48.82855|2.36828|0|
+Tajine d'Or & Pâtisseries Paris 14 #2|Restaurant|undefined|4.7|undefined|83 Rue Daguerre, 75014 Paris|undefined|48.83013|2.33813|0|
+Taj Mahal & Tandoori Naan Paris 15 #2|Restaurant|undefined|4.9|undefined|43 Rue de Vaugirard, 75015 Paris|undefined|48.84882|2.3008|0|
+Afro Grill & Thiéboudienne Paris 16 #2|Restaurant|undefined|4.5|undefined|189 Rue de Passy, 75016 Paris|undefined|48.85614|2.2735|0|
+Bouillon Ancien de Paris Paris 17 #2|Restaurant|undefined|4.6|undefined|129 Rue des Batignolles, 75017 Paris|undefined|48.89307|2.31373|0|
+Pizzeria Napoletana Forno Paris 18 #2|Restaurant|undefined|4.9|undefined|17 Rue Lepic, 75018 Paris|undefined|48.90216|2.3393|0|
+Ramen Bar & Gyoza House Paris 19 #2|Restaurant|undefined|4.8|undefined|68 Av. Jean Jaurès, 75019 Paris|undefined|48.89544|2.38969|0|
+Pho Saigon Canteen Paris 20 #2|Restaurant|undefined|4.8|undefined|189 Rue de Belleville, 75020 Paris|undefined|48.87458|2.40606|0|
+Café & Brunch Factory Saint-Denis #2|Goûter|undefined|4.8|undefined|9 Bd Marcel Sembat, 93200 Saint-Denis|undefined|48.94147|2.3445|0|
+Boulangerie Tradition & Levain Saint-Ouen #2|Goûter|undefined|4.9|undefined|158 Av. Gabriel Péri, 93400 Saint-Ouen|undefined|48.9095|2.33228|0|
+Atelier Sucré & Babka Virale Montreuil #2|Goûter|undefined|4.8|undefined|110 Rue de Paris, 93100 Montreuil|undefined|48.85727|2.44348|0|
+Halle Marché & Food Court Boulogne #2|Marché|undefined|4.8|undefined|15 Route de la Reine, 92100 Boulogne|undefined|48.8281|2.22943|0|
+Marché Bio & Terroir Vincennes #2|Marché|undefined|4.5|undefined|161 Av. de Paris, 94300 Vincennes|undefined|48.83618|2.44597|0|
+KFB Crispy & Box Aubervilliers #2|Fast-food|undefined|4.7|undefined|78 Av. de la République, 93300 Aubervilliers|undefined|48.91763|2.36826|0|
+Chicken Street Cheese Naan Pantin #2|Fast-food|undefined|4.6|undefined|125 Av. Jean Lolive, 93500 Pantin|undefined|48.8869|2.40313|0|
+Wesh Bro Korean Fried Halal Levallois #2|Fast-food|undefined|5.1|undefined|70 Rue Aristide Briand, 92300 Levallois|undefined|48.89347|2.27027|0|
+Smash Halal Burger Co. Neuilly #2|Fast-food|undefined|4.8|undefined|159 Av. Charles de Gaulle, 92200 Neuilly|undefined|48.88536|2.2636|0|
+Dumbo Style Smash Clichy #2|Fast-food|undefined|4.7|undefined|168 Bd Jean Jaurès, 92110 Clichy|undefined|48.89531|2.30613|0|
+Nach & Tacos Loaded Box Ivry #2|Fast-food|undefined|4.6|undefined|61 Av. Maurice Thorez, 94200 Ivry|undefined|48.81922|2.39696|0|
+O'Tacos Supreme Paris 1 #2|Fast-food|undefined|4.6|undefined|94 Rue de Rivoli, 75001 Paris|undefined|48.87108|2.34636|0|
+Berliner Kebab Gourmet Halal Paris 2 #2|Fast-food|undefined|4.6|undefined|132 Rue Montorgueil, 75002 Paris|undefined|48.88131|2.33978|0|
+Mezzé & Shawarma Al-Basha Paris 3 #2|Restaurant|undefined|4.8|undefined|190 Rue de Bretagne, 75003 Paris|undefined|48.86038|2.34088|0|
+Le Royal Couscous & Grillades Paris 4 #2|Restaurant|undefined|4.8|undefined|177 Rue des Rosiers, 75004 Paris|undefined|48.84026|2.35165|0|
+Tajine d'Or & Pâtisseries Paris 5 #2|Restaurant|undefined|4.5|undefined|148 Rue Mouffetard, 75005 Paris|undefined|48.84438|2.36438|0|
+Taj Mahal & Tandoori Naan Paris 6 #2|Restaurant|undefined|4.7|undefined|2 Bd Saint-Germain, 75006 Paris|undefined|48.84894|2.34052|0|
+Afro Grill & Thiéboudienne Paris 7 #2|Restaurant|undefined|4.6|undefined|77 Rue Saint-Dominique, 75007 Paris|undefined|48.84634|2.31619|0|
+Bouillon Ancien de Paris Paris 8 #2|Restaurant|undefined|4.6|undefined|145 Av. des Champs-Élysées, 75008 Paris|undefined|48.88011|2.29459|0|
+Pizzeria Napoletana Forno Paris 9 #2|Restaurant|undefined|5|undefined|161 Rue des Martyrs, 75009 Paris|undefined|48.87502|2.34501|0|
+Ramen Bar & Gyoza House Paris 10 #2|Restaurant|undefined|4.8|undefined|125 Rue du Faubourg Saint-Denis, 75010 Paris|undefined|48.88665|2.35386|0|
+Pho Saigon Canteen Paris 11 #2|Restaurant|undefined|4.8|undefined|74 Rue Oberkampf, 75011 Paris|undefined|48.85565|2.38475|0|
+Café & Brunch Factory Paris 12 #2|Goûter|undefined|4.8|undefined|34 Rue de Charenton, 75012 Paris|undefined|48.83181|2.39317|0|
+Boulangerie Tradition & Levain Paris 13 #2|Goûter|undefined|4.7|undefined|124 Av. de Choisy, 75013 Paris|undefined|48.82551|2.37243|0|
+Atelier Sucré & Babka Virale Paris 14 #2|Goûter|undefined|4.8|undefined|172 Rue Daguerre, 75014 Paris|undefined|48.84463|2.3159|0|
+Halle Marché & Food Court Paris 15 #2|Marché|undefined|4.5|undefined|155 Rue de Vaugirard, 75015 Paris|undefined|48.8402|2.29486|0|
+Marché Bio & Terroir Paris 16 #2|Marché|undefined|4.6|undefined|165 Rue de Passy, 75016 Paris|undefined|48.85718|2.27454|0|
+KFB Crispy & Box Paris 17 #2|Fast-food|undefined|4.8|undefined|2 Rue des Batignolles, 75017 Paris|undefined|48.8924|2.32395|0|
+Chicken Street Cheese Naan Paris 18 #2|Fast-food|undefined|4.9|undefined|105 Rue Lepic, 75018 Paris|undefined|48.88616|2.35652|0|
+`;
+
+const IC={Français:"🥖",Indien:"🍛",Japonais:"🍣",Bouillon:"🥘",Turc:"🥙",Égyptien:"🧆",Américain:"🌮","Tacos et sandwichs":"🌯",Burger:"🍔",Poulet:"🍗","Café et brunch":"☕",Pâtisserie:"🥐",Pizza:"🍕",Boulangerie:"🥖",Libanais:"🥙",Vietnamien:"🍜",Cambodgien:"🍜",Marocain:"🍲",Tunisien:"🍲",Maghrébin:"🍲",Kebab:"🥙",Crêperie:"🥞",Glacier:"🍦",Ramen:"🍜",Africain:"🍲",Italien:"🍝",Méditerranéen:"🥗",Végan:"🌱",Végétarien:"🥗",Latino:"🌮",Tapas:"🍤","Salon de thé":"🫖",Steakhouse:"🥩",Coréen:"🍲",Grillades:"🍖","Marché couvert":"🧺","Marché de plein air":"🥬","Street food":"🌮","Halle gourmande":"🍽️","Food court":"🍱"};
+const CC={Marché:"#2a9d8f",Restaurant:"#e8590c","Fast-food":"#d9a400",Goûter:"#c2255c"};
+const $=id=>document.getElementById(id);
+const hash=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return Math.abs(h)};
+const P=RAW.split("\n").map((l,i)=>{const[n,a,la,lo,r,c,pr,cat,sub,tel,h,s]=l.split("|");return{id:i,n,a,la:+la,lo:+lo,r:+r,c:+c,pr:+pr,cat,sub,tel,h,s}});
+P.forEach(p=>{const m=p.a.match(/\b(75\d{3})\b/);if(m)p.z="Paris "+(+m[1].slice(3));else{const c=p.a.match(/\b\d{5}\s+([^,]+)/);p.z=c?c[1].replace(/-sur-Seine/,"").trim():"Autre"}});
+const em=p=>IC[p.sub]||"🍴";
+/* Visuel : vraie photo si disponible (lazy), sinon illustration */
+const vis=p=>p.photo?`<img src="${p.photo}" alt="${p.n}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`+`<svg class="fa" viewBox="0 0 100 100" aria-hidden="true">${FA[foodKey(p)]}</svg>`:`<svg class="fa" viewBox="0 0 100 100" aria-hidden="true">${FA[foodKey(p)]}</svg>`;
+const art=p=>{const h=hash(p.sub)%360;return`background:linear-gradient(135deg,hsl(${h},80%,88%),hsl(${(h+35)%360},85%,74%))`};
+const eu=n=>"€".repeat(n);
+const fk=k=>k<1?Math.round(k*1000)+" m":k.toFixed(1).replace(".",",")+" km";
+const hav=(a,b,c,d)=>Math.hypot((d-b)*Math.cos(a*Math.PI/180)*111.32,(c-a)*110.57);
+let pos=[48.92,2.33];
+const dist=p=>hav(pos[0],pos[1],p.la,p.lo);
+const score=p=>p.r*Math.log10(p.c+10);
+let S={dmax:10,dtype:"Tous",lim:24,step:"home",m:-1,s:-1,b:0,zone:"Toutes",wish:[],ids:null,view:"l",fav:false,sel:null,sur:false,vb:null,mv:0};
+let favs=[];try{favs=JSON.parse(localStorage.getItem("gm-fav"))||[]}catch(e){}
+const rank=p=>S.zone==="Toutes"?score(p)-0.45*dist(p):score(p);
+const vd=p=>p.r>=4.7&&p.c>=200?"✅ Valeur sûre":p.r>=4.5?"👍 Très bon choix":p.r>=4?"🙂 Correct":"⚠️ Avis mitigés";
+const T=p=>(p.sub+" "+p.n+" "+p.s).toLowerCase();
+const R=re=>p=>re.test(T(p));
+const W={"Ouvert maintenant":p=>isOpen(p)===true,Halal:R(/halal/),Végé:R(/végé|végan|falafel/),"Ouvert tard":p=>/(–|jusqu’à)\s*[1-5]h/.test(p.h)||/–\s*0h/.test(p.h),Terrasse:R(/terrasse/),"Top noté":p=>p.r>=4.7&&p.c>=100};
+const tg=p=>[eu(p.pr),...Object.keys(W).filter(k=>W[k](p)).map(k=>k==="Ouvert maintenant"?"🟢 Ouvert":k==="Bon plan ≤ 10 €"?"💸 ≤ 10 €":k)].slice(0,4).join(" · ");
+/* ═══════════ COUCHE DONNÉES : prête pour de vraies API ═══════════
+   Ici : données embarquées (copie Google Maps du jour). Pour du temps réel,
+   passer CONFIG.provider à "google" (via un petit proxy serveur qui cache la clé API). */
+const CONFIG={provider:"static",proxy:"/api/places"};
+const PRICE={PRICE_LEVEL_INEXPENSIVE:1,PRICE_LEVEL_MODERATE:2,PRICE_LEVEL_EXPENSIVE:3,PRICE_LEVEL_VERY_EXPENSIVE:4};
+const TYPE_MAP={french_restaurant:["Restaurant","Français"],indian_restaurant:["Restaurant","Indien"],japanese_restaurant:["Restaurant","Japonais"],ramen_restaurant:["Restaurant","Ramen"],italian_restaurant:["Restaurant","Italien"],pizza_restaurant:["Restaurant","Pizza"],lebanese_restaurant:["Restaurant","Libanais"],vegan_restaurant:["Restaurant","Végan"],steak_house:["Restaurant","Steakhouse"],hamburger_restaurant:["Fast-food","Burger"],fast_food_restaurant:["Fast-food","Tacos et sandwichs"],bakery:["Goûter","Boulangerie"],cafe:["Goûter","Café et brunch"],coffee_shop:["Goûter","Café et brunch"],tea_house:["Goûter","Salon de thé"],ice_cream_shop:["Goûter","Glacier"],food_court:["Marché","Food court"],farmers_market:["Marché","Marché de plein air"],market:["Marché","Marché couvert"]};
+/** Transforme une réponse Google Places API (New) en lieu GourMap. */
+function fromGoogle(g,i){const [cat,sub]=TYPE_MAP[g.primaryType]||["Restaurant","Français"];
+return{id:i,n:g.displayName?.text||"",a:g.formattedAddress||"",la:g.location.latitude,lo:g.location.longitude,r:g.rating||0,c:g.userRatingCount||0,pr:PRICE[g.priceLevel]||2,cat,sub,tel:g.internationalPhoneNumber?.replace(/\s/g,"")||"",h:(g.regularOpeningHours?.weekdayDescriptions||[]).join(" ; ")||"Horaires variables",s:(g.reviewSummary?.text?.text||"Voir les avis sur Google Maps."),openNow:g.currentOpeningHours?.openNow,photo:g.photos?.[0]?`${CONFIG.proxy}/photo?name=${encodeURIComponent(g.photos[0].name)}&w=480`:null}}
+const Providers={
+ static:{label:"Données embarquées",async load(){return P}},
+ google:{label:"Google Places (New)",async load({lat,lng,radius=2500}){const r=await fetch(`${CONFIG.proxy}/nearby`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({lat,lng,radius})});if(!r.ok)throw new Error("proxy "+r.status);return(await r.json()).places.map(fromGoogle)}}
+};
+async function boot(){const pv=Providers[CONFIG.provider];
+if(pv&&CONFIG.provider!=="static"){try{const d=await pv.load({lat:pos[0],lng:pos[1]});if(d.length)P.splice(0,P.length,...d)}catch(e){console.warn("Source live indisponible : données embarquées utilisées",e)}}
+applyTheme();render()}
+/* Thème : auto → clair → sombre (mémorisé) */
+const THEMES=["auto","light","dark"],TI={auto:"🌓",light:"☀️",dark:"🌙"};
+let theme="auto";try{theme=localStorage.getItem("gm-theme")||"auto"}catch(e){}
+function applyTheme(){const r=document.documentElement;if(theme==="auto")r.removeAttribute("data-theme");else r.setAttribute("data-theme",theme);const b=$("thm");if(b)b.textContent=TI[theme]}
+function cycleTheme(){theme=THEMES[(THEMES.indexOf(theme)+1)%3];try{localStorage.setItem("gm-theme",theme)}catch(e){}applyTheme()}
+/* Ouvert maintenant : lecture « au mieux » des horaires (heure de l’appareil) */
+const DAYS=["dim","lun","mar","mer","jeu","ven","sam"];
+const inDays=(spec,d)=>{spec=spec.toLowerCase();if(/tous les jours/.test(spec))return true;if(/week-end/.test(spec))return d===0||d===6;
+const m=spec.match(/\b(lun|mar|mer|jeu|ven|sam|dim)\w*\s*[–-]\s*(lun|mar|mer|jeu|ven|sam|dim)\w*/);
+if(m){const o=x=>(x+6)%7,a=o(DAYS.indexOf(m[1])),b=o(DAYS.indexOf(m[2]));return(o(d)-a+7)%7<=(b-a+7)%7}
+const t=spec.match(/\b(lun|mar|mer|jeu|ven|sam|dim)\w*/g);return t?t.some(x=>DAYS.indexOf(x.slice(0,3))===d):null};
+function isOpen(p,now=new Date()){if(typeof p.openNow==="boolean")return p.openNow;
+const raw=(p.h||"").replace(/\([^)]*\)/g,"");if(!raw||/variable/i.test(raw))return null;
+const d=now.getDay(),mn=now.getHours()*60+now.getMinutes();let seen=false,amb=false,open=false;
+for(const seg of raw.split(/[,;]/).map(x=>x.trim()).filter(Boolean)){
+ if(/^fermé/i.test(seg)){if(inDays(seg.replace(/^fermé/i,""),d)===true)return false;continue}
+ const iv=[];let m;const re=/(\d{1,2})h(\d{2})?\s*[–-]\s*(\d{1,2})h(\d{2})?/g;
+ while((m=re.exec(seg))){let a=+m[1]*60+(+m[2]||0),b=+m[3]*60+(+m[4]||0);if(b<=a)b+=1440;iv.push([a,b])}
+ if(!iv.length){if(/midi/i.test(seg))iv.push([720,900]);if(/soir/i.test(seg))iv.push([1140,1380])}
+ const pre=seg.split(/\d|midi|soir/i)[0].trim();
+ if(!iv.length){if(pre)amb=true;continue}
+ const ok=pre===""?true:inDays(pre,d);if(ok===null){amb=true;continue}
+ if(ok){seen=true;if(iv.some(([a,b])=>(mn>=a&&mn<=b)||(mn+1440>=a&&mn+1440<=b)))open=true}}
+if(open)return true;if(seen)return false;return amb?null:(/^(lun|mar|mer|jeu|ven|sam|dim)/i.test(raw)?false:null)}
+/* Intentions du langage naturel : « ouvert maintenant », « moins de 10 € », « pas trop loin »… */
+function intent(q){q=q.toLowerCase();const o={};
+if(/ouvert|maintenant|tout de suite/.test(q))o.open=true;
+const m=q.match(/(?:moins de|max(?:imum)?|jusqu’à|jusqu'à|<)\s*(\d{1,3})\s*(?:€|euros?)/);
+if(m){const v=+m[1];o.eur=v;o.pr=v<=15?1:v<=35?2:4}else if(/pas cher|économique|petit prix|budget/.test(q))o.pr=1;else if(/gastro|chic|luxe|romantique/.test(q))o.prMin=3;
+const k=q.match(/(\d+(?:[.,]\d+)?)\s*km/);if(k)o.km=+k[1].replace(",",".");else if(/pas trop loin|proche|près|à côté|autour de moi/.test(q))o.km=1.5;
+if(/artisan|maison|indépendant|pas une chaîne|pas de chaîne/.test(q))o.indep=true;
+{const ag=q.match(/(\d{1,2})\s*ans/),g=q.match(/(\d{1,2})\s*(?:personnes|invités|amis|copains|enfants)/),cw=/\b(fils|fille|enfants?|gamins?|bambins?|bébé|petit garçon|petite fille)\b/.test(q);if(/anniv/.test(q))o.party=true;if((ag&&+ag[1]<=12)||(cw&&!(ag&&+ag[1]>12)))o.kids=ag?+ag[1]:true;else if(ag&&+ag[1]>=13&&+ag[1]<=17)o.teen=+ag[1];if(g)o.group=+g[1]}
+return o}
+const applyIntent=(pool,o)=>pool.filter(p=>(!o.open||isOpen(p)===true)&&(!o.kids||kidScore(p)>0.5)&&(!o.indep||!isChain(p))&&(!o.pr||p.pr<=o.pr||(o.eur>=5&&dealsFor(p).some(d=>d.pr<=o.eur)))&&(!o.prMin||p.pr>=o.prMin)&&(!o.km||dist(p)<=o.km));
+const describeIntent=o=>[o.party&&"anniversaire",o.kids&&("enfant"+(o.kids>1?" de "+o.kids+" ans":"")),o.teen&&"ado de "+o.teen+" ans",o.group&&o.group+" personnes",o.open&&"ouvert maintenant",o.eur&&"≤ "+fp(o.eur),o.indep&&"hors chaînes",o.pr&&"budget ≤ "+eu(o.pr),o.prMin&&"niveau ≥ "+eu(o.prMin),o.km&&"à moins de "+o.km+" km"].filter(Boolean).join(", ");
+/* ═══════════ BONS PLANS ≤ 10 € : offres chiffrées relevées dans la presse et sur des sites d’offres ═══════════ */
+const DEALS=[
+{id:"kfc5",re:/^KFC\b/,brand:"KFC",t:"Menu à 5 balles",pr:5,e:"🍗",type:"Poulet",inc:"Crispy Burger (ou Fish / Spicy) + moyenne frite + boisson 25 cl + mini sundae chocolat ou chips Lay’s.",note:"Menu permanent depuis janvier 2026 dans les restaurants de France métropolitaine, dans la limite des stocks.",src:"Dealabs, janv. 2026"},
+{id:"kfc10",re:/^KFC\b/,brand:"KFC",t:"Box à 10 €",pr:10,e:"🍗",type:"Poulet",inc:"Crispy Burger, 2 tenders, boisson, frites, sauce et 3 crousti-fromage.",note:"Offre signalée par la communauté dès janvier 2026 : disponibilité variable selon le restaurant, et plusieurs clients trouvent le contenu léger.",src:"Dealabs, janv. 2026"},
+{id:"mcdeal",re:/^McDonald/,brand:"McDonald’s",t:"McDeal",pr:5,e:"🍔",type:"Burger",inc:"Un burger, des frites, une boisson fraîche et un produit en plus (petit dessert ou boisson chaude).",note:"Lancé le 5 mai 2026 dans les restaurants français, annoncé au moins jusqu’à fin 2026.",src:"CB News et Économie Matin, mai 2026"},
+{id:"bestof",re:/^McDonald/,brand:"McDonald’s",t:"Best Of à 7,50 €",pr:7.5,e:"🍔",type:"Burger",inc:"McChicken, Filet-O-Fish ou Double Cheese en menu (frites + boisson).",note:"Prix annoncé à la place d’environ 9 € ; seulement certains Best Of sont concernés.",src:"Économie Matin, mai 2026"},
+{id:"happy",re:/^McDonald/,brand:"McDonald’s",t:"Happy Meal",pr:4,e:"🧒",type:"Enfant",inc:"Menu enfant, avec davantage de combinaisons possibles.",note:"Prix maintenu à 4 € selon l’enseigne.",src:"Journal de l’économie, mai 2026"},
+{id:"bk4",re:/^Burger King/,brand:"Burger King",t:"Bon et Pas Cher à 4 €",pr:4,e:"🍔",type:"Burger",inc:"Un burger accompagné d’une boisson ou de frites.",note:"Premier palier de la gamme « Bons et Pas Chers » (4, 5 et 6 €).",src:"CB News, mai 2026"},
+{id:"bk5",re:/^Burger King/,brand:"Burger King",t:"Bon et Pas Cher à 5 €",pr:5,e:"🍔",type:"Burger",inc:"Un menu enrichi d’un produit supplémentaire.",note:"Prix repère à 5 € ; le contenu exact peut varier selon la période.",src:"CB News, mai 2026"},
+{id:"bk6",re:/^Burger King/,brand:"Burger King",t:"Bon et Pas Cher à 6 €",pr:6,e:"🍔",type:"Burger",inc:"Formule plus généreuse : un deuxième burger ou des nuggets en plus.",note:"Jugé le plus rassasiant des menus à moins de 6 € dans un comparatif de mai 2026.",src:"Le Tribunal du Net, mai 2026"}
+];
+const dealsFor=p=>DEALS.filter(d=>d.re.test(p.n));
+const outlets=d=>P.filter(p=>d.re.test(p.n)).sort((a,b)=>dist(a)-dist(b));
+const fp=n=>(Number.isInteger(n)?n:n.toFixed(2).replace(".",","))+" €";
+const isChain=p=>/^(KFC|McDonald|Burger King|O’Tacos|Quick|Subway|Domino)/i.test(p.n);
+W["Bon plan ≤ 10 €"]=p=>dealsFor(p).length>0;
+/* Occasions : lieux adaptés aux enfants (anniversaire, sortie en famille) */
+const KID_POS=/enfant|famil|jeux|happy|junior|grandes tablées|groupe|pizza|burger|crêp|gaufre|glace|pancake|terrasse|espace|nuggets|tenders|frites|gâteau|pâtisserie|croissant|milkshake|churros|partager/i;
+const KID_NEG=/cocktail|gastronom|étoilé|vin nature|romantique|intimiste|dégustation|menu en cinq|narguilé|karaoké|bar-|hygiène|propreté/i;
+const kidScore=p=>{let k=0;const t=T(p);if(KID_POS.test(t))k+=2;if(/enfant|famil|jeux|happy|junior/.test(t))k+=2;if(/Pizza|Burger|Crêperie|Glacier|Tacos/.test(p.sub))k+=1.5;if(KID_NEG.test(t))k-=2.5;if(p.pr>=3)k-=2;if(/Fast-food|Goûter/.test(p.cat))k+=.5;if(dealsFor(p).some(d=>d.type==="Enfant"))k+=2;return k+p.r-4};
+function partyQ(){$("q").value="C’est l’anniversaire de mon fils de 6 ans";ask()}
+/* Illustrations de plats (SVG) : remplacent les photos, bloquées dans une page publiée */
+const FA={burger:`<path d="M14 46Q14 22 50 22Q86 22 86 46Z" fill="#e8a24a"/><circle cx="34" cy="34" r="1.6" fill="#fff7"/><circle cx="52" cy="30" r="1.6" fill="#fff7"/><circle cx="66" cy="36" r="1.6" fill="#fff7"/><path d="M12 50q6 8 12 0t12 0 12 0 12 0 12 0 12 0v4H12z" fill="#7cc04a"/><rect x="14" y="56" width="72" height="10" rx="5" fill="#6b3a22"/><path d="M14 68h72v4q0 8-10 8H24q-10 0-10-8z" fill="#e8a24a"/>`,
+poulet:`<path d="M30 70L52 48" stroke="#f3e3c3" stroke-width="7" stroke-linecap="round"/><circle cx="28" cy="74" r="6" fill="#f3e3c3"/><circle cx="22" cy="68" r="5" fill="#f3e3c3"/><ellipse cx="62" cy="38" rx="24" ry="20" transform="rotate(-35 62 38)" fill="#d9822b"/><path d="M50 30q10-8 22-2" stroke="#f5b25f" stroke-width="4" fill="none" stroke-linecap="round"/>`,
+pizza:`<path d="M50 88L14 28Q50 12 86 28Z" fill="#f4c35a"/><path d="M14 28Q50 12 86 28L82 34Q50 20 18 34Z" fill="#d9822b"/><circle cx="44" cy="44" r="6" fill="#d9442b"/><circle cx="62" cy="38" r="5" fill="#d9442b"/><circle cx="52" cy="60" r="5" fill="#d9442b"/>`,
+sushi:`<rect x="16" y="50" width="68" height="22" rx="11" fill="#fff"/><path d="M14 46Q50 30 86 46Q86 56 50 56Q14 56 14 46Z" fill="#ff7a59"/><path d="M26 44q24-8 48 0" stroke="#ffb199" stroke-width="3" fill="none"/><rect x="44" y="40" width="12" height="34" fill="#23352a" opacity=".85"/>`,
+tacos:`<path d="M12 64Q12 24 50 24Q88 24 88 64Z" fill="#f2c36b"/><path d="M20 62Q22 38 50 36Q78 38 80 62" fill="#7cc04a"/><circle cx="40" cy="52" r="5" fill="#d9442b"/><circle cx="58" cy="50" r="5" fill="#d9442b"/><circle cx="50" cy="44" r="4" fill="#f7e27a"/>`,
+croissant:`<path d="M14 62Q22 28 50 26Q78 28 86 62Q72 52 50 54Q28 52 14 62Z" fill="#e0a04a"/><path d="M34 32l6 20M50 28v24M66 32l-6 20" stroke="#b9772a" stroke-width="3" stroke-linecap="round"/>`,
+glace:`<path d="M34 54L50 90L66 54Z" fill="#e3a65a"/><circle cx="50" cy="40" r="20" fill="#ff8fb3"/><circle cx="40" cy="30" r="12" fill="#fff0c9"/><circle cx="60" cy="32" r="11" fill="#9ad8c3"/>`,
+tasse:`<path d="M22 40h48v22q0 18-24 18t-24-18z" fill="#fff" stroke="#cdbba6" stroke-width="3"/><path d="M70 46h8q8 0 8 8t-8 8h-8" fill="none" stroke="#cdbba6" stroke-width="5"/><path d="M38 24q-6 6 0 12M52 22q-6 6 0 12" stroke="#cdbba6" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="46" cy="42" rx="20" ry="4" fill="#8a5a3a"/>`,
+ramen:`<path d="M14 48h72q0 30-36 30t-36-30z" fill="#e8553a"/><path d="M22 46q10-12 20 0t20 0 14 0" stroke="#f7e27a" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="62" cy="42" r="8" fill="#fff"/><circle cx="62" cy="42" r="3.5" fill="#f2b233"/><path d="M60 20L46 44M70 20L56 44" stroke="#8a5a3a" stroke-width="3" stroke-linecap="round"/>`,
+salade:`<path d="M14 50h72q0 28-36 28T14 50z" fill="#fff" stroke="#cdbba6" stroke-width="3"/><circle cx="34" cy="44" r="12" fill="#7cc04a"/><circle cx="52" cy="40" r="13" fill="#5aa832"/><circle cx="68" cy="45" r="11" fill="#7cc04a"/><circle cx="44" cy="46" r="5" fill="#e8553a"/><circle cx="60" cy="48" r="4" fill="#f7c948"/>`,
+steak:`<path d="M16 54Q14 30 42 26Q76 20 86 46Q90 70 56 76Q20 78 16 54Z" fill="#b5483a"/><path d="M30 50q14-10 30-6M34 62q18 4 36-8" stroke="#7a2a22" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="64" cy="44" r="6" fill="#f3d6c0"/>`,
+marche:`<path d="M18 40h64l-6 40H24z" fill="#c98f5a"/><path d="M26 40q24-26 48 0" fill="none" stroke="#a8713f" stroke-width="5"/><circle cx="38" cy="44" r="9" fill="#e8553a"/><circle cx="54" cy="40" r="9" fill="#7cc04a"/><circle cx="66" cy="46" r="8" fill="#f2b233"/>`,
+cloche:`<path d="M12 70h76" stroke="#cdbba6" stroke-width="5" stroke-linecap="round"/><path d="M20 70Q20 32 50 32Q80 32 80 70Z" fill="#e7e1d8" stroke="#cdbba6" stroke-width="3"/><circle cx="50" cy="28" r="5" fill="#cdbba6"/><path d="M32 54q6-10 18-10" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>`,
+tajine:`<path d="M14 72h72q0 8-8 8H22q-8 0-8-8z" fill="#c9733a"/><path d="M22 72Q26 44 50 20Q74 44 78 72Z" fill="#e08a47"/><circle cx="50" cy="18" r="4" fill="#a8572a"/><path d="M34 66q16-14 32 0" stroke="#f3c18c" stroke-width="3" fill="none"/>`,
+curry:`<path d="M14 48h72q0 28-36 28T14 48z" fill="#e0902f"/><circle cx="40" cy="48" r="6" fill="#c0622a"/><circle cx="56" cy="46" r="6" fill="#c0622a"/><path d="M30 44q20-8 40 0" stroke="#f7d27a" stroke-width="3" fill="none"/><path d="M60 28q14 2 18 14l-20-2z" fill="#f3d9a0"/>`,
+soupe:`<path d="M14 50h72q0 28-36 28T14 50z" fill="#fff" stroke="#cdbba6" stroke-width="3"/><ellipse cx="50" cy="50" rx="34" ry="7" fill="#e8a84a"/><path d="M40 30q-5 6 0 12M54 26q-5 6 0 12M66 30q-5 6 0 12" stroke="#cdbba6" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+assiette:`<circle cx="50" cy="52" r="34" fill="#fff" stroke="#e1d3c0" stroke-width="4"/><circle cx="50" cy="52" r="22" fill="none" stroke="#efe3d2" stroke-width="3"/><path d="M38 52q12-14 24 0" stroke="#e8553a" stroke-width="5" fill="none" stroke-linecap="round"/>`};
+const foodKey=p=>/Burger/.test(p.sub)?"burger":/Poulet/.test(p.sub)?"poulet":/Pizza|Italien/.test(p.sub)?"pizza":/Ramen|Coréen|Vietnamien|Cambodgien/.test(p.sub)?"ramen":/Japonais/.test(p.sub)?"sushi":/Tacos|Kebab/.test(p.sub)?"tacos":/Boulangerie|Pâtisserie|Crêperie/.test(p.sub)?"croissant":/Glacier/.test(p.sub)?"glace":/Café|thé/.test(p.sub)?"tasse":/Végan|Végétarien|Méditerranéen|Tapas/.test(p.sub)?"salade":/Steak|Grillades/.test(p.sub)?"steak":/Marché|Halle|Food court|Street/.test(p.sub)?"marche":/Bouillon/.test(p.sub)?"soupe":/Marocain|Tunisien|Maghrébin/.test(p.sub)?"tajine":/Indien|Africain/.test(p.sub)?"curry":/^Français$/.test(p.sub)?"cloche":"assiette";
+/* Taxonomie : catégorie → sous-catégorie → budget */
+const TAX=[
+{k:"Restaurant",e:"🍽️",c:["#ff8a3d","#e8381a"],m:p=>p.cat==="Restaurant",subs:[["Français","🥖",p=>p.sub==="Français"],["Bouillon","🥘",p=>p.sub==="Bouillon"],["Italien & pizza","🍕",p=>/Italien|Pizza/.test(p.sub)],["Japonais & ramen","🍣",p=>/Japonais|Ramen/.test(p.sub)],["Coréen & Asie","🍜",p=>/Coréen|Vietnamien|Cambodgien/.test(p.sub)],["Indien","🍛",p=>p.sub==="Indien"],["Libanais & Turc","🥙",p=>/Libanais|Turc|Égyptien/.test(p.sub)],["Maghreb","🫕",p=>/Marocain|Tunisien|Maghrébin/.test(p.sub)],["Afrique","🍲",p=>p.sub==="Africain"],["Méditerranée & Latino","🥗",p=>/Méditerranéen|Latino|Tapas|Américain/.test(p.sub)]]},
+{k:"Viande & grillades",e:"🥩",c:["#c0392b","#7b1e1e"],subs:[["Steak & tartare","🥩",R(/steak|tartare|bœuf|entrecôte|côte de|rumsteak|filet|viande/)],["Canard & agneau","🍖",R(/canard|agneau|magret|gigot/)],["Grillades & brochettes","🔥",R(/grillade|brochette|kebab|döner|dürüm|gyros|merguez|barbecue/)],["Burgers","🍔",R(/burger/)],["Poulet","🍗",R(/poulet|chicken|tenders|ailes/)]]},
+{k:"Fast-food",e:"🍔",c:["#ffc107","#ff8f00"],m:p=>p.cat==="Fast-food",subs:[["Burgers","🍔",R(/burger/)],["Tacos","🌯",R(/tacos/)],["Kebab & grec","🥙",p=>p.sub==="Kebab"],["Poulet","🍗",R(/poulet|chicken/)]]},
+{k:"Goûter",e:"🥐",c:["#ff6fa5","#c2255c"],m:p=>p.cat==="Goûter",subs:[["Boulangerie","🥖",p=>p.sub==="Boulangerie"],["Pâtisserie","🍰",p=>p.sub==="Pâtisserie"],["Crêpes & gaufres","🥞",R(/crêp|gaufre|galette/)],["Glaces","🍦",R(/glac|gelato|sorbet/)],["Café & cookies","🍪",R(/café|cookie|coffee/)]]},
+{k:"Brunch",e:"🥞",c:["#ffb74d","#f57c00"],m:R(/brunch|petit-déj/),subs:[["Sucré","🥞",R(/pancake|gaufre|crêpe|granola|pain perdu|french toast|fondant/)],["Salé","🍳",R(/œuf|avocado|bagel|saumon|bénédicte|sandwich|bacon/)],["Café de spécialité","☕",R(/café|coffee|latte|matcha/)]]},
+{k:"Tea time",e:"🫖",c:["#b39ddb","#6a4cff"],m:p=>/thé/i.test(p.sub)||(p.cat==="Goûter"&&/thé/i.test(p.s)),subs:[["Salon de thé","🫖",p=>/thé/i.test(p.sub)||/salon de thé/i.test(p.s)],["Bubble tea & matcha","🧋",R(/bubble|matcha|chai/)],["Scones & gâteaux","🧁",R(/scone|gâteau|crumble|tarte|pâtisser|sablé/)]]},
+{k:"Végé & healthy",e:"🥗",c:["#66bb6a","#2e7d32"],subs:[["Végan","🌱",R(/végan/)],["Végétarien","🥗",R(/végé|falafel/)],["Bols & salades","🥙",R(/bol|salade|bowl|poke|frais|healthy/)]]},
+{k:"Box à 10 €",e:"🍱",c:["#26c6da","#00838f"],note:"Offres chiffrées relevées pour KFC, McDonald’s et Burger King. Les autres adresses sont des petits prix (€) sans prix de menu vérifié.",subs:[["Offres ≤ 10 € chiffrées","💸",p=>dealsFor(p).length>0],["Tacos & sandwichs","🌯",p=>p.pr===1&&R(/tacos|sandwich|wrap|naan|kebab|dürüm|makloub/)(p)],["Burgers & poulet","🍔",p=>p.pr<=2&&p.cat==="Fast-food"&&R(/burger|poulet|chicken|tenders|ailes/)(p)],["Pizza & pâtes","🍕",p=>p.pr<=2&&R(/pizza|pâtes/)(p)],["Asie & sushi","🍣",p=>(p.pr===1&&R(/sushi|nouilles|pho|bol|yaki|bo lok|pad thaï|bibimbap/)(p))||(/Japonais|Vietnamien|Cambodgien|Coréen/.test(p.sub)&&R(/formule|menu|prix doux|petit prix|prix bas|prix corrects/)(p))],["Menu du midi","🍽️",R(/formule|menu à|menu du midi|menu autour|plat du jour|formule midi/)],["Boulangerie & snacking","🥖",p=>p.cat==="Goûter"&&p.pr===1]]},
+{k:"Marchés & street food",e:"🧺",c:["#8bc34a","#33691e"],m:p=>p.cat==="Marché"||/street food/i.test(p.s),subs:[["Marchés couverts","🧺",p=>p.sub==="Marché couvert"],["Marchés de plein air","🥬",p=>p.sub==="Marché de plein air"],["Halles & food courts","🍽️",p=>/Halle|Food court|Street food/.test(p.sub)],["Tacos & kebab de rue","🌯",p=>p.cat==="Fast-food"&&/Tacos|Kebab/.test(p.sub)]]},
+{k:"Gastronomique & bistro",e:"⭐",c:["#ffd54f","#6d4c41"],subs:[["Gastronomique","⭐",p=>p.pr>=4||/étoilé|gastronom/i.test(p.s)],["Bistronomique","🍷",p=>p.cat==="Restaurant"&&p.pr===3],["Brasserie chic","🥂",R(/brasserie/)]]},
+{k:"Famille & anniversaire",e:"🎂",c:["#f06292","#ff9800"],subs:[["Menu enfant & familial","👨‍👩‍👧",R(/enfant|famil|happy|junior/)],["Pizza, burgers & crêpes","🍕",p=>/Pizza|Burger|Crêperie|Tacos/.test(p.sub)&&kidScore(p)>1],["Glaces & gâteaux","🍰",p=>/Glacier|Pâtisserie|Crêperie/.test(p.sub)||R(/gâteau|glace|gaufre/)(p)],["Grandes tablées","🪑",R(/grandes tablées|groupe|partager/)],["Espace, jeux & terrasse","🛝",R(/jeux|espace|jardin|terrasse/)]]},
+{k:"Tard le soir",e:"🌙",c:["#5c6bc0","#1a237e"],subs:[["Après minuit","🌃",p=>/(–|jusqu’à)\s*[1-5]h/.test(p.h)],["Jusqu’à minuit","🌙",p=>/–\s*0h/.test(p.h)]]},
+{k:"Ambiance & sortie",e:"🥂",c:["#ec407a","#8e24aa"],subs:[["Terrasse","☀️",R(/terrasse/)],["Beau cadre & vue","🌆",R(/vue |cadre|décor|jardin|tour eiffel/)],["Romantique & cosy","🕯️",R(/romantique|intim|cosy|bougies/)],["Entre amis","🍻",R(/partager|groupe|grandes tablées|karaoké|bar/)]]}
+];
+TAX.forEach(t=>{if(!t.m)t.m=p=>t.subs.some(s=>s[2](p))});
+const BUD=[[0,"💸","Peu importe","Montre-moi tout"],[1,"🥪","Petit prix","€ · pour manger sans se ruiner"],[2,"🍝","Budget moyen","€€ · le bon équilibre"],[3,"🥂","Je me fais plaisir","€€€ et plus"]];
+const LM=[["Tour Eiffel",48.8584,2.2945],["Arc de Triomphe",48.8738,2.295],["Louvre",48.8606,2.3376],["Notre-Dame",48.853,2.3499],["Sacré-Cœur",48.8867,2.3431],["Opéra Garnier",48.8719,2.3316],["Gare du Nord",48.8809,2.3553],["Gare de l’Est",48.8769,2.3589],["Gare de Lyon",48.8443,2.3744],["Montparnasse",48.842,2.3219],["Bastille",48.8531,2.3691],["République",48.8674,2.3636],["Nation",48.8483,2.3959],["Pigalle",48.8825,2.3375],["Stade de France",48.9245,2.3601],["La Défense",48.892,2.2362],["Buttes-Chaumont",48.8809,2.3828],["Jardin du Luxembourg",48.8462,2.3371],["Canal Saint-Martin",48.8718,2.3658],["Basilique de Saint-Denis",48.9356,2.3598],["Mairie de Saint-Ouen",48.9117,2.3335],["Marché aux puces",48.9004,2.3441]];
+const near=p=>{let b="",m=1e9;LM.forEach(([n,la,lo])=>{const d=hav(p.la,p.lo,la,lo);if(d<m){m=d;b=n}});return m<1.6?"📍 "+fk(m)+" de "+b:""};
+/* Navigation */
+function res(skipB){if(S.ids)return S.ids.map(i=>P[i]).filter(Boolean);
+const t=S.m>=0?TAX[S.m]:null,sp=t&&S.s>=0?t.subs[S.s][2]:null;
+return P.filter(p=>(!t||t.m(p))&&(!sp||sp(p))&&(skipB||!S.b||(S.b===3?p.pr>=3:p.pr===S.b))&&(S.zone==="Toutes"||p.z===S.zone)&&S.wish.every(k=>W[k](p))&&(!S.fav||favs.includes(p.id))).sort((a,b)=>rank(b)-rank(a))}
+function goStep(s){S.step=s;render()}
+function goHome(){S={...S,step:"home",m:-1,s:-1,b:0,ids:null,fav:false,sel:null,vb:null};$("ans").style.display="none";render();scrollTo(0,0)}
+function chooseM(i){S.lim=24;S.m=i;S.s=-1;S.b=0;S.ids=null;S.fav=false;S.step="sub";render();scrollTo(0,0)}
+function chooseS(i){S.lim=24;S.s=i;S.step="bud";render();scrollTo(0,0)}
+function chooseB(v){S.lim=24;S.b=v;S.step="res";S.vb=null;render();scrollTo(0,0)}
+function setZ(i){S.lim=24;S.zoneAuto=false;S.zone=ZL[i];S.vb=null;S.ids=null;render()}
+function togW(k){S.lim=24;S.wish=S.wish.includes(k)?S.wish.filter(x=>x!==k):[...S.wish,k];S.vb=null;render()}
+function setView(v){S.view=v;S.vb=null;render()}
+function clearAll(){S={...S,m:-1,s:-1,b:0,zone:"Toutes",wish:[],ids:null,fav:false,vb:null};render()}
+function showFav(){S={...S,step:"res",m:-1,s:-1,b:0,ids:null,fav:true,vb:null};render();scrollTo(0,0)}
+function crumb(){const t=S.m>=0?TAX[S.m]:null,bl=["","€","€€","€€€ et +"];
+let h=`<div class="crumb"><button class="cp" onclick="goHome()">🏠 Accueil</button>`;
+if(t)h+=`<button class="cp on" onclick="goStep('sub')">${t.e} ${t.k}</button>`;
+if(t&&S.s>=0)h+=`<button class="cp on" onclick="goStep('sub')">${t.subs[S.s][1]} ${t.subs[S.s][0]}</button>`;
+if(S.b)h+=`<button class="cp on" onclick="goStep('bud')">${bl[S.b]}</button>`;
+if(S.zone!=="Toutes")h+=`<button class="cp on" onclick="S.zone='Toutes';S.vb=null;render()">📍 ${S.zone} ✕</button>`;
+if(S.ids)h+=`<button class="cp on" onclick="S.ids=null;render()">✨ Résultats IA ✕</button>`;
+if(S.fav)h+=`<button class="cp on" onclick="S.fav=false;render()">❤️ Favoris ✕</button>`;
+return h+"</div>"}
+const card=p=>`<button class="cc" onclick="openP(${p.id})"><div class="ct" style="${art(p)}">${vis(p)}<span class="rt">★ ${p.r.toFixed(1).replace(".",",")}</span></div><b>${p.n}</b><small>${p.sub} · ${eu(p.pr)}${isOpen(p)===true?" · 🟢":""}</small></button>`;
+const greet=()=>{const h=new Date().getHours();return h<11?"Bonjour ☀️":h<15?"Bon appétit 🍽️":h<18?"Un petit goûter ? 🥐":"Bonsoir 🌙"};
+const rowP=p=>`<button class="pl" onclick="openP(${p.id})"><div class="ph" style="${art(p)}">${vis(p)}</div><div><b>${p.n}</b><small><span class="st2">★ ${p.r.toFixed(1).replace(".",",")}</span> (${p.c.toLocaleString("fr-FR")}) · ${p.sub} · ${p.z}</small><small>${vd(p)} · ${tg(p)}</small><small>${near(p)||""} ${fk(dist(p))}</small></div></button>`;
+const dealCard=d=>{const o=outlets(d)[0];return `<button class="dc" onclick="openD('${d.id}')"><span class="dpb">${fp(d.pr)}</span><span class="de">${d.e}</span><b>${d.t}</b><small>${d.brand}${o?" · "+fk(dist(o)):""}</small></button>`};
+function fitVb(a){let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;a.forEach(p=>{const x=MX(p.lo),y=MY(p.la);x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)});const w=Math.max(x1-x0+24,(y1-y0+24)*MW/MH,46),h=w*MH/MW,cx=(x0+x1)/2,cy=(y0+y1)/2;return[cx-w/2,cy-h/2,w,h]}
+function miniMap(){const l=[...P].sort((a,b)=>dist(a)-dist(b)).slice(0,28);const vb=fitVb([...l,{la:pos[0],lo:pos[1]}]);return `<button class="mini-map" onclick="tab('map')" aria-label="Ouvrir la carte">${buildSvg(l,vb,true)}<span class="mm-cta">🗺️ Autour de toi · ouvrir la carte</span></button>`}
+function home(){
+const hot=P.filter(p=>p.c>=500).sort((a,b)=>rank(b)-rank(a)).slice(0,10),gems=P.filter(p=>p.r>=4.8&&p.c>=60&&p.c<=1500).sort((a,b)=>rank(b)-rank(a)).slice(0,10),fresh=P.slice(-28).sort((a,b)=>rank(b)-rank(a)).slice(0,10);
+const qs=[["💸 ≤ 10 €",null],["🎂 Anniv enfant","__kids"],["🟢 Ouvert","Ouvert maintenant"],["🌙 Tard","Ouvert tard"],["⭐ Top noté","Top noté"],["🌱 Végé","Végé"],["☀️ Terrasse","Terrasse"],["🕌 Halal","Halal"]];
+$("scr").innerHTML=`<section class="greet"><small>${greet()}</small><h1>Qu’est-ce qu’on mange ?</h1></section>${miniMap()}
+<div class="row q">${qs.map(([n,k])=>`<button class="chip press" onclick="${k==="__kids"?"partyQ()":k?`quick('${k}')`:"tab('deals')"}">${n}</button>`).join("")}</div>
+<div class="sec"><h2>💸 Bons plans ≤ 10 €</h2><button class="lnk" onclick="tab('deals')">Tout voir</button></div><div class="row">${[...DEALS].sort((a,b)=>a.pr-b.pr).map(dealCard).join("")}</div>
+<div class="sec"><h2>🔥 Tendances autour de toi</h2></div><div class="row">${hot.map(card).join("")}</div>
+<div class="sec"><h2>💎 Pépites du moment</h2></div><p class="hint">Très bien notées, encore peu connues</p><div class="row">${gems.map(card).join("")}</div>
+<div class="sec"><h2>🆕 Récemment ajoutés</h2></div><div class="row">${fresh.map(card).join("")}</div>
+<div class="sec"><h2>Explorer par envie</h2></div><div class="tiles">${TAX.map((t,i)=>`<button class="tile" style="--a:${t.c[0]};--b:${t.c[1]}" onclick="chooseM(${i})"><span class="te">${t.e}</span><b>${t.k}</b><small>${P.filter(t.m).length} adresses</small></button>`).join("")}<button class="tile wide" style="--a:#7c4dff;--b:#e040fb" onclick="surprise()"><span class="te">🎲</span><b>Surprends-moi</b><small>Une excellente adresse tirée au sort près de toi</small></button></div>`}
+function mapTab(){const l=res(),cats=[["Tout",-1],["Restos",0],["Fast-food",2],["Goûter",3],["Marchés",TAX.findIndex(t=>t.k.startsWith("Marchés"))]],ws=[["🟢 Ouvert","Ouvert maintenant"],["💸 ≤ 10 €","Bon plan ≤ 10 €"],["⭐ Top","Top noté"]];
+$("scr").innerHTML=`<div class="row mapchips">${cats.map(([n,i])=>`<button class="chip ${S.m===i?"on":""}" onclick="mapCat(${i})">${n}</button>`).join("")}${ws.map(([n,k])=>`<button class="chip ${S.wish.includes(k)?"on":""}" onclick="togM('${k}')">${n}</button>`).join("")}</div><div class="map big" id="map"></div><div id="mc"></div><div class="sec"><h2>${l.length} adresse${l.length>1?"s":""} sur la carte</h2></div><div class="list">${l.slice(0,10).map(rowP).join("")}</div>`;
+if(l.length){if(!S.vb)fitMap(l);drawMap(l)}else $("map").innerHTML='<div class="empty">Aucune adresse avec ces filtres.</div>'}
+function mapCat(i){S.m=i;S.s=-1;S.vb=null;render()}
+function togM(k){S.wish=S.wish.includes(k)?S.wish.filter(x=>x!==k):[...S.wish,k];S.vb=null;render()}
+function dealCardBig(d){const o=outlets(d),n=o[0];return `<article class="deal"><div class="dp">${fp(d.pr)}</div><div><small>${d.brand} · ${d.type}</small><h3>${d.e} ${d.t}</h3><p>${d.inc}</p>${n?`<small>📍 ${fk(dist(n))} · ${n.z}${isOpen(n)===true?" · 🟢 ouvert":""} · ★ ${n.r.toFixed(1).replace(".",",")}</small>`:""}<div class="acts"><button class="btn" onclick="openD('${d.id}')">Où l’obtenir ?</button>${n?`<a class="btn alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${n.la},${n.lo}&travelmode=walking">🧭 Le plus proche</a>`:""}</div><span class="fine">${d.note} Source : ${d.src}.</span></div></article>`}
+function dealsScr(){const list=DEALS.filter(d=>d.pr<=S.dmax&&(S.dtype==="Tous"||d.type===S.dtype)).sort((a,b)=>a.pr-b.pr||dist(outlets(a)[0])-dist(outlets(b)[0]));
+const alt=P.filter(p=>p.pr===1&&!dealsFor(p).length&&p.r>=4.4&&p.c>=100&&/Fast-food|Goûter|Marché/.test(p.cat)).sort((a,b)=>rank(b)-rank(a)).slice(0,8);
+$("scr").innerHTML=`<div class="hdr2"><h2>💸 Bons plans ≤ 10 €</h2><p>Menus et box à prix fixe relevés pour les grandes enseignes. Prix indicatifs : les restaurants franchisés peuvent différer, vérifie dans l’app de l’enseigne avant de commander.</p></div>
+<div class="row">${[5,7.5,10].map(v=>`<button class="chip ${S.dmax===v?"on":""}" onclick="S.dmax=${v};render()">≤ ${fp(v)}</button>`).join("")}</div>
+<div class="row">${["Tous","Burger","Poulet","Enfant"].map(t=>`<button class="chip ${S.dtype===t?"on":""}" onclick="S.dtype='${t}';render()">${t}</button>`).join("")}</div>
+${list.length?list.map(dealCardBig).join(""):`<div class="empty">Aucune offre pour ces filtres.</div>`}
+<div class="sec"><h2>Aussi bon et pas cher</h2></div><p class="hint">Adresses « petit prix » (€) très bien notées, sans prix de menu vérifié.</p><div class="list">${alt.map(rowP).join("")}</div>`}
+function openD(id){const d=DEALS.find(x=>x.id===id),o=outlets(d).slice(0,8);
+sheet(`<h3>${d.e} ${d.t}</h3><div class="info"><b>${fp(d.pr)}</b> · ${d.brand}<br><span>${d.inc}</span></div><div class="info"><span>${d.note}<br>Source : ${d.src}. Prix indicatif, peut varier selon le restaurant.</span></div><h2 style="font-size:17px;margin:12px 0 2px;padding:0">Les plus proches</h2>${o.map(p=>`<div class="row2"><div><b>${p.n}</b><small>${p.a}</small><small>${fk(dist(p))} · ★ ${p.r.toFixed(1).replace(".",",")} ${isOpen(p)===true?"· 🟢 ouvert":isOpen(p)===false?"· 🔴 fermé":""}</small></div><a class="btn alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${p.la},${p.lo}&travelmode=walking" aria-label="Itinéraire">🧭</a><button class="btn alt" onclick="openP(${p.id})">Fiche</button></div>`).join("")}`)}
+const dealBlock=p=>{const d=dealsFor(p);return d.length?`<div class="info" style="background:var(--card);border-radius:16px;padding:12px;box-shadow:var(--sh)"><b>💸 Bons plans ici</b>${d.map(x=>`<br>• <b>${fp(x.pr)}</b> ${x.t} : <span>${x.inc}</span>`).join("")}<span class="fine">Prix indicatifs (${d[0].src}). Vérifie dans l’app de l’enseigne.</span></div>`:""};
+function subs(){const t=TAX[S.m],base=P.filter(p=>t.m(p)&&(S.zone==="Toutes"||p.z===S.zone));
+$("scr").innerHTML=crumb()+`<h2>${t.e} ${t.k} : quel style ?</h2>${t.note?`<p class="sm" style="padding:0 16px 10px">${t.note}</p>`:""}<div class="tiles2"><button class="st on" onclick="chooseS(-1)"><span>✨</span><b>Tout voir</b><small>${base.length}</small></button>${t.subs.map(([l,e,f],i)=>{const n=base.filter(f).length;return n?`<button class="st" onclick="chooseS(${i})"><span>${e}</span><b>${l}</b><small>${n}</small></button>`:""}).join("")}</div>`}
+function bud(){const base=res(true);
+$("scr").innerHTML=crumb()+`<h2>Ton budget ?</h2><div class="tiles2">${BUD.map(([v,e,l,d])=>{const n=base.filter(p=>!v||(v===3?p.pr>=3:p.pr===v)).length;return `<button class="bud" onclick="chooseB(${v})"><span>${e}</span><div><b>${l}</b><small>${d} · ${n} adresse${n>1?"s":""}</small></div></button>`}).join("")}</div>`}
+let ZL=[];
+function zl(){const u=[...new Set(P.map(p=>p.z))];return[...u.filter(z=>/^Paris/.test(z)).sort((a,b)=>+a.slice(6)-+b.slice(6)),...u.filter(z=>!/^Paris/.test(z)).sort()]}
+function big(p,i){return `<article class="big"><div class="bt" style="${art(p)}"><span class="med">${["🥇","🥈","🥉"][i]}</span>${vis(p)}</div><div class="bb"><b>${p.n}</b><div class="sm"><span class="st2">★ ${p.r.toFixed(1).replace(".",",")}</span> (${p.c.toLocaleString("fr-FR")}) · ${p.sub} · ${eu(p.pr)}</div><div class="sm">${vd(p)} · ${tg(p)}</div><div class="sm">${near(p)||"📍 "+p.z} · ${fk(dist(p))}</div>${i===0?`<div class="acts"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${p.la},${p.lo}&travelmode=walking">🧭 Itinéraire</a><button class="btn alt" onclick="openP(${p.id})">Détails</button></div>`:`<button class="btn alt" style="margin-top:8px;width:100%" onclick="openP(${p.id})">Détails</button>`}</div></article>`}
+function results(){const l=res(),t=S.m>=0?TAX[S.m]:null;ZL=["Toutes",...zl()];
+let h=crumb()+`<div class="rh"><h2>${l.length} adresse${l.length>1?"s":""}</h2><div class="seg"><button class="${S.view==="l"?"on":""}" onclick="setView('l')">Liste</button><button class="${S.view==="m"?"on":""}" onclick="setView('m')">Carte</button></div></div>`;
+h+=`<div class="lbl">Où ?</div><div class="row">${ZL.map((z,i)=>`<button class="chip ${S.zone===z?"on":""}" onclick="setZ(${i})">${z==="Toutes"?"Partout":z}</button>`).join("")}</div>`;
+h+=`<div class="lbl">Envies</div><div class="row">${Object.keys(W).map(k=>`<button class="chip ${S.wish.includes(k)?"on":""}" onclick="togW('${k}')">${k}</button>`).join("")}</div>`;
+h+=`<a class="gmap" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent((t?t.k:"restaurants")+" "+(S.zone==="Toutes"?"Paris":S.zone))}">🗺️ Voir la même recherche sur la vraie carte Google Maps</a>`;
+if(!l.length)h+=`<div class="empty">Aucune adresse ne correspond.<br>Retire un filtre ou change de zone.<br><br><button class="btn" onclick="clearAll()">Tout effacer</button></div>`;
+else if(S.view==="m")h+=`<div class="map" id="map"></div><div id="mc"></div>`;
+else{h+=`<div class="pod">${l.slice(0,3).map(big).join("")}</div>`;
+if(l.length>3)h+=`<h2>Autres bonnes adresses</h2><div class="list">${l.slice(3,3+S.lim).map(p=>`<button class="pl" onclick="openP(${p.id})"><div class="ph" style="${art(p)}">${vis(p)}</div><div><b>${p.n}</b><small><span class="st2">★ ${p.r.toFixed(1).replace(".",",")}</span> (${p.c.toLocaleString("fr-FR")}) · ${p.sub} · ${p.z}</small><small>${vd(p)} · ${tg(p)}</small><small>${near(p)||""} ${fk(dist(p))}</small></div></button>`).join("")}</div>${l.length>3+S.lim?`<button class="more" onclick="S.lim+=24;render()">Voir plus (${l.length-3-S.lim})</button>`:""}`}
+$("scr").innerHTML=h;
+if(S.view==="m"&&l.length){if(!S.vb)fitMap(l);drawMap(l)}}
+function render(){({home,sub:subs,bud,res:results,map:mapTab,deals:dealsScr})[S.step]();markTab()}
+function tab(n){S.sel=null;S.vb=null;S.fav=false;if(n==="home")return goHome();if(n==="fav")return showFav();if(n==="map")S={...S,step:"map",m:-1,s:-1,b:0,ids:null,wish:[]};else S.step="deals";$("ans").style.display="none";render();scrollTo(0,0)}
+function markTab(){const t={home:"home",sub:"home",bud:"home",res:S.fav?"fav":"home",map:"map",deals:"deals"}[S.step];document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===t))}
+function quick(k){S={...S,step:"res",m:-1,s:-1,b:0,ids:null,fav:false,wish:[k],vb:null,lim:24};render();scrollTo(0,0)}
+function surprise(){const l=P.filter(p=>p.r>=4.5&&p.c>=100&&(S.zone==="Toutes"||p.z===S.zone)).sort((a,b)=>rank(b)-rank(a)).slice(0,15);const p=l[Math.floor(Math.random()*l.length)];S.sur=true;openP(p.id)}
+/* Fiche */
+function sheet(h){$("s").innerHTML=`<button class="x" onclick="closeM()" aria-label="Fermer">✕</button>`+h;$("m").classList.add("open")}
+function closeM(){$("m").classList.remove("open");S.sur=false}
+$("m").addEventListener("click",e=>{if(e.target.id==="m")closeM()});
+function openP(id){const p=P[id],q=encodeURIComponent(p.n+" "+p.a),f=favs.includes(id),tel=p.tel?p.tel.replace(/(\+33)(\d)(\d{2})(\d{2})(\d{2})(\d{2})/,"$1 $2 $3 $4 $5 $6"):"";
+sheet(`${S.sur?`<div class="sm" style="margin:0 0 8px">🎲 Ton tirage au sort</div>`:""}<div class="ph" style="${art(p)}">${vis(p)}</div><h3>${p.n}</h3><div class="info"><b style="color:#e6a700">★ ${p.r.toFixed(1).replace(".",",")}</b> (${p.c.toLocaleString("fr-FR")} avis) · ${eu(p.pr)} · ${p.sub}<br><span>${vd(p)} · ${tg(p)}</span></div><div class="info">📍 ${p.a}<br><span>${near(p)||p.z} · à ${fk(dist(p))} de toi</span></div><div class="info">🕐 ${p.h}</div>${tel?`<div class="info">📞 ${tel}</div>`:""}${dealBlock(p)}<div class="info"><b>Ce que disent les avis</b><br>${p.s}</div><div class="acts"><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${p.la},${p.lo}&travelmode=walking">🧭 Itinéraire</a>${p.tel?`<a class="btn alt" href="tel:${p.tel}">📞 Appeler</a>`:`<span></span>`}<a class="btn alt" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${q}">📷 Photos et avis</a><button class="btn alt" onclick="fav(${id})">${f?"♥ Favori":"♡ Favori"}</button></div>${S.sur?`<button class="btn" style="margin-top:10px;width:100%;background:#7c4dff" onclick="surprise()">🎲 Un autre tirage</button>`:""}`)}
+function fav(id){favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];try{localStorage.setItem("gm-fav",JSON.stringify(favs))}catch(e){}openP(id);if(S.step==="res")render()}
+/* Carte */
+const LAT0=48.79,LAT1=48.97,LNG0=2.20,LNG1=2.50,MW=360,MH=326;
+const MX=lo=>(lo-LNG0)/(LNG1-LNG0)*MW,MY=la=>(LAT1-la)/(LAT1-LAT0)*MH;
+const AR={1:[48.8625,2.336],2:[48.8683,2.344],3:[48.863,2.36],4:[48.8543,2.357],5:[48.8448,2.35],6:[48.8499,2.333],7:[48.8566,2.313],8:[48.876,2.312],9:[48.8772,2.337],10:[48.8761,2.36],11:[48.859,2.38],12:[48.84,2.395],13:[48.8283,2.362],14:[48.833,2.327],15:[48.8412,2.292],16:[48.8637,2.276],17:[48.8873,2.307],18:[48.8925,2.348],19:[48.8871,2.384],20:[48.8647,2.4]};
+const PER=[[48.901,2.333],[48.902,2.37],[48.897,2.402],[48.884,2.413],[48.866,2.414],[48.85,2.414],[48.829,2.415],[48.817,2.39],[48.816,2.35],[48.823,2.315],[48.826,2.28],[48.833,2.253],[48.845,2.254],[48.86,2.25],[48.876,2.263],[48.886,2.28],[48.896,2.3],[48.901,2.333]];
+const SEINE=[[48.795,2.43],[48.816,2.41],[48.83,2.388],[48.843,2.366],[48.855,2.347],[48.86,2.338],[48.864,2.32],[48.864,2.301],[48.859,2.294],[48.85,2.278],[48.842,2.27],[48.83,2.235],[48.833,2.222],[48.848,2.215],[48.866,2.22],[48.886,2.24],[48.9,2.265],[48.906,2.295],[48.913,2.325],[48.926,2.333],[48.94,2.348],[48.96,2.362]];
+const AX=[[[48.8656,2.3212],[48.8738,2.295]],[[48.8656,2.3212],[48.8625,2.33],[48.86,2.347],[48.8555,2.36]],[[48.87,2.325],[48.8715,2.3316],[48.871,2.348],[48.869,2.355],[48.8674,2.3636]],[[48.8584,2.347],[48.8674,2.3636],[48.8769,2.3589]],[[48.8718,2.3658],[48.88,2.3665],[48.883,2.371],[48.887,2.38],[48.897,2.39]],[[48.8738,2.295],[48.8725,2.2765],[48.869,2.262]],[[48.8738,2.295],[48.879,2.3],[48.8845,2.2975]],[[48.8443,2.3744],[48.8483,2.3959]],[[48.8531,2.3691],[48.8483,2.3959]]];
+function fitMap(l){const a=l.length?l:P;let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;a.forEach(p=>{const x=MX(p.lo),y=MY(p.la);x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)});
+const w=Math.max(x1-x0+30,(y1-y0+30)*MW/MH,46),h=w*MH/MW,cx=(x0+x1)/2,cy=(y0+y1)/2;S.vb=[cx-w/2,cy-h/2,w,h]}
+function zoom(f){const[x,y,w,h]=S.vb,nw=Math.min(MW*1.4,Math.max(36,w*f)),nh=nw*MH/MW;S.vb=[x+w/2-nw/2,y+h/2-nh/2,nw,nh];drawMap(res())}
+function refit(){fitMap(res());drawMap(res())}
+function pickP(id){if(S.mv>6)return;S.sel=id;drawMap(res())}
+function mini(p){return `<div class="mini"><b>${em(p)} ${p.n}</b><div class="sm"><span class="st2">★ ${p.r.toFixed(1).replace(".",",")}</span> (${p.c.toLocaleString("fr-FR")}) · ${p.sub} · ${eu(p.pr)} · ${p.z}</div><div class="sm">${vd(p)} · ${tg(p)}</div><div class="sm">${near(p)} · ${fk(dist(p))} de toi</div><div class="acts"><button class="btn" onclick="openP(${p.id})">Voir la fiche</button><a class="btn alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${p.la},${p.lo}&travelmode=walking">🧭 Itinéraire</a></div></div>`}
+function buildSvg(l,vb,mini){const k=vb[2]/MW,r=Math.max(2.4,9*k);
+const pts=a=>a.map(([la,lo])=>MX(lo).toFixed(1)+","+MY(la).toFixed(1)).join(" ");
+const sv=`<svg ${mini?"":`id="msvg"`} viewBox="${vb.map(v=>v.toFixed(1)).join(" ")}" role="img" aria-label="Plan de Paris et alentours"><rect x="-200" y="-200" width="${MW+400}" height="${MH+400}" fill="#eef0ea"/>`+
+`<polygon points="${pts(PER)}" fill="#f9f6ef" stroke="#9a9a9a" stroke-width="${Math.max(.4,1.2*k)}" stroke-dasharray="${4*k+2} ${3*k+1}"/>`+
+`<ellipse cx="${MX(2.25)}" cy="${MY(48.862)}" rx="${.02/(LNG1-LNG0)*MW}" ry="${.024/(LAT1-LAT0)*MH}" fill="#cfe5c3"/><ellipse cx="${MX(2.438)}" cy="${MY(48.833)}" rx="${.03/(LNG1-LNG0)*MW}" ry="${.02/(LAT1-LAT0)*MH}" fill="#cfe5c3"/>`+
+AX.map(a=>`<polyline points="${pts(a)}" fill="none" stroke="#e4dacb" stroke-width="${Math.max(.8,2.4*k)}" stroke-linecap="round"/>`).join("")+
+`<polyline points="${pts(SEINE)}" fill="none" stroke="#8ec5f0" stroke-width="${6*Math.max(k,.35)}" stroke-linecap="round" stroke-linejoin="round"/>`+
+Object.entries(AR).map(([n,[la,lo]])=>`<text x="${MX(lo)}" y="${MY(la)}" font-size="${Math.max(4,13*k)}" fill="#b5ab9c" text-anchor="middle" font-weight="700">${n}</text>`).join("")+
+LM.map(([n,la,lo],i)=>i<9||k<.7?`<g><rect x="${MX(lo)-1.6*Math.max(k,.4)}" y="${MY(la)-1.6*Math.max(k,.4)}" width="${3.2*Math.max(k,.4)}" height="${3.2*Math.max(k,.4)}" fill="#8a7765" transform="rotate(45 ${MX(lo)} ${MY(la)})"/><text x="${MX(lo)+3*Math.max(k,.4)}" y="${MY(la)+1*Math.max(k,.4)}" font-size="${Math.max(3.2,6.5*k)}" fill="#6f5f50">${n}</text></g>`:"").join("")+
+l.slice(0,250).map(p=>`<g ${mini?"":`onclick="pickP(${p.id})" style="cursor:pointer"`}><circle cx="${MX(p.lo)}" cy="${MY(p.la)}" r="${r*(S.sel===p.id?1.5:1)}" fill="${CC[p.cat]}" stroke="#fff" stroke-width="${Math.max(.5,1.6*k)}"/><text x="${MX(p.lo)}" y="${MY(p.la)+r*.35}" font-size="${r*.9}" text-anchor="middle" fill="#fff" font-weight="700" pointer-events="none">${p.r.toFixed(1)}</text></g>`).join("")+
+`<circle cx="${MX(pos[1])}" cy="${MY(pos[0])}" r="${r*.8}" fill="#2d6cdf" stroke="#fff" stroke-width="${Math.max(.6,2*k)}"/></svg>`;
+return sv}
+function drawMap(l){const vb=S.vb,sv=buildSvg(l,vb);
+$("map").innerHTML=sv+`<div class="mctl"><button onclick="zoom(.6)" aria-label="Zoom avant">＋</button><button onclick="zoom(1.6)" aria-label="Zoom arrière">－</button><button onclick="refit()" aria-label="Recentrer">⌖</button></div><div class="lg"><span><i style="background:#e8590c"></i>Resto</span><span><i style="background:#d9a400"></i>Fast-food</span><span><i style="background:#c2255c"></i>Goûter</span><span><i style="background:#2a9d8f"></i>Marché</span><span><i style="background:#2d6cdf"></i>Toi</span></div>`;
+const el=$("msvg");let d=null;
+el.onpointerdown=e=>{d=[e.clientX,e.clientY];S.mv=0};
+el.onpointermove=e=>{if(!d)return;const dx=e.clientX-d[0],dy=e.clientY-d[1];S.mv+=Math.abs(dx)+Math.abs(dy);const f=S.vb[2]/el.getBoundingClientRect().width;S.vb[0]-=dx*f;S.vb[1]-=dy*f;d=[e.clientX,e.clientY];el.setAttribute("viewBox",S.vb.map(v=>v.toFixed(1)).join(" "))};
+el.onpointerup=el.onpointerleave=()=>{d=null};
+$("mc").innerHTML=S.sel!=null&&P[S.sel]?mini(P[S.sel]):""}
+/* Recherche IA */
+function zoneOf(q){q=q.toLowerCase().replace(/’/g,"'");const m=q.match(/paris\s*(?:n°\s*)?(\d{1,2})(?!\d)/)||q.match(/\b(\d{1,2})\s*(?:e|è|ème|eme|er|ième)\b/);
+if(m&&+m[1]>=1&&+m[1]<=20)return"Paris "+ +m[1];
+return [...new Set(P.map(p=>p.z))].filter(z=>!/^Paris/.test(z)).find(z=>q.includes(z.toLowerCase().replace(/’/g,"'")))||null}
+function local(q,pool){q=q.toLowerCase();const w=[["indien","curry","naan"],["japon","sushi","maki","ramen"],["bouillon","traditionnel"],["poulet","chicken","wings","kfc","fried","tenders","ailes","nuggets"],["burger"],["goûter","gouter","gâteau","pâtisserie","croissant","sucré","boulang","glace"],["brunch","petit-déj","café"],["thé","tea"],["kebab","tacos","durum","dürüm"],["pizza","italien"],["libanais"],["vietnam","pho","asiat","coréen"],["viande","steak","tartare","entrecôte","grillade"],["végé","vege","végan","healthy"],["couscous","maghreb","marocain"],["crêpe","galette"],["chocolat","cacao","fondant"],["marché","marche","halle","street food"]];
+const cheap=/pas cher|économique|petit prix|budget/.test(q),top=/meilleur|mieux not|top/.test(q);
+return pool.map(p=>{let s=0;const t=T(p);w.forEach(a=>{if(a.some(x=>q.includes(x))&&a.some(x=>t.includes(x)))s+=3});if(q.includes("fast")&&p.cat==="Fast-food")s+=3;if(/poulet frit|kfc|fried chicken|tenders|croustillant/.test(q)&&/poulet frit|chicken|tenders|ailes|nuggets|crispy/.test(t)){s+=4;if(p.sub==="Poulet")s+=2}if(q.includes("halal")&&t.includes("halal"))s+=2;if(cheap&&p.pr===1)s+=2;if(top)s+=p.r;return[p,s>0?s+p.r*.2-dist(p)*.02:0]}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,10).map(x=>x[0].id)}
+async function ask(){const q=$("q").value.trim();if(!q)return;const a=$("ans");a.style.display="block";a.innerHTML='<span class="sk"></span><span class="sk" style="width:70%"></span>';
+const z=zoneOf(q);if(z){S.zone=z;S.zoneAuto=true}else if(S.zoneAuto){S.zone="Toutes";S.zoneAuto=false}S.m=-1;S.s=-1;S.b=0;S.wish=[];S.fav=false;S.vb=null;S.lim=24;
+const it=intent(q),hint=describeIntent(it),base=P.filter(p=>S.zone==="Toutes"||p.z===S.zone);let pool=applyIntent(base,it);if(!pool.length)pool=base;
+let sample=null;try{sample=await claude.use("sample")}catch(e){}
+let ids=null,msg="";
+if(sample&&pool.length){try{const lst=pool.map(p=>`${p.id}|${p.n}|${p.cat}|${p.sub}|${eu(p.pr)}|${p.r}|${p.z}|${p.s}|offres : ${dealsFor(p).map(d=>d.t+" "+fp(d.pr)).join(" / ")||"aucune"}`).join("\n");
+const r=await sample(`Tu es l’assistant d’un GPS gourmand. L’utilisateur cherche ${S.zone==="Toutes"?"partout":"dans : "+S.zone}. ${hint?"Contraintes détectées : "+hint+". ":""}Voici les lieux (id|nom|catégorie|type|prix|note|zone|résumé|offres chiffrées) :\n${lst}\n\nDemande : « ${q} »\nRéponds UNIQUEMENT en JSON : {"ids":[jusqu’à 8 ids du plus pertinent au moins pertinent],"reponse":"2 phrases maximum en français, ton simple, citant les noms choisis"}. Choisis seulement dans la liste. Pour un budget en euros, privilégie les lieux dont une offre chiffrée respecte ce budget. Si la demande exclut les chaînes (artisanal, indépendant), ne choisis pas KFC, McDonald’s ni Burger King. Si la demande concerne un enfant ou un anniversaire d’enfant, choisis des lieux familiaux et abordables (menu enfant, pizza, burgers, crêpes, glaces, espace ou grandes tablées) et évite bars, cuisine gastronomique et ambiances tardives ou bruyantes ; ajoute un conseil pratique en une phrase (réserver pour le groupe, demander les allergies). Si la demande ne précise que le lieu, donne les meilleurs choix de chaque catégorie.`,{cache:false});
+const j=JSON.parse(r.text.replace(/```json|```/g,"").trim());ids=(j.ids||[]).filter(i=>pool.some(p=>p.id===i));msg=j.reponse||""}catch(e){}}
+const ai=Array.isArray(ids)&&ids.length>0;
+if(ids===null)ids=local(q,pool);
+if(!ids.length&&hint)ids=[...pool].sort((a,b)=>(rank(b)+(it.eur&&dealsFor(b).length?1.2:0))-(rank(a)+(it.eur&&dealsFor(a).length?1.2:0))).slice(0,8).map(p=>p.id);
+if(it.kids&&!ai)ids=[...pool].sort((a,b)=>(kidScore(b)+.3*rank(b))-(kidScore(a)+.3*rank(a))).slice(0,8).map(p=>p.id);S.ids=ids.length?ids:null;S.step="res";
+a.textContent=msg||(ids.length?"Voici les meilleurs choix"+(S.zone!=="Toutes"?" à "+S.zone:"")+" pour ta demande.":(S.zone!=="Toutes"?"Voici les meilleures adresses à "+S.zone+".":"Je n’ai rien trouvé : essaie avec une cuisine, un prix ou un arrondissement."));
+if(hint)a.textContent+=" ["+hint+"]";if(it.eur||/\bbox\b|bon plan|formule/i.test(q)){const dm=Math.min(10,Math.max(5,it.eur||10));S.dmax=dm<=5?5:dm<=7.5?7.5:10;const nb=DEALS.filter(d=>d.pr<=S.dmax).length,b=document.createElement("button");b.className="lnk";b.textContent="💸 Voir les "+nb+" bons plans ≤ "+fp(S.dmax);b.onclick=()=>tab("deals");a.appendChild(document.createTextNode(" "));a.appendChild(b)}if(it.kids||it.party){const tip=document.createElement("div");tip.className="fine";tip.textContent="🎂 Conseils : réserve pour tout le groupe, demande le menu enfant et les allergies, et vérifie directement avec le lieu s’il accepte un gâteau apporté.";a.appendChild(tip)}render();scrollTo(0,0)}
+if(typeof navigator!=="undefined"&&navigator.geolocation)navigator.geolocation.getCurrentPosition(g=>{pos=[g.coords.latitude,g.coords.longitude];render()},()=>{},{timeout:4000});
+boot();
+</script>
+</body>
+</html>
