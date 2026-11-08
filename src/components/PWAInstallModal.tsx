@@ -108,7 +108,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
               <strong className="block font-bold text-sm text-emerald-400">
                 Application prête sur ton mobile !
               </strong>
-              GourMap est directement accessible en 1 clic sur ton écran d'accueil sans pub et sans barre de recherche.
+              L'Appli Gourmande est directement accessible en 1 clic sur ton écran d'accueil sans pub et sans barre de recherche.
             </div>
           </div>
         ) : null}
@@ -200,7 +200,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
                 4
               </div>
               <div className="text-zinc-200">
-                Appuie sur <strong className="text-amber-300">« Ajouter »</strong> en haut à droite. Voilà ! L'icône dorée GourMap est posée sur ton écran comme une appli de l'App Store.
+                Appuie sur <strong className="text-amber-300">« Ajouter »</strong> en haut à droite. Voilà ! L'icône dorée L'Appli Gourmande est posée sur ton écran comme une appli de l'App Store.
               </div>
             </div>
           </div>

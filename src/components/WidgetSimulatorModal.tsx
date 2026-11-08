@@ -55,7 +55,7 @@ export const WidgetSimulatorModal: React.FC<WidgetSimulatorModalProps> = ({
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping" />
               <span className="text-[10px] font-black uppercase tracking-wider text-[#10B981]">
-                GourMap ⚡ Zéro-Clic
+                L'Appli Gourmande ⚡ Zéro-Clic
               </span>
             </div>
             <span className="text-[10px] font-bold text-white/60">À 2 pas</span>

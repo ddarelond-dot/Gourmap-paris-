@@ -98,7 +98,7 @@ export const StarringListModal: React.FC<StarringListModalProps> = ({
     const newList: CustomList = {
       id: "list-" + Date.now(),
       title: newTitle.trim(),
-      description: newDesc.trim() || "Sélection exclusive enregistrée sur GourMap 24K",
+      description: newDesc.trim() || "Sélection exclusive enregistrée sur L'Appli Gourmande 24K",
       emoji: newEmoji,
       isPublic: true,
       placeIds: initialIds,
@@ -139,7 +139,7 @@ export const StarringListModal: React.FC<StarringListModalProps> = ({
       .map((p, i) => `${i + 1}. ${p.n} (★ ${p.r.toFixed(1)} · ${p.z})`)
       .join("\n");
     const text = encodeURIComponent(
-      `👑 *${list.emoji} ${list.title}* – Ma Starring List sur GourMap 24K :\n\n${items}\n\n👉 Retrouve toutes les adresses sur GourMap !`
+      `👑 *${list.emoji} ${list.title}* – Ma Starring List sur L'Appli Gourmande 24K :\n\n${items}\n\n👉 Retrouve toutes les adresses sur L'Appli Gourmande !`
     );
     window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
   };

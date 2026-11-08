@@ -14,7 +14,7 @@ export interface FastFoodBrand {
     badgeColor: string;
   };
   famousItems: string[];
-  searchQuery: string; // Query string to filter in GourMap catalog
+  searchQuery: string; // Query string to filter in L'Appli Gourmande catalog
 }
 
 export const FAST_FOOD_UNIVERSE: FastFoodBrand[] = [

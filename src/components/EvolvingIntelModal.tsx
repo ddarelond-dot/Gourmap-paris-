@@ -115,7 +115,7 @@ export const EvolvingIntelModal: React.FC<EvolvingIntelModalProps> = ({
                 </span>
               </div>
               <p className="text-xs text-amber-200/70">
-                GourMap s'enrichit en continu des tendances TikTok, avis récents et signaux de la communauté
+                L'Appli Gourmande s'enrichit en continu des tendances TikTok, avis récents et signaux de la communauté
               </p>
             </div>
           </div>
@@ -313,7 +313,7 @@ export const EvolvingIntelModal: React.FC<EvolvingIntelModalProps> = ({
         {activeTab === "contribute" && (
           <form onSubmit={handleSubmitIntel} className="flex flex-col gap-3.5">
             <div className="p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/35 text-xs text-cyan-200">
-              💡 <strong>Tu as repéré un banger sur TikTok ou dans la rue ?</strong> Partage-le ici. GourMap le prend en compte immédiatement pour enrichir les recommandations de tout le monde.
+              💡 <strong>Tu as repéré un banger sur TikTok ou dans la rue ?</strong> Partage-le ici. L'Appli Gourmande le prend en compte immédiatement pour enrichir les recommandations de tout le monde.
             </div>
 
             {isSubmitted ? (
@@ -433,7 +433,7 @@ export const EvolvingIntelModal: React.FC<EvolvingIntelModalProps> = ({
                   className="mt-2 py-3 rounded-2xl bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-black text-xs shadow-md shadow-amber-500/25 hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4 text-slate-950" />
-                  <span>Enregistrer & Nourrir GourMap</span>
+                  <span>Enregistrer & Nourrir L'Appli Gourmande</span>
                 </button>
               </>
             )}

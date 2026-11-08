@@ -99,7 +99,7 @@ export const TikTokBoxModal: React.FC<TikTokBoxModalProps> = ({
 
   const handleCopy = () => {
     navigator.clipboard?.writeText?.(
-      `Regarde ce bon plan TikTok sur GourMap : ${deal.title} à ${deal.price.toFixed(2)}€ chez ${deal.brand} !`
+      `Regarde ce bon plan TikTok sur L'Appli Gourmande : ${deal.title} à ${deal.price.toFixed(2)}€ chez ${deal.brand} !`
     );
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2000);

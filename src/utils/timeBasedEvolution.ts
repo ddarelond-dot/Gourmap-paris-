@@ -1,5 +1,5 @@
 /**
- * Moteur d'Évolution Dynamique et Temporelle de GourMap
+ * Moteur d'Évolution Dynamique et Temporelle de L'Appli Gourmande
  * Fait évoluer le contenu, les drops et les bannières automatiquement
  * au fil des semaines sans nécessiter de recompilation manuelle.
  */

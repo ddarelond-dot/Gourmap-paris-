@@ -115,7 +115,7 @@ export const AISearchBar: React.FC<AISearchBarProps> = ({
             <div className="flex items-center gap-2 flex-wrap">
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-sm">
                 <Sparkles className="w-3 h-3 text-slate-950" />
-                IA GourMap 24K
+                IA L'Appli Gourmande 24K
               </span>
               {aiResponse.detectedOccasion && (
                 <span className="text-xs font-bold text-amber-300">

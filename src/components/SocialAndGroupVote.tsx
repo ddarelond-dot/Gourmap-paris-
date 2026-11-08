@@ -421,7 +421,7 @@ export const SocialAndGroupVote: React.FC<SocialAndGroupVoteProps> = ({
               {/* Footer sticker */}
               <div className="z-10 text-center">
                 <span className="inline-block px-3 py-1.5 rounded-full text-xs font-black bg-white text-slate-950 shadow-md">
-                  📍 Trouvé sur GourMap GPS
+                  📍 Trouvé sur L'Appli Gourmande GPS
                 </span>
               </div>
             </div>

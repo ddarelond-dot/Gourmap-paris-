@@ -38,6 +38,7 @@ import { WeeklyEvolutionBanner } from "./components/WeeklyEvolutionBanner";
 import { ShakeToPickModal } from "./components/ShakeToPickModal";
 import { fireGoldConfetti } from "./utils/confetti";
 import { getNearestTransit, getSignatureBanger } from "./utils/transitAndBanger";
+import { getCalendarFoodEvolution } from "./utils/dynamicEvolutionEngine";
 import { FoodDiaryEntry, CustomList, UserGamification, FoodDeal } from "./types/food";
 import {
   Navigation,
@@ -62,10 +63,9 @@ import {
 } from "lucide-react";
 
 export default function App() {
-  // Theme state
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    return localStorage.getItem("gourmap-theme") === "dark";
-  });
+  // Permanently locked Luxury Obsidian & 24K Gold Dark Mode (Never white)
+  const isDark = true;
+  const evolutionIntel = useMemo(() => getCalendarFoodEvolution(), []);
 
   // GPS User location (defaults to Saint-Denis / Paris center)
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number }>({
@@ -212,16 +212,12 @@ export default function App() {
   } | null>(null);
   const [aiMatchedIds, setAiMatchedIds] = useState<number[] | null>(null);
 
-  // Sync theme
+  // Permanently enforce Luxury Obsidian Dark Mode across document
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("gourmap-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("gourmap-theme", "light");
-    }
-  }, [isDark]);
+    document.documentElement.classList.add("dark");
+    document.documentElement.classList.remove("light");
+    localStorage.setItem("gourmap-theme", "dark");
+  }, []);
 
   // Real geolocation
   useEffect(() => {
@@ -324,7 +320,7 @@ export default function App() {
       }
     } catch {
       setAiResponse({
-        explanation: "Voici les meilleurs choix sélectionnés par l'IA GourMap.",
+        explanation: "Voici les meilleurs choix sélectionnés par l'IA L'Appli Gourmande.",
         detectedOccasion: "Sélection sur mesure",
       });
     } finally {
@@ -515,15 +511,17 @@ export default function App() {
       className={`min-h-screen ${
         isPhoneFrame
           ? "bg-[#06080F] p-2 md:p-8 flex items-center justify-center"
-          : "bg-[#F8FAFC] dark:bg-[#090D16]"
-      } text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors selection:bg-amber-400/20`}
+          : "bg-[#08080C]"
+      } text-zinc-100 flex flex-col font-sans transition-colors selection:bg-amber-400/20`}
+      style={{ backgroundColor: "#08080C" }}
     >
       <div
         className={`w-full ${
           isPhoneFrame
-            ? "max-w-[420px] h-[92vh] max-h-[890px] rounded-[52px] shadow-2xl border-[10px] border-slate-800 dark:border-slate-850 bg-[#F8FAFC] dark:bg-[#090D16] overflow-hidden flex flex-col relative"
-            : "min-h-screen flex flex-col pb-24"
+            ? "max-w-[420px] h-[92vh] max-h-[890px] rounded-[52px] shadow-2xl border-[10px] border-zinc-800 bg-[#08080C] overflow-hidden flex flex-col relative"
+            : "min-h-screen flex flex-col pb-24 bg-[#08080C]"
         }`}
+        style={{ backgroundColor: "#08080C" }}
       >
         {isPhoneFrame && (
           <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-50 flex items-center justify-between px-3 pointer-events-none">
@@ -535,8 +533,6 @@ export default function App() {
         <div className={`flex-1 flex flex-col ${isPhoneFrame ? "overflow-y-auto no-scrollbar pb-24" : ""}`}>
           {/* Header */}
           <Header
-            isDark={isDark}
-            onToggleTheme={() => setIsDark(!isDark)}
             onSurpriseMe={handleSurpriseMe}
             onOpenWidget={() => setIsWidgetOpen(true)}
             onOpenGamification={() => setIsGamificationOpen(true)}
@@ -596,7 +592,7 @@ export default function App() {
                     setSelectedBudget(0);
                     handleClearAI();
                   }}
-                  className="px-3 py-1.5 rounded-full bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-[#10B981]"
+                  className="px-3 py-1.5 rounded-full bg-[#141420] border border-zinc-800 text-zinc-300 hover:border-amber-400"
                 >
                   🏠 Accueil
                 </button>
@@ -604,7 +600,7 @@ export default function App() {
                 {selectedTaxIndex >= 0 && (
                   <button
                     onClick={() => setFeedStep("sub")}
-                    className="px-3 py-1.5 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-bold"
+                    className="px-3 py-1.5 rounded-full bg-amber-400 text-slate-950 font-bold"
                   >
                     {TAXONOMY[selectedTaxIndex].e} {TAXONOMY[selectedTaxIndex].k}
                   </button>
@@ -648,40 +644,24 @@ export default function App() {
             {/* STEP 1: HOME FEED */}
             {feedStep === "home" && (
               <div className="flex flex-col gap-6">
-                {/* 24K Gold & Obsidian Hero Header */}
-                <div className="px-4 pt-2">
-                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                {/* L'Appli Gourmande Elite Header */}
+                <div className="px-4 pt-2 flex items-center justify-between gap-2 flex-wrap">
+                  <div className="flex items-center gap-1.5 flex-wrap">
                     <span className="text-[11px] font-black uppercase tracking-wider text-amber-400 bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-sm">
                       <Sparkles className="w-3 h-3 text-amber-400" />
-                      Édition Noire & Or 24K · 100% Pépites Vérifiées (Paris & IDF)
+                      L'Appli Gourmande · Édition Noire & Or 24K
                     </span>
-                    {customPlaces.length > 0 && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                        👑 {customPlaces.length} pépite{customPlaces.length > 1 ? "s" : ""} perso ajoutée{customPlaces.length > 1 ? "s" : ""}
-                      </span>
-                    )}
-                    {customLists.length > 0 && (
-                      <button
-                        onClick={() => setIsStarringListOpen(true)}
-                        className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/35 hover:bg-amber-400/30 transition-colors cursor-pointer flex items-center gap-1"
-                      >
-                        ⭐ {customLists.length} Starring Lists
-                      </button>
-                    )}
                     <button
                       onClick={() => setIsEvolvingIntelOpen(true)}
-                      className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/25 to-cyan-500/20 text-emerald-300 border border-emerald-400/40 hover:bg-emerald-500/30 transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
+                      className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/25 to-cyan-500/20 text-emerald-300 border border-emerald-400/40 hover:bg-emerald-500/30 transition-all cursor-pointer flex items-center gap-1 shadow-xs"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>🧠 Radar Évolutif (Live)</span>
+                      <span>🧠 Radar Évolutif</span>
                     </button>
                   </div>
-                  <h1 className="font-sans font-black text-2xl sm:text-4xl leading-tight text-white tracking-tight">
-                    Toutes les vraies pépites d'Île-de-France. <span className="text-gold-gradient font-black">Zéro déchet.</span>
-                  </h1>
-                  <p className="text-xs sm:text-sm text-amber-200/70 mt-1 max-w-2xl">
-                    Sélection exigeante des meilleures adresses testées à Paris et dans toute l'Île-de-France (75, 77, 78, 91, 92, 93, 94, 95) : uniquement des lieux vivants et réputés, spots viraux, box ≤ 10 €, adresses 100% Halal certifiées et bouillons authentiques.
-                  </p>
+                  <span className="text-xs font-black text-amber-300/90">
+                    2 050+ Pépites (75 & IDF)
+                  </span>
                 </div>
 
                 {/* Barre Ultra-Pratique d'Action Rapide (Distance & Proximité) */}
@@ -957,6 +937,59 @@ export default function App() {
                   </div>
                 </div>
 
+                {/* 12 Categories Grid (Photo 3 Element - Placed right at top) */}
+                <div className="px-4 flex flex-col gap-2.5">
+                  <div className="flex items-center justify-between">
+                    <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
+                      <span>🍽️ Grandes Catégories & Cuisines</span>
+                    </h2>
+                    <span className="text-xs text-amber-300 font-bold">12 univers</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {TAXONOMY.map((tax, idx) => (
+                      <button
+                        key={tax.k}
+                        onClick={() => {
+                          setSelectedTaxIndex(idx);
+                          setSelectedSubIndex(-1);
+                          setSelectedBudget(0);
+                          setFeedStep("sub");
+                        }}
+                        className="group relative h-28 rounded-3xl p-3.5 text-white text-left flex flex-col justify-end overflow-hidden shadow-sm hover:shadow-md transition-all active:scale-97 cursor-pointer"
+                        style={{
+                          background: `linear-gradient(135deg, ${tax.c[0]}, ${tax.c[1]})`,
+                        }}
+                      >
+                        <span className="absolute right-1 -top-1 text-5xl opacity-80 group-hover:scale-115 transition-transform duration-300">
+                          {tax.e}
+                        </span>
+                        <span className="font-black text-base leading-tight relative z-10">
+                          {tax.k}
+                        </span>
+                        <span className="text-xs opacity-90 relative z-10">
+                          {allPlaces.filter(tax.m).length} adresses
+                        </span>
+                      </button>
+                    ))}
+
+                    {/* Surprise me tile */}
+                    <button
+                      onClick={handleSurpriseMe}
+                      className="col-span-2 h-24 rounded-3xl p-3.5 text-slate-950 font-black text-left flex items-center justify-between overflow-hidden shadow-md active:scale-97 cursor-pointer bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-105"
+                    >
+                      <div>
+                        <span className="font-black text-lg block leading-tight text-slate-950">
+                          🎲 Surprends-moi !
+                        </span>
+                        <span className="text-xs font-bold text-slate-900/80">
+                          Une excellente adresse tirée au sort près de toi
+                        </span>
+                      </div>
+                      <span className="text-4xl">🎲</span>
+                    </button>
+                  </div>
+                </div>
+
                 {/* Mode Express 3 Clics : On mange où ? */}
                 <div className="px-4">
                   <div
@@ -1151,13 +1184,13 @@ export default function App() {
                 <div className="flex flex-col gap-2">
                   <div className="px-4 flex items-center justify-between">
                     <div>
-                      <h2 className="font-sans font-black text-xl text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
                         <span>🥩 Viandes, Smash & Grillades</span>
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-400 text-slate-950">
                           Pépites croustillantes & braisées
                         </span>
                       </h2>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                      <p className="text-xs text-zinc-400">
                         Smash burgers coulants, poulet frit doré, viandes maturées & brochettes naan
                       </p>
                     </div>
@@ -1181,7 +1214,7 @@ export default function App() {
                         <button
                           key={place.id}
                           onClick={() => setSelectedPlace(place)}
-                          className="shrink-0 w-36 text-left bg-white dark:bg-[#0F172A] rounded-2xl p-2.5 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-amber-400/50 hover:shadow-md transition-all cursor-pointer"
+                          className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-zinc-800 shadow-md hover:border-amber-400/50 transition-all cursor-pointer"
                         >
                           <div
                             className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
@@ -1201,10 +1234,10 @@ export default function App() {
                               </span>
                             )}
                           </div>
-                          <span className="font-black text-xs text-slate-900 dark:text-white block truncate mt-2">
+                          <span className="font-black text-xs text-white block truncate mt-2">
                             {place.n}
                           </span>
-                          <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate">
+                          <span className="text-[11px] text-zinc-400 block truncate">
                             {place.sub} · {place.z}
                           </span>
                         </button>
@@ -1215,7 +1248,7 @@ export default function App() {
                 {/* Tendances autour de toi */}
                 <div className="flex flex-col gap-2">
                   <div className="px-4 flex items-center justify-between">
-                    <h2 className="font-sans font-black text-xl text-slate-900 dark:text-white">
+                    <h2 className="font-sans font-black text-xl text-white">
                       🔥 Tendances autour de toi
                     </h2>
                   </div>
@@ -1224,7 +1257,7 @@ export default function App() {
                       <button
                         key={place.id}
                         onClick={() => setSelectedPlace(place)}
-                        className="shrink-0 w-36 text-left bg-white dark:bg-[#0F172A] rounded-2xl p-2.5 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-[#10B981]/50 hover:shadow-md transition-all cursor-pointer"
+                        className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-zinc-800 shadow-md hover:border-amber-400/50 transition-all cursor-pointer"
                       >
                         <div
                           className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
@@ -1239,10 +1272,10 @@ export default function App() {
                             ★ {place.r.toFixed(1)}
                           </span>
                         </div>
-                        <span className="font-black text-xs text-slate-900 dark:text-white block truncate mt-2">
+                        <span className="font-black text-xs text-white block truncate mt-2">
                           {place.n}
                         </span>
-                        <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate">
+                        <span className="text-[11px] text-zinc-400 block truncate">
                           {place.sub} · {"€".repeat(place.pr)}
                         </span>
                       </button>
@@ -1254,13 +1287,13 @@ export default function App() {
                 <div className="flex flex-col gap-2">
                   <div className="px-4 flex items-center justify-between">
                     <div>
-                      <h2 className="font-sans font-black text-xl text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
                         <span>🕌 Pépites Halal de Paris & 93</span>
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-[#10B981] text-slate-950">
                           1 200+ adresses
                         </span>
                       </h2>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                      <p className="text-xs text-zinc-400">
                         Poulet frit croustillant, smash burgers, naans & grillades certifiés
                       </p>
                     </div>
@@ -1270,7 +1303,7 @@ export default function App() {
                       <button
                         key={place.id}
                         onClick={() => setSelectedPlace(place)}
-                        className="shrink-0 w-36 text-left bg-white dark:bg-[#0F172A] rounded-2xl p-2.5 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-[#10B981]/50 hover:shadow-md transition-all cursor-pointer"
+                        className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-zinc-800 shadow-md hover:border-amber-400/50 transition-all cursor-pointer"
                       >
                         <div
                           className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
@@ -1288,10 +1321,10 @@ export default function App() {
                             🕌 Halal
                           </span>
                         </div>
-                        <span className="font-black text-xs text-slate-900 dark:text-white block truncate mt-2">
+                        <span className="font-black text-xs text-white block truncate mt-2">
                           {place.n}
                         </span>
-                        <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate">
+                        <span className="text-[11px] text-zinc-400 block truncate">
                           {place.sub} · {place.z}
                         </span>
                       </button>
@@ -1303,10 +1336,10 @@ export default function App() {
                 <div className="flex flex-col gap-2">
                   <div className="px-4 flex items-center justify-between">
                     <div>
-                      <h2 className="font-sans font-black text-xl text-slate-900 dark:text-white">
+                      <h2 className="font-sans font-black text-xl text-white">
                         🏛️ Marchés Parisiens & Halles Cultes
                       </h2>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                      <p className="text-xs text-zinc-400">
                         Enfants Rouges, Aligre, Batignolles, Belleville, Saint-Denis...
                       </p>
                     </div>
@@ -1346,13 +1379,13 @@ export default function App() {
                 <div className="flex flex-col gap-2">
                   <div className="px-4 flex items-center justify-between">
                     <div>
-                      <h2 className="font-sans font-black text-xl text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
                         <span>🫖 Tea Time, Goûter & Pâtisseries</span>
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-pink-500/20 text-pink-300 border border-pink-500/30">
                           Douceurs & Salons
                         </span>
                       </h2>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                      <p className="text-xs text-zinc-400">
                         Salons de thé intimistes, coffee shops de spécialité, brunchs & cookies XXL
                       </p>
                     </div>
@@ -1398,70 +1431,17 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-
-                {/* 12 Categories Grid ("Toutes les cuisines") */}
-                <div className="px-4 flex flex-col gap-2.5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="font-sans font-black text-xl text-slate-900 dark:text-white flex items-center gap-1.5">
-                      <span>🍽️ Toutes les grandes cuisines</span>
-                    </h2>
-                    <span className="text-xs text-amber-300 font-bold">12 univers</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    {TAXONOMY.map((tax, idx) => (
-                      <button
-                        key={tax.k}
-                        onClick={() => {
-                          setSelectedTaxIndex(idx);
-                          setSelectedSubIndex(-1);
-                          setSelectedBudget(0);
-                          setFeedStep("sub");
-                        }}
-                        className="group relative h-28 rounded-3xl p-3.5 text-white text-left flex flex-col justify-end overflow-hidden shadow-sm hover:shadow-md transition-all active:scale-97 cursor-pointer"
-                        style={{
-                          background: `linear-gradient(135deg, ${tax.c[0]}, ${tax.c[1]})`,
-                        }}
-                      >
-                        <span className="absolute right-1 -top-1 text-5xl opacity-80 group-hover:scale-115 transition-transform duration-300">
-                          {tax.e}
-                        </span>
-                        <span className="font-black text-base leading-tight relative z-10">
-                          {tax.k}
-                        </span>
-                        <span className="text-xs opacity-90 relative z-10">
-                          {allPlaces.filter(tax.m).length} adresses
-                        </span>
-                      </button>
-                    ))}
-
-                    {/* Surprise me tile */}
-                    <button
-                      onClick={handleSurpriseMe}
-                      className="col-span-2 h-24 rounded-3xl p-3.5 text-slate-950 font-black text-left flex items-center justify-between overflow-hidden shadow-md active:scale-97 cursor-pointer bg-gradient-to-r from-[#10B981] to-[#06B6D4]"
-                    >
-                      <div>
-                        <span className="font-black text-lg block leading-tight text-slate-950">
-                          🎲 Surprends-moi !
-                        </span>
-                        <span className="text-xs font-semibold text-slate-900/80">
-                          Une excellente adresse tirée au sort près de toi
-                        </span>
-                      </div>
-                      <span className="text-4xl">🎲</span>
-                    </button>
-                  </div>
-                </div>
               </div>
             )}
 
             {/* STEP 2: SUB-CATEGORY SELECTION */}
             {feedStep === "sub" && selectedTaxIndex >= 0 && (
               <div className="px-4 flex flex-col gap-3">
-                <h2 className="font-sans font-black text-2xl text-slate-900 dark:text-white">
+                <h2 className="font-sans font-black text-2xl text-white">
                   {TAXONOMY[selectedTaxIndex].e} {TAXONOMY[selectedTaxIndex].k} : quel style ?
                 </h2>
                 {TAXONOMY[selectedTaxIndex].note && (
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-zinc-400">
                     {TAXONOMY[selectedTaxIndex].note}
                   </p>
                 )}
@@ -1658,8 +1638,8 @@ export default function App() {
                       <span className="font-black text-emerald-800 dark:text-emerald-300 block mb-0.5">
                         Garantie Anti-Zéro Résultat active !
                       </span>
-                      <span className="text-emerald-700 dark:text-emerald-400 leading-relaxed block">
-                        Aucune adresse ne cochait 100% de ces filtres stricts en même temps. GourMap a intelligemment élargi la zone pour vous présenter les meilleures pépites {activeWishes.includes("Halal") || activeWishes.includes("🕌 Halal") ? "Halal " : ""}disponibles !
+                      <span className="text-emerald-400 leading-relaxed block">
+                        Aucune adresse ne cochait 100% de ces filtres stricts en même temps. L'Appli Gourmande a intelligemment élargi la zone pour vous présenter les meilleures pépites {activeWishes.includes("Halal") || activeWishes.includes("🕌 Halal") ? "Halal " : ""}disponibles !
                       </span>
                     </div>
                     <button
@@ -1764,7 +1744,7 @@ export default function App() {
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                const shareText = `On mange là ? 🍽️ *${place.n}* (★ ${place.r.toFixed(1)})\n📍 ${place.a}\n🗺️ Itinéraire : https://www.google.com/maps/dir/?api=1&destination=${place.la},${place.lo}`;
+                                const shareText = `On mange là ? 🍽️ *${place.n}* (★ ${place.r.toFixed(1)})\n📍 ${place.a}\n🗺️ Itinéraire Google Maps : https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.a)}`;
                                 window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
                               }}
                               className="p-2 rounded-full text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/25 transition-colors cursor-pointer"
@@ -1826,7 +1806,7 @@ export default function App() {
                             Voir la fiche
                           </button>
                           <a
-                            href={`https://www.google.com/maps/dir/?api=1&destination=${place.la},${place.lo}&travelmode=walking`}
+                            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.n + ", " + place.a)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
@@ -1894,7 +1874,7 @@ export default function App() {
                                 <button
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    const shareText = `On mange là ? 🍽️ *${place.n}* (★ ${place.r.toFixed(1)})\n📍 ${place.a}\n🗺️ https://www.google.com/maps/dir/?api=1&destination=${place.la},${place.lo}`;
+                                    const shareText = `On mange là ? 🍽️ *${place.n}* (★ ${place.r.toFixed(1)})\n📍 ${place.a}\n🗺️ Itinéraire Google Maps : https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.a)}`;
                                     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
                                   }}
                                   className="p-1.5 rounded-lg text-emerald-400/80 hover:text-emerald-400 hover:bg-emerald-500/15 transition-colors cursor-pointer"
@@ -2117,15 +2097,15 @@ export default function App() {
         {activeTab === "feed" ? (
           <button
             onClick={() => setActiveTab("map")}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black text-xs shadow-2xl shadow-black/40 border border-slate-700 dark:border-slate-200 active:scale-95 transition-transform cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-black text-xs shadow-xl shadow-amber-500/30 border border-amber-300 active:scale-95 transition-transform cursor-pointer"
           >
-            <Compass className="w-4 h-4 text-amber-400" />
+            <Compass className="w-4 h-4 text-slate-950 fill-current" />
             <span>Carte GPS (2 050+)</span>
           </button>
         ) : activeTab === "map" ? (
           <button
             onClick={() => setActiveTab("feed")}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black text-xs shadow-2xl shadow-black/40 border border-slate-700 dark:border-slate-200 active:scale-95 transition-transform cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#12121A] text-amber-300 font-black text-xs shadow-xl border border-amber-500/40 active:scale-95 transition-transform cursor-pointer"
           >
             <span>📋 Voir Liste</span>
           </button>
@@ -2150,7 +2130,7 @@ export default function App() {
               ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25"
               : "text-amber-200/60 hover:text-white"
           }`}
-          title="Accueil & Catégories GourMap (Tape pour remonter en haut)"
+          title="Accueil & Catégories L'Appli Gourmande (Tape pour remonter en haut)"
         >
           <span className="text-base leading-none">🧭</span>
           <span className="text-[10px] sm:text-[11px] font-black truncate">Accueil</span>
@@ -2342,97 +2322,127 @@ export default function App() {
               })()}
 
               {/* Action Buttons */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {/* Primary #1 Big Action: Real Google Maps Button with Exact Destination Itinerary */}
+              <div className="flex flex-col gap-2">
                 <a
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${selectedPlace.la},${selectedPlace.lo}&travelmode=walking`}
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedPlace.a)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-black text-xs sm:text-sm text-zinc-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-110 shadow-md shadow-amber-500/20 text-center cursor-pointer transition-all"
+                  className="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl font-black text-sm text-zinc-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-110 shadow-lg shadow-amber-500/25 text-center cursor-pointer transition-all active:scale-[0.99]"
+                  title="Y aller directement sur Google Maps (Itinéraire direct & adresse exacte)"
                 >
-                  <Navigation className="w-4 h-4 text-zinc-950" />
-                  <span>Google Maps</span>
+                  <Navigation className="w-5 h-5 text-zinc-950 fill-current" />
+                  <span>Y aller direct sur Google Maps (Itinéraire & Fiche)</span>
                 </a>
 
-                <a
-                  href={`https://citymapper.com/directions?endcoord=${selectedPlace.la},${selectedPlace.lo}&endname=${encodeURIComponent(selectedPlace.n)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#14141E] text-emerald-300 border border-emerald-500/30 hover:bg-emerald-950/40 hover:border-emerald-400 cursor-pointer transition-all"
-                  title="Itinéraire RATP Métro direct sur Citymapper"
-                >
-                  <Navigation className="w-4 h-4 text-emerald-400 rotate-45" />
-                  <span>Citymapper</span>
-                </a>
-
-                <button
-                  onClick={() => {
-                    const shareText = `On mange là ? 🍽️ *${selectedPlace.n}* (★ ${selectedPlace.r.toFixed(1)})\n📍 ${selectedPlace.a}\n🗺️ Itinéraire : https://www.google.com/maps/dir/?api=1&destination=${selectedPlace.la},${selectedPlace.lo}`;
-                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
-                  }}
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 cursor-pointer transition-all"
-                  title="Partager sur WhatsApp"
-                >
-                  <MessageCircle className="w-4 h-4 text-emerald-400" />
-                  <span>WhatsApp</span>
-                </button>
-
-                {selectedPlace.tel ? (
+                {/* Sub-action: Exact Place Card & Photos on Google Maps */}
+                <div className="grid grid-cols-2 gap-2">
                   <a
-                    href={`tel:${selectedPlace.tel}`}
-                    className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm text-white bg-[#14141E] border border-amber-500/25 hover:border-amber-400 cursor-pointer transition-all"
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedPlace.a)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl font-bold text-xs bg-[#161624] text-amber-300 border border-amber-500/30 hover:bg-amber-500/15 cursor-pointer transition-all text-center"
+                    title="Voir l'adresse exacte et le bâtiment sur Google Maps"
                   >
-                    <Phone className="w-4 h-4 text-amber-400" />
-                    <span>Appeler</span>
+                    <span>📍</span>
+                    <span>Adresse exacte sur Maps</span>
                   </a>
-                ) : (
-                  <div className="flex items-center justify-center text-xs text-zinc-500 bg-[#12121A] border border-zinc-800 rounded-2xl">
-                    Pas de numéro
-                  </div>
-                )}
 
-                <button
-                  onClick={() => handleToggleFavorite(selectedPlace.id)}
-                  className={`flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm cursor-pointer transition-all ${
-                    favorites.includes(selectedPlace.id)
-                      ? "bg-rose-500/15 text-rose-400 border border-rose-500/30"
-                      : "bg-[#14141E] text-zinc-300 border border-zinc-800 hover:border-zinc-700"
-                  }`}
-                >
-                  <Heart className={`w-4 h-4 ${favorites.includes(selectedPlace.id) ? "fill-current" : ""}`} />
-                  <span>Favori</span>
-                </button>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedPlace.n + " " + selectedPlace.z)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl font-bold text-xs bg-[#161624] text-zinc-200 border border-zinc-800 hover:border-amber-400 cursor-pointer transition-all text-center"
+                    title="Avis et photos du restaurant sur Google Maps"
+                  >
+                    <span>⭐</span>
+                    <span>Photos & Avis Maps</span>
+                  </a>
+                </div>
 
-                <button
-                  onClick={() => {
-                    setPlaceToStar(selectedPlace);
-                    setIsStarringListOpen(true);
-                  }}
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#14141E] text-amber-300 border border-amber-500/35 hover:border-amber-400 hover:bg-amber-500/10 cursor-pointer transition-all"
-                >
-                  <Star className="w-4 h-4 fill-amber-400" />
-                  <span>Starring List</span>
-                </button>
+                {/* Secondary Action Buttons Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <a
+                    href={`https://citymapper.com/directions?endcoord=${selectedPlace.la},${selectedPlace.lo}&endname=${encodeURIComponent(selectedPlace.n)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#14141E] text-emerald-300 border border-emerald-500/30 hover:bg-emerald-950/40 hover:border-emerald-400 cursor-pointer transition-all"
+                    title="Itinéraire RATP Métro direct sur Citymapper"
+                  >
+                    <Navigation className="w-4 h-4 text-emerald-400 rotate-45" />
+                    <span>Citymapper</span>
+                  </a>
 
-                <button
-                  onClick={() => {
-                    if (navigator.clipboard) {
-                      navigator.clipboard.writeText(`${selectedPlace.n}, ${selectedPlace.a}`);
-                    }
-                    showToast("📋 Adresse copiée dans le presse-papier !");
-                  }}
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#14141E] text-zinc-200 border border-zinc-800 hover:border-amber-400 cursor-pointer transition-all"
-                  title="Copier le nom et l'adresse"
-                >
-                  <Copy className="w-4 h-4 text-amber-400" />
-                  <span>Copier Adresse</span>
-                </button>
+                  <button
+                    onClick={() => {
+                      if (navigator.clipboard) {
+                        navigator.clipboard.writeText(`${selectedPlace.n}, ${selectedPlace.a}`);
+                      }
+                      showToast("📋 Adresse copiée dans le presse-papier !");
+                    }}
+                    className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#14141E] text-zinc-200 border border-zinc-800 hover:border-amber-400 cursor-pointer transition-all"
+                    title="Copier le nom et l'adresse"
+                  >
+                    <Copy className="w-4 h-4 text-amber-400" />
+                    <span>Copier Adresse</span>
+                  </button>
 
-                <button
-                  onClick={() => setIsBillSplitterOpen(true)}
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/25 cursor-pointer transition-all"
-                >
-                  <span>🧮 Split Addition</span>
-                </button>
+                  <button
+                    onClick={() => {
+                      const shareText = `On mange là ? 🍽️ *${selectedPlace.n}* (★ ${selectedPlace.r.toFixed(1)})\n📍 ${selectedPlace.a}\n🗺️ Itinéraire Google Maps : https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedPlace.a)}`;
+                      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
+                    }}
+                    className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 cursor-pointer transition-all"
+                    title="Partager sur WhatsApp"
+                  >
+                    <MessageCircle className="w-4 h-4 text-emerald-400" />
+                    <span>WhatsApp</span>
+                  </button>
+
+                  {selectedPlace.tel ? (
+                    <a
+                      href={`tel:${selectedPlace.tel}`}
+                      className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm text-white bg-[#14141E] border border-amber-500/25 hover:border-amber-400 cursor-pointer transition-all"
+                    >
+                      <Phone className="w-4 h-4 text-amber-400" />
+                      <span>Appeler</span>
+                    </a>
+                  ) : (
+                    <div className="flex items-center justify-center text-xs text-zinc-500 bg-[#12121A] border border-zinc-800 rounded-2xl">
+                      Pas de numéro
+                    </div>
+                  )}
+
+                  <button
+                    onClick={() => handleToggleFavorite(selectedPlace.id)}
+                    className={`flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm cursor-pointer transition-all ${
+                      favorites.includes(selectedPlace.id)
+                        ? "bg-rose-500/15 text-rose-400 border border-rose-500/30"
+                        : "bg-[#14141E] text-zinc-300 border border-zinc-800 hover:border-zinc-700"
+                    }`}
+                  >
+                    <Heart className={`w-4 h-4 ${favorites.includes(selectedPlace.id) ? "fill-current" : ""}`} />
+                    <span>Favori</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setPlaceToStar(selectedPlace);
+                      setIsStarringListOpen(true);
+                    }}
+                    className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-[#14141E] text-amber-300 border border-amber-500/35 hover:border-amber-400 hover:bg-amber-500/10 cursor-pointer transition-all"
+                  >
+                    <Star className="w-4 h-4 fill-amber-400" />
+                    <span>Starring List</span>
+                  </button>
+
+                  <button
+                    onClick={() => setIsBillSplitterOpen(true)}
+                    className="col-span-2 sm:col-span-2 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/25 cursor-pointer transition-all"
+                  >
+                    <span>🧮 Split Addition</span>
+                  </button>
+                </div>
               </div>
 
               {/* Halal Verification Notice */}
@@ -2538,7 +2548,7 @@ export default function App() {
                 </a>
 
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedPlace.n + " " + selectedPlace.a)}`}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedPlace.a)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="py-2.5 px-3 rounded-2xl text-center text-xs font-bold text-zinc-300 bg-[#141420] border border-zinc-800 hover:border-amber-400 transition-colors flex items-center justify-center gap-1.5"
@@ -2551,7 +2561,7 @@ export default function App() {
               {/* Direct GPS App Links: Google Maps, Citymapper, Waze */}
               <div className="grid grid-cols-3 gap-2 pt-1">
                 <a
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${selectedPlace.la},${selectedPlace.lo}&travelmode=walking`}
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedPlace.n + ", " + selectedPlace.a)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="py-2 px-2 rounded-xl text-center text-[11px] font-bold text-white bg-[#1A1A24] border border-zinc-800 hover:border-amber-400 transition-colors flex items-center justify-center gap-1"

@@ -1,14 +1,14 @@
 {
   "id": "/",
-  "name": "GourMap – Le GPS de la Food",
-  "short_name": "GourMap",
-  "description": "Le GPS culinaire : spots viraux TikTok, box à moins de 10€, recherche IA conversationnelle et 2 050 adresses.",
+  "name": "L'Appli Gourmande – Le Guide & GPS Food",
+  "short_name": "L'Appli Gourmande",
+  "description": "Le guide et GPS culinaire d'élite : spots viraux TikTok, box ≤10€, 100% Halal certifié, pépites authentiques Paris & IDF.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#070A11",
-  "background_color": "#070A11",
+  "theme_color": "#08080C",
+  "background_color": "#08080C",
   "icons": [
     {
       "src": "/pwa-192x192.png",

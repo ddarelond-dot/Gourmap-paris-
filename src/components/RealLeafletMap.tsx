@@ -59,12 +59,10 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({
   const [halalOnly, setHalalOnly] = useState(false);
   const [dealsOnly, setDealsOnly] = useState(false);
   const [tiktokOnly, setTiktokOnly] = useState(false);
-  const [currentTileKey, setCurrentTileKey] = useState<keyof typeof TILE_LAYERS>(
-    isDark ? "cartoDark" : "cartoVoyager"
-  );
+  const [currentTileKey, setCurrentTileKey] = useState<keyof typeof TILE_LAYERS>("osm");
   const [showLayerMenu, setShowLayerMenu] = useState(false);
 
-  // Initialize Leaflet Map
+  // Initialize Leaflet Map with OpenStreetMap by default
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
@@ -75,8 +73,8 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({
         zoomControl: false,
       });
 
-      // Default tiles
-      const selectedTile = isDark ? TILE_LAYERS.cartoDark : TILE_LAYERS.cartoVoyager;
+      // Default tiles: OpenStreetMap standard with crisp street names, avenues, metros and parks
+      const selectedTile = TILE_LAYERS.osm;
       const tileLayer = L.tileLayer(selectedTile.url, {
         attribution: selectedTile.attribution,
         maxZoom: 19,
@@ -101,16 +99,6 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({
       }
     };
   }, []);
-
-  // Sync theme changes with default tiles
-  useEffect(() => {
-    if (!mapInstanceRef.current) return;
-    const tileKey = isDark ? "cartoDark" : "cartoVoyager";
-    setCurrentTileKey(tileKey);
-    if (tileLayerRef.current) {
-      tileLayerRef.current.setUrl(TILE_LAYERS[tileKey].url);
-    }
-  }, [isDark]);
 
   // Update user GPS pulsing blue marker & radius circle
   useEffect(() => {
@@ -339,8 +327,22 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({
       </div>
 
       {/* Real Interactive Leaflet Map Container */}
-      <div className="relative w-full h-[520px] sm:h-[600px] bg-slate-950 overflow-hidden border-y border-slate-800">
+      <div className="relative w-full h-[calc(100vh-170px)] min-h-[520px] bg-slate-950 overflow-hidden border-y border-amber-500/20">
         <div ref={mapContainerRef} className="w-full h-full z-0" />
+
+        {/* Quick Direct Google Maps launcher */}
+        <div className="absolute left-3 top-3 z-10 flex items-center gap-2">
+          <a
+            href={`https://www.google.com/maps/search/restaurants/@${userLat},${userLng},15z`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-[#0A0A10]/95 backdrop-blur-md border border-amber-500/40 text-amber-300 hover:text-white hover:bg-amber-500/20 text-xs font-black shadow-xl transition-all cursor-pointer"
+            title="Ouvrir mon secteur directement dans l'application Google Maps"
+          >
+            <Navigation className="w-4 h-4 text-amber-400" />
+            <span>Ouvrir dans l'app Google Maps ↗</span>
+          </a>
+        </div>
 
         {/* Floating Controls Top Right */}
         <div className="absolute right-3 top-16 flex flex-col gap-2 z-10">
@@ -458,13 +460,13 @@ export const RealLeafletMap: React.FC<RealLeafletMapProps> = ({
                     Voir la fiche complète
                   </button>
                   <a
-                    href={`https://www.google.com/maps/dir/?api=1&destination=${selectedPlace.la},${selectedPlace.lo}&travelmode=walking`}
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedPlace.n + ", " + selectedPlace.a)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 px-3 py-2.5 rounded-xl text-xs font-bold text-amber-300 bg-[#161622] hover:bg-slate-800 border border-amber-500/30"
+                    className="flex items-center gap-1 px-3 py-2.5 rounded-xl text-xs font-black text-slate-950 bg-gradient-to-r from-amber-400 to-yellow-300 hover:brightness-110 shadow-sm"
                   >
-                    <Navigation className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Itinéraire</span>
+                    <Navigation className="w-3.5 h-3.5 text-slate-950" />
+                    <span>Google Maps</span>
                   </a>
                   {selectedPlace.tel && (
                     <a

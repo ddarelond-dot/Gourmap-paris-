@@ -84,7 +84,7 @@ export const DealsHub: React.FC<DealsHubProps> = ({
   const handleShareDeal = (deal: FoodDeal, e: React.MouseEvent) => {
     e.stopPropagation();
     navigator.clipboard?.writeText?.(
-      `Regarde la ${deal.title} (${deal.price.toFixed(2)}€) chez ${deal.brand} sur GourMap !`
+      `Regarde la ${deal.title} (${deal.price.toFixed(2)}€) chez ${deal.brand} sur L'Appli Gourmande !`
     );
     setCopiedId(deal.id);
     setTimeout(() => setCopiedId(null), 2000);
@@ -185,8 +185,8 @@ export const DealsHub: React.FC<DealsHubProps> = ({
                 onClick={() => setSelectedCategory(c)}
                 className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                   active
-                    ? "bg-white text-slate-950 font-black shadow-sm"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 font-black shadow-md shadow-amber-500/20"
+                    : "text-zinc-400 hover:text-white"
                 }`}
               >
                 {c === "Box" ? "🔥 Toutes les Box" : c}

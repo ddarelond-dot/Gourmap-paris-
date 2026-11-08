@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import {
-  Sun,
-  Moon,
   Sparkles,
   Dices,
   Smartphone,
@@ -21,8 +19,8 @@ import {
 } from "lucide-react";
 
 interface HeaderProps {
-  isDark: boolean;
-  onToggleTheme: () => void;
+  isDark?: boolean;
+  onToggleTheme?: () => void;
   onSurpriseMe: () => void;
   onOpenWidget: () => void;
   onOpenGamification: () => void;
@@ -96,16 +94,16 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-600 via-amber-400 to-amber-200 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/25 group-hover:scale-105 group-hover:rotate-3 transition-all shrink-0">
-              G
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-600 via-amber-400 to-amber-200 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg shadow-amber-500/25 group-hover:scale-105 group-hover:rotate-3 transition-all shrink-0">
+              AG
             </div>
             <div className="flex flex-col">
               <span className="font-sans font-black text-2xl tracking-tight text-white leading-none">
-                Gour<span className="text-gold-gradient font-black">Map</span>
+                L'Appli <span className="text-gold-gradient font-black">Gourmande</span>
               </span>
               <span className="text-[10px] font-bold tracking-wide text-amber-200/80 flex items-center gap-1.5 mt-0.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse inline-block" />
-                Édition Dorée · Curation d'Élite Paris & IDF (100% Vraies Pépites)
+                Le Guide & GPS Food · Paris & IDF (100% Vraies Pépites)
               </span>
             </div>
           </div>
@@ -160,14 +158,6 @@ export const Header: React.FC<HeaderProps> = ({
               <span>{userPoints} pts</span>
             </button>
 
-            {/* Theme Toggle Button */}
-            <button
-              onClick={onToggleTheme}
-              title={isDark ? "Mode clair" : "Mode sombre"}
-              className="p-2 rounded-full text-zinc-400 hover:text-white bg-[#14141E] border border-white/10 hover:border-amber-400/40 transition-colors active:scale-95 cursor-pointer"
-            >
-              {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-cyan-400" />}
-            </button>
           </div>
         </div>
       </header>
@@ -514,7 +504,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             <div className="pt-2 text-center text-[11px] text-amber-200/50 border-t border-amber-500/20">
-              GourMap Île-de-France · Édition Noire & Or 24K · Curation d'Élite & Pépites Vérifiées
+              L'Appli Gourmande Île-de-France · Édition Noire & Or 24K · Curation d'Élite & Pépites Vérifiées
             </div>
           </div>
         </div>

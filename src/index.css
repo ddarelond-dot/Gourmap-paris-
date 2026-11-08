@@ -5,13 +5,15 @@
   :root {
     --font-heading: "Plus Jakarta Sans", "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
     --font-sans: "Plus Jakarta Sans", "Outfit", "DM Sans", system-ui, sans-serif;
+    color-scheme: dark;
   }
 
-  body {
+  html, body, #root {
     font-family: var(--font-sans);
     -webkit-tap-highlight-color: transparent;
-    background-color: #08080C;
-    color: #F8FAFC;
+    background-color: #08080C !important;
+    color: #F8FAFC !important;
+    min-height: 100%;
   }
 
   h1, h2, h3, .font-serif-display {

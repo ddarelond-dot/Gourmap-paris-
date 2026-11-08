@@ -376,17 +376,19 @@ app.post("/api/search-ai", async (req, res) => {
 
       const aiGeneratePromise = aiClient.models.generateContent({
         model: "gemini-3.8-flash",
-        contents: `Tu es le Lead Sommelier & GPS Food de l'application GourMap.
-L'utilisateur cherche : "${query}".
-Voici les meilleurs candidats sélectionnés dans notre base de 2050 adresses :
+        contents: `Tu es le Lead Sommelier, Concierge Culinaire & Expert GPS Food de l'application L'Appli Gourmande (Paris & Île-de-France).
+L'utilisateur te demande : "${query}".
+Tu peux répondre à TOUTES les questions : recommandations précises, plats signatures, secrets culinaires, budget, occasions festives, quartiers, adresses halal, terrasses, ou fonctionnement de l'application.
+
+Voici les meilleurs candidats sélectionnés dans notre base de 2 070+ adresses vérifiées :
 ${JSON.stringify(placesMini)}
 
 Réponds en JSON avec le format exact suivant :
 {
-  "explanation": "2 phrases chaleureuses expliquant ton choix et citant les 2 meilleurs spots",
+  "explanation": "2-3 phrases chaleureuses, expertes et enthousiastes répondant précisément à la demande et citant les meilleurs spots",
   "matchedPlaceIds": [liste ordonnée des IDs les plus pertinents, max 6],
-  "detectedOccasion": "type d'occasion détectée",
-  "practicalTip": "1 conseil pratique très utile"
+  "detectedOccasion": "type d'occasion ou intention détectée",
+  "practicalTip": "1 conseil d'initié très concret (ex: meilleur horaire, plat secret, sauce à demander, astuce transport)"
 }`,
         config: {
           responseMimeType: "application/json",
@@ -444,7 +446,7 @@ async function startServer() {
   }
 
   const server = app.listen(PORT, "0.0.0.0", () => {
-    console.log(`🚀 GourMap Full-Stack Server running on http://0.0.0.0:${PORT}`);
+    console.log(`🚀 L'Appli Gourmande Full-Stack Server running on http://0.0.0.0:${PORT}`);
   });
 
   server.on("error", (err: any) => {
