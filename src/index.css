@@ -24,8 +24,10 @@
 
 /* Luminous 24K Gold Gradient Text */
 .text-gold-gradient {
+  color: #FBBF24;
   background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

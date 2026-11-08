@@ -23,6 +23,8 @@ export interface DailyFoodDrop {
   isHalal: boolean;
   dishDescription: string;
   rating: number;
+  foodKey: string;
+  subCategory: string;
 }
 
 export interface WeeklyEvolutionIntel {
@@ -45,14 +47,16 @@ const ROTATING_SEASONAL_DROPS: DailyFoodDrop[] = [
     badge: "🔥 DROP HIVER VIRAL",
     badgeColor: "from-amber-600 via-yellow-500 to-amber-700",
     price: "11,50 €",
-    restaurantName: "Dumbo Paris (11e)",
+    restaurantName: "Dumbo Pigalle",
     address: "64 Rue Jean-Baptiste Pigalle, 75009 Paris",
-    zone: "Paris 9e / 11e",
+    zone: "Paris 9",
     lat: 48.8812,
     lng: 2.3365,
     isHalal: true,
     dishDescription: "La croûte caramélisée signature du smash mariée au fondant réconfortant du morbier coulant et confit d'oignons doux.",
     rating: 4.8,
+    foodKey: "burger",
+    subCategory: "Burger",
   },
   {
     id: "drop-korean-crispy",
@@ -64,12 +68,14 @@ const ROTATING_SEASONAL_DROPS: DailyFoodDrop[] = [
     price: "12,90 €",
     restaurantName: "K-Chicken Nation",
     address: "14 Rue Sainte-Anne, 75001 Paris",
-    zone: "Paris 1er (Pyramides)",
+    zone: "Paris 1",
     lat: 48.8665,
     lng: 2.3358,
     isHalal: true,
     dishDescription: "Panure aérienne ultra croustillante qui ne ramollit jamais, saupoudrée de sésame grillé et ciboulette fraîche.",
     rating: 4.9,
+    foodKey: "poulet",
+    subCategory: "Poulet",
   },
   {
     id: "drop-box-naan-cheese",
@@ -81,12 +87,14 @@ const ROTATING_SEASONAL_DROPS: DailyFoodDrop[] = [
     price: "9,90 €",
     restaurantName: "Naan & Grill Corner",
     address: "88 Boulevard de Strasbourg, 75010 Paris",
-    zone: "Paris 10e (Gare de l'Est)",
+    zone: "Paris 10",
     lat: 48.8752,
     lng: 2.3578,
     isHalal: true,
     dishDescription: "Le fromage coule généreusement à la première bouchée, le poulet tandoori est mariné 24h au yaourt et épices douces.",
     rating: 4.7,
+    foodKey: "poulet",
+    subCategory: "Poulet",
   },
   {
     id: "drop-pastrami-brioche",
@@ -98,12 +106,14 @@ const ROTATING_SEASONAL_DROPS: DailyFoodDrop[] = [
     price: "13,50 €",
     restaurantName: "Deli Bastille Street",
     address: "22 Rue de la Roquette, 75011 Paris",
-    zone: "Paris 11e (Bastille)",
+    zone: "Paris 11",
     lat: 48.8548,
     lng: 2.3725,
     isHalal: true,
     dishDescription: "Moutarde au miel maison, pickles de concombre craquants et viande fondante comme du beurre.",
     rating: 4.8,
+    foodKey: "burger",
+    subCategory: "Burger",
   },
   {
     id: "drop-pistachio-tiramisu",
@@ -115,12 +125,14 @@ const ROTATING_SEASONAL_DROPS: DailyFoodDrop[] = [
     price: "6,50 €",
     restaurantName: "Pasticceria Bella Paris",
     address: "35 Rue de Charonne, 75011 Paris",
-    zone: "Paris 11e",
+    zone: "Paris 11",
     lat: 48.8532,
     lng: 2.3768,
     isHalal: true,
     dishDescription: "Plus de 2,4M de vues sur TikTok pour ce dessert où la crème de pistache sicilienne coule dès qu'on plonge la cuillère.",
     rating: 4.9,
+    foodKey: "croissant",
+    subCategory: "Pâtisserie",
   },
 ];
 
@@ -205,10 +217,10 @@ export function getDynamicCalendarPlaces(): RawPlace[] {
     c: 340 + (idx * 120),
     priceLevel: 1,
     pr: 1,
-    category: "Fast-food",
-    cat: "Fast-food",
-    subCategory: drop.title,
-    sub: drop.title,
+    category: drop.subCategory === "Pâtisserie" ? "Goûter" : "Fast-food",
+    cat: drop.subCategory === "Pâtisserie" ? "Goûter" : "Fast-food",
+    subCategory: drop.subCategory,
+    sub: drop.subCategory,
     phone: "+33140203040",
     tel: "+33140203040",
     hours: "Tous les jours 11h30–23h30",
@@ -225,6 +237,6 @@ export function getDynamicCalendarPlaces(): RawPlace[] {
     isOpenLate: true,
     isKidFriendly: true,
     isBoxDeal: true,
-    foodKey: drop.isHalal ? "chicken" : "burger",
+    foodKey: drop.foodKey,
   }));
 }

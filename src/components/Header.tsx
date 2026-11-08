@@ -94,15 +94,18 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-600 via-amber-400 to-amber-200 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg shadow-amber-500/25 group-hover:scale-105 group-hover:rotate-3 transition-all shrink-0">
+            <div
+              className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-300 to-yellow-200 flex items-center justify-center text-slate-950 font-black text-lg shadow-lg shadow-amber-500/30 group-hover:scale-105 group-hover:rotate-3 transition-all shrink-0 border border-amber-300/40"
+              style={{ backgroundColor: "#F59E0B", color: "#0A0A10" }}
+            >
               AG
             </div>
             <div className="flex flex-col">
               <span className="font-sans font-black text-2xl tracking-tight text-white leading-none">
-                L'Appli <span className="text-gold-gradient font-black">Gourmande</span>
+                L'Appli <span className="text-[#FBBF24] font-black drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]" style={{ color: "#FBBF24" }}>Gourmande</span>
               </span>
-              <span className="text-[10px] font-bold tracking-wide text-amber-200/80 flex items-center gap-1.5 mt-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse inline-block" />
+              <span className="text-[10px] font-bold tracking-wide text-amber-300/90 flex items-center gap-1.5 mt-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse inline-block" />
                 Le Guide & GPS Food · Paris & IDF (100% Vraies Pépites)
               </span>
             </div>
