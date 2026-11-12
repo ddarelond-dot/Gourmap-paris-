@@ -42,7 +42,7 @@ export const OfflineIndicator: React.FC = () => {
   return (
     <div className="fixed bottom-20 left-4 right-4 md:left-6 md:right-auto z-50 flex items-center gap-2 rounded-2xl bg-slate-900 border border-emerald-500/40 px-4 py-2 text-xs font-bold text-white shadow-xl animate-fade-in backdrop-blur-md">
       <WifiOff className="w-4 h-4 text-emerald-400 shrink-0" />
-      <span>Mode Hors-Ligne activé — Les 2 050 adresses restent accessibles !</span>
+      <span>Mode Hors-Ligne activé — Les adresses restent accessibles !</span>
     </div>
   );
 };

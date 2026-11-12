@@ -173,6 +173,8 @@ export const AddRestaurantModal: React.FC<AddRestaurantModalProps> = ({
         : sub.toLowerCase().includes("kebab")
         ? "kebab"
         : "bistrot",
+      pros: ["Super accueil", "Produits frais"],
+      cons: [],
     };
 
     onAddPlace(newPlace);

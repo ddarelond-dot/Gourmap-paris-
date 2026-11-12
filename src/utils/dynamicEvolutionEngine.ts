@@ -238,5 +238,7 @@ export function getDynamicCalendarPlaces(): RawPlace[] {
     isKidFriendly: true,
     isBoxDeal: true,
     foodKey: drop.foodKey,
+    pros: ["Produit frais", "Recette virale"],
+    cons: [],
   }));
 }

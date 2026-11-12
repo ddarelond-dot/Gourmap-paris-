@@ -102,7 +102,7 @@ export const AISearchBar: React.FC<AISearchBarProps> = ({
         <div className="mt-3 p-4 rounded-2xl bg-[#0E0E16] border border-amber-500/30 shadow-md">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-400 mb-2">
             <Sparkles className="w-4 h-4 animate-spin text-amber-400" />
-            <span>Scan instantané de la base des 2 050 adresses…</span>
+            <span>Recherche dans nos adresses vérifiées…</span>
           </div>
           <div className="h-4 rounded-md animate-shimmer mb-2 w-3/4" />
           <div className="h-3.5 rounded-md animate-shimmer w-1/2" />

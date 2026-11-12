@@ -101,66 +101,27 @@ export const Header: React.FC<HeaderProps> = ({
               AG
             </div>
             <div className="flex flex-col">
-              <span className="font-sans font-black text-2xl tracking-tight text-white leading-none">
+              <span className="font-sans font-black text-xl sm:text-2xl tracking-tight text-white leading-none">
                 L'Appli <span className="text-[#FBBF24] font-black drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]" style={{ color: "#FBBF24" }}>Gourmande</span>
               </span>
-              <span className="text-[10px] font-bold tracking-wide text-amber-300/90 flex items-center gap-1.5 mt-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse inline-block" />
-                Le Guide & GPS Food · Paris & IDF (100% Vraies Pépites)
+              <span className="text-[11px] font-semibold text-zinc-400 mt-0.5">
+                Paris & Île-de-France · Adresses vérifiées
               </span>
             </div>
           </div>
 
-          {/* Streamlined Luxury Controls */}
+          {/* Streamlined Controls */}
           <div className="flex items-center gap-2">
-            {/* Midpoint Meetup Button */}
-            {onOpenMidpoint && (
-              <button
-                onClick={onOpenMidpoint}
-                title="Trouver un resto à mi-chemin entre deux adresses ou potes"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-cyan-950/40 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/20 active:scale-95 transition-all cursor-pointer shadow-sm"
-              >
-                <span>🤝</span>
-                <span className="hidden sm:inline">À Mi-Chemin</span>
-              </button>
-            )}
-
-            {/* Dietary Filters Button */}
             {onOpenDietaryFilters && (
               <button
                 onClick={onOpenDietaryFilters}
-                title="Régimes alimentaires, 100% Halal, Végé, Terrasse"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-emerald-950/40 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/20 active:scale-95 transition-all cursor-pointer shadow-sm"
+                title="Filtres, Halal, Options alimentaires"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-[#141420] text-zinc-200 border border-zinc-800 hover:border-amber-400/60 hover:text-white active:scale-95 transition-all cursor-pointer"
               >
-                <span>🛡️</span>
-                <span className="hidden sm:inline">Filtres & Halal</span>
-                <span className="sm:hidden">Halal</span>
+                <span>🕌</span>
+                <span>Filtres</span>
               </button>
             )}
-
-            {/* All Tools Drawer Button */}
-            <button
-              onClick={() => setToolsOpen(true)}
-              title="Ouvrir la boîte à outils (Jackpot, Roulette, Split note, etc.)"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-400/20 to-yellow-400/10 text-amber-300 border border-amber-500/40 hover:border-amber-400 hover:bg-amber-400/25 active:scale-95 transition-all cursor-pointer shadow-sm"
-            >
-              <span>⚡</span>
-              <span className="hidden sm:inline">Outils</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-amber-400 text-slate-950 font-black">
-                8+
-              </span>
-            </button>
-
-            {/* Gamification Points Badge */}
-            <button
-              onClick={onOpenGamification}
-              title="Tes points gourmands"
-              className="hidden md:flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-bold text-amber-400 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 transition-all active:scale-95 cursor-pointer"
-            >
-              <Award className="w-3.5 h-3.5 text-amber-400" />
-              <span>{userPoints} pts</span>
-            </button>
-
           </div>
         </div>
       </header>

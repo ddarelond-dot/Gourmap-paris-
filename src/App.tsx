@@ -73,10 +73,13 @@ export default function App() {
     lng: 2.348,
   });
 
-  // Main navigation tab: Accueil (feed), Fast-Food (fastfood), Bons Plans (deals), Carte GPS (map), Favoris (favs)
-  const [activeTab, setActiveTab] = useState<"feed" | "fastfood" | "map" | "deals" | "favs" | "group">("feed");
+  // Main navigation tab: Accueil (feed), Catégories (categories), Carte GPS (map), Favoris (favs)
+  const [activeTab, setActiveTab] = useState<"feed" | "categories" | "fastfood" | "map" | "deals" | "favs" | "group">("feed");
   const [isToolsMenuOpen, setIsToolsMenuOpen] = useState(false);
   const [isPhoneFrame, setIsPhoneFrame] = useState<boolean>(false);
+
+  // Category key from quick category row ("poulet", "burger", "pizza", etc.)
+  const [selectedCategoryKey, setSelectedCategoryKey] = useState<string | null>(null);
 
   // Original 3-click browsing step in Feed: "home" | "sub" | "bud" | "res"
   const [feedStep, setFeedStep] = useState<"home" | "sub" | "bud" | "res">("home");
@@ -86,7 +89,7 @@ export default function App() {
   const [selectedZone, setSelectedZone] = useState<string>("Toutes");
   const [activeWishes, setActiveWishes] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<"list" | "map">("list");
-  const [resultLimit, setResultLimit] = useState<number>(24);
+  const [resultLimit, setResultLimit] = useState<number>(36);
 
   // Selected place for full detail sheet modal
   const [selectedPlace, setSelectedPlace] = useState<RawPlace | null>(null);
@@ -393,7 +396,45 @@ export default function App() {
     return topCandidates.sort(compare);
   };
 
-  // Calculate filtered results for step-by-step browsing with Anti-0 Result guarantee across 150,000+ spots
+  // Helper to strictly match food category
+  const matchPlaceCategory = (p: RawPlace, catKey: string): boolean => {
+    const normKey = catKey.toLowerCase().trim();
+    const sub = (p.sub || "").toLowerCase();
+    const name = (p.n || "").toLowerCase();
+    const cat = (p.cat || "").toLowerCase();
+    const fk = (p.foodKey || "").toLowerCase();
+
+    switch (normKey) {
+      case "poulet":
+        return fk === "poulet" || sub.includes("poulet") || name.includes("poulet") || name.includes("chicken") || name.includes("kfc") || name.includes("popeyes") || sub.includes("tenders") || sub.includes("crispy");
+      case "burger":
+        return fk === "burger" || sub.includes("burger") || name.includes("burger") || sub.includes("smash");
+      case "pizza":
+        return fk === "pizza" || sub.includes("pizza") || name.includes("pizza") || sub.includes("italien");
+      case "sushi":
+        return fk === "sushi" || sub.includes("sushi") || sub.includes("japonais") || name.includes("sushi") || name.includes("wok");
+      case "kebab":
+        return fk === "kebab" || sub.includes("kebab") || name.includes("kebab") || sub.includes("döner") || name.includes("bosphore") || name.includes("marmaris");
+      case "tacos":
+        return fk === "tacos" || sub.includes("tacos") || name.includes("tacos") || name.includes("chamas");
+      case "naan":
+        return fk === "naan" || fk === "curry" || sub.includes("naan") || sub.includes("indien") || name.includes("naan") || name.includes("taj mahal");
+      case "ramen":
+        return fk === "ramen" || sub.includes("ramen") || sub.includes("nouilles") || name.includes("ramen") || name.includes("pho");
+      case "steak":
+        return fk === "steak" || fk === "viandes" || sub.includes("grill") || sub.includes("viande") || sub.includes("steak") || name.includes("buffalo grill");
+      case "boulangerie":
+        return fk === "croissant" || sub.includes("boulangerie") || sub.includes("pâtisserie") || cat.includes("goûter") || name.includes("boulangerie") || name.includes("paul") || name.includes("crêperie");
+      case "couscous":
+        return fk === "tajine" || fk === "couscous" || sub.includes("couscous") || sub.includes("tajine") || name.includes("couscous");
+      case "pâtes":
+        return sub.includes("pâte") || (sub.includes("italien") && !sub.includes("pizza"));
+      default:
+        return fk === normKey || sub.includes(normKey) || name.includes(normKey);
+    }
+  };
+
+  // Calculate filtered results for step-by-step browsing with Anti-0 Result guarantee across verified spots
   const { results: currentResults, isRelaxed: isFilterRelaxed } = useMemo(() => {
     if (aiMatchedIds) {
       const matched = aiMatchedIds.map((id) => allPlaces.find((p) => p.id === id)).filter(Boolean) as RawPlace[];
@@ -408,9 +449,44 @@ export default function App() {
     const q = instantSearchQuery.trim().toLowerCase();
     const isHalalUserWant = activeWishes.includes("Halal") || dietaryFilters.halalStrict;
 
+    const matchesZone = (p: RawPlace) => {
+      if (selectedZone === "Toutes") return true;
+      if (selectedZone === "Paris (Tous)") return p.z.startsWith("Paris");
+      if (selectedZone === "Paris 1-10") {
+        const num = parseInt(p.z.replace("Paris ", ""), 10);
+        return !isNaN(num) && num >= 1 && num <= 10;
+      }
+      if (selectedZone === "Paris 11-20") {
+        const num = parseInt(p.z.replace("Paris ", ""), 10);
+        return !isNaN(num) && num >= 11 && num <= 20;
+      }
+      return p.z.toLowerCase().includes(selectedZone.toLowerCase()) ||
+             (p.zone && p.zone.toLowerCase().includes(selectedZone.toLowerCase())) ||
+             p.a.toLowerCase().includes(selectedZone.toLowerCase());
+    };
+
+    const matchesCategory = (p: RawPlace) => {
+      if (!selectedCategoryKey) return true;
+      return matchPlaceCategory(p, selectedCategoryKey);
+    };
+
+    const matchesQuery = (p: RawPlace) => {
+      if (!q) return true;
+      if (p.n.toLowerCase().includes(q) || p.a.toLowerCase().includes(q) || p.sub.toLowerCase().includes(q) || p.z.toLowerCase().includes(q)) {
+        return true;
+      }
+      const categoryKeywords = ["poulet", "chicken", "burger", "pizza", "kebab", "tacos", "sushi", "ramen", "naan", "steak"];
+      if (!categoryKeywords.includes(q) && p.s.toLowerCase().includes(q)) {
+        return true;
+      }
+      return false;
+    };
+
     // 1. Strict filter pass
     let strict = allPlaces.filter((p) => {
-      if (q && !p.n.toLowerCase().includes(q) && !p.sub.toLowerCase().includes(q) && !p.s.toLowerCase().includes(q) && !p.a.toLowerCase().includes(q)) return false;
+      if (!matchesQuery(p)) return false;
+      if (!matchesCategory(p)) return false;
+      if (!matchesZone(p)) return false;
       if (maxBudgetEur !== null) {
         if (maxBudgetEur === 10 && p.pr > 1) return false;
         if (maxBudgetEur === 15 && p.pr > 2) return false;
@@ -422,7 +498,6 @@ export default function App() {
         if (selectedBudget === 3 && p.pr < 3) return false;
         if (selectedBudget < 3 && p.pr !== selectedBudget) return false;
       }
-      if (selectedZone !== "Toutes" && !p.z.toLowerCase().includes(selectedZone.toLowerCase()) && p.z !== selectedZone) return false;
       if (distanceRadiusKm !== null) {
         const dist = calculateDistanceKm(userLocation.lat, userLocation.lng, p.la, p.lo);
         if (dist > distanceRadiusKm) return false;
@@ -447,16 +522,13 @@ export default function App() {
       return { results: sortPlaces(strict), isRelaxed: false };
     }
 
-    // 2. Anti-0 Guarantee Fallback A: Keep category and wishes, but widen to all zones
+    // 2. Anti-0 Guarantee Fallback A: Keep category and query strictly, widen zone
     const widenedZone = allPlaces.filter((p) => {
+      if (!matchesQuery(p)) return false;
+      if (!matchesCategory(p)) return false;
       if (t && !t.m(p)) return false;
       if (sp && !sp(p)) return false;
-      if (selectedBudget > 0) {
-        if (selectedBudget === 3 && p.pr < 3) return false;
-        if (selectedBudget < 3 && p.pr !== selectedBudget) return false;
-      }
       if (isHalalUserWant && !p.isHalal) return false;
-      if (activeWishes.some((w) => !WISHES[w](p))) return false;
       return true;
     });
 
@@ -464,12 +536,12 @@ export default function App() {
       return { results: sortPlaces(widenedZone), isRelaxed: true };
     }
 
-    // 3. Anti-0 Guarantee Fallback B: Keep zone and category, relax wishes (strictly keep Halal if requested!)
+    // 3. Anti-0 Guarantee Fallback B: Keep zone and category, relax secondary wishes
     const relaxedWishes = allPlaces.filter((p) => {
+      if (!matchesCategory(p)) return false;
       if (t && !t.m(p)) return false;
       if (sp && !sp(p)) return false;
-      if (isHalalUserWant && !p.isHalal) return false;
-      if (selectedZone !== "Toutes" && !p.z.toLowerCase().includes(selectedZone.toLowerCase()) && p.z !== selectedZone) return false;
+      if (!matchesZone(p)) return false;
       return true;
     });
 
@@ -477,18 +549,45 @@ export default function App() {
       return { results: sortPlaces(relaxedWishes), isRelaxed: true };
     }
 
-    // 4. Anti-0 Guarantee Fallback C: If Halal was wanted, return top Halal spots in Paris!
-    if (isHalalUserWant) {
-      const halalGems = allPlaces.filter((p) => p.isHalal);
-      return { results: sortPlaces(halalGems).slice(0, 35), isRelaxed: true };
+    // 4. Fallback: If category requested, show top rated in that category
+    if (selectedCategoryKey) {
+      const catPlaces = allPlaces.filter((p) => matchPlaceCategory(p, selectedCategoryKey));
+      if (catPlaces.length > 0) {
+        return { results: sortPlaces(catPlaces).slice(0, 35), isRelaxed: true };
+      }
+    }
+    if (t) {
+      const taxPlaces = allPlaces.filter((p) => t.m(p));
+      if (taxPlaces.length > 0) {
+        return { results: sortPlaces(taxPlaces).slice(0, 35), isRelaxed: true };
+      }
     }
 
-    // 5. Ultimate fallback: Top rated places nearest to user (never 0!)
+    // 5. Ultimate fallback: Top rated places nearest to user
     return { results: sortPlaces(allPlaces.filter((p) => p.r >= 4.5)).slice(0, 35), isRelaxed: true };
-  }, [allPlaces, aiMatchedIds, activeTab, favorites, selectedTaxIndex, selectedSubIndex, selectedBudget, selectedZone, distanceRadiusKm, activeWishes, userLocation, selectedMetroStation, instantSearchQuery, maxBudgetEur, sortMode, openNowOnly, dietaryFilters]);
+  }, [allPlaces, aiMatchedIds, activeTab, favorites, selectedCategoryKey, selectedTaxIndex, selectedSubIndex, selectedBudget, selectedZone, distanceRadiusKm, activeWishes, userLocation, selectedMetroStation, instantSearchQuery, maxBudgetEur, sortMode, openNowOnly, dietaryFilters]);
 
-  // Zone list across all 150,000+ spots
-  const allZones = useMemo(() => ["Toutes", ...Array.from(new Set(allPlaces.map((p) => p.z))).sort()], [allPlaces]);
+  // Zone list across all verified spots
+  const allZones = useMemo(() => [
+    "Toutes",
+    "Paris (Tous)",
+    "Paris 1-10",
+    "Paris 11-20",
+    "Créteil",
+    "Saint-Ouen",
+    "Saint-Denis",
+    "Boulogne-Billancourt",
+    "Vincennes",
+    "Montreuil",
+    "Aubervilliers",
+    "Nanterre",
+    "Thiais",
+    "Sarcelles",
+    "Bondy",
+    "Rosny-sous-Bois",
+    "Torcy",
+    "Villeneuve",
+  ], []);
 
   // Surprise lottery pick
   const handleSurpriseMe = () => {
@@ -562,1349 +661,459 @@ export default function App() {
             onToggleToolsMenu={setIsToolsMenuOpen}
           />
 
-      {/* Proactive Contextual Notification Banner */}
-      <ProactiveNotificationBanner
-        places={allPlaces as any}
-        onSelectPlace={(place) => setSelectedPlace(place as any)}
-      />
 
-      {/* AI Conversational Search Bar */}
-      <AISearchBar
-        onSearch={handleAISearch}
-        isLoading={isAiLoading}
-        aiResponse={aiResponse}
-        onClearAI={handleClearAI}
-      />
 
       {/* MAIN CONTAINER */}
       <main className="flex-1 w-full max-w-5xl mx-auto pb-28 sm:pb-32">
         {/* ================= TAB 1: FEED ================= */}
+        {/* ================= TAB 1: RESTAURANTS FEED ================= */}
         {activeTab === "feed" && (
-          <div className="flex flex-col gap-4">
-            {/* Breadcrumb Navigation when exploring deeper */}
-            {feedStep !== "home" && (
-              <div className="px-4 pt-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar text-xs font-bold">
+          <div className="flex flex-col gap-3">
+            {/* 1. Main Direct Search Bar */}
+            <div className="relative w-full">
+              <input
+                type="text"
+                value={instantSearchQuery}
+                onChange={(e) => {
+                  setInstantSearchQuery(e.target.value);
+                  if (aiResponse) handleClearAI();
+                }}
+                placeholder="Rechercher un restaurant, burger, poulet, sushi, adresse..."
+                className="w-full py-3.5 pl-11 pr-10 rounded-2xl bg-[#111118] border border-amber-500/25 text-white text-sm placeholder:text-zinc-500 outline-none focus:border-amber-400 focus:shadow-[0_0_15px_rgba(245,158,11,0.18)] transition-all"
+              />
+              <div className="absolute left-3.5 top-3.5 text-amber-400">
+                <Search className="w-4 h-4" />
+              </div>
+              {instantSearchQuery && (
+                <button
+                  onClick={() => setInstantSearchQuery("")}
+                  className="absolute right-3.5 top-3 text-zinc-400 hover:text-white text-xs font-bold p-1 cursor-pointer"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            {/* 2. Arrondissements & Cities Horizontal Bar */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+              <span className="text-[11px] font-bold text-amber-400/90 shrink-0 mr-1">
+                Ville :
+              </span>
+              {allZones.map((z) => {
+                const isSelected = selectedZone === z;
+                return (
+                  <button
+                    key={z}
+                    onClick={() => setSelectedZone(z)}
+                    className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/20 border border-amber-300"
+                        : "bg-[#12121A] text-zinc-300 border border-zinc-800/80 hover:border-amber-400/50 hover:text-white"
+                    }`}
+                  >
+                    {z === "Toutes" ? "Toute l'IDF" : z}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 3. Essential Quick Filter Pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+              <button
+                onClick={() => setOpenNowOnly(!openNowOnly)}
+                className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  openNowOnly
+                    ? "bg-emerald-400 text-slate-950 font-black shadow-sm"
+                    : "bg-[#12121A] text-zinc-300 border border-zinc-800 hover:border-emerald-400"
+                }`}
+              >
+                <span className={`w-2 h-2 rounded-full ${openNowOnly ? "bg-slate-950" : "bg-emerald-400 animate-pulse"}`} />
+                <span>Ouvert</span>
+              </button>
+
+              <button
+                onClick={() => setDietaryFilters((prev) => ({ ...prev, halalStrict: !prev.halalStrict }))}
+                className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  dietaryFilters.halalStrict
+                    ? "bg-emerald-400 text-slate-950 font-black shadow-sm"
+                    : "bg-[#12121A] text-zinc-300 border border-zinc-800 hover:border-emerald-400"
+                }`}
+              >
+                <span>🕌</span>
+                <span>100% Halal</span>
+              </button>
+
+              <button
+                onClick={() => setMaxBudgetEur(maxBudgetEur === 10 ? null : 10)}
+                className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  maxBudgetEur === 10
+                    ? "bg-amber-400 text-slate-950 font-black shadow-sm"
+                    : "bg-[#12121A] text-zinc-300 border border-zinc-800 hover:border-amber-400"
+                }`}
+              >
+                <span>🏷️</span>
+                <span>≤ 10 €</span>
+              </button>
+
+              <button
+                onClick={() => setDietaryFilters((prev) => ({ ...prev, topRatedOnly: !prev.topRatedOnly }))}
+                className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                  dietaryFilters.topRatedOnly
+                    ? "bg-amber-400 text-slate-950 font-black shadow-sm"
+                    : "bg-[#12121A] text-zinc-300 border border-zinc-800 hover:border-amber-400"
+                }`}
+              >
+                <span>⭐</span>
+                <span>4.8+</span>
+              </button>
+
+              {(selectedCategoryKey || selectedTaxIndex >= 0) && (
                 <button
                   onClick={() => {
-                    setFeedStep("home");
+                    setSelectedCategoryKey(null);
                     setSelectedTaxIndex(-1);
                     setSelectedSubIndex(-1);
-                    setSelectedBudget(0);
-                    handleClearAI();
                   }}
-                  className="px-3 py-1.5 rounded-full bg-[#141420] border border-zinc-800 text-zinc-300 hover:border-amber-400"
+                  className="shrink-0 px-3 py-1.5 rounded-full text-xs font-black bg-amber-400 text-slate-950 flex items-center gap-1.5 cursor-pointer"
                 >
-                  🏠 Accueil
-                </button>
-
-                {selectedTaxIndex >= 0 && (
-                  <button
-                    onClick={() => setFeedStep("sub")}
-                    className="px-3 py-1.5 rounded-full bg-amber-400 text-slate-950 font-bold"
-                  >
-                    {TAXONOMY[selectedTaxIndex].e} {TAXONOMY[selectedTaxIndex].k}
-                  </button>
-                )}
-
-                {selectedTaxIndex >= 0 && selectedSubIndex >= 0 && (
-                  <button
-                    onClick={() => setFeedStep("bud")}
-                    className="px-3 py-1.5 rounded-full bg-[#10B981] text-slate-950 font-black shadow-sm"
-                  >
-                    {TAXONOMY[selectedTaxIndex].subs[selectedSubIndex][0]}
-                  </button>
-                )}
-
-                {selectedBudget > 0 && (
-                  <span className="px-3 py-1.5 rounded-full bg-[#06B6D4] text-slate-950 font-black">
-                    {"€".repeat(selectedBudget)}
-                  </span>
-                )}
-              </div>
-            )}
-
-            {/* Active Metro Station Filter Alert Banner */}
-            {selectedMetroStation && (
-              <div className="mx-4 p-3 rounded-2xl bg-cyan-950/40 border border-cyan-500/40 flex items-center justify-between gap-2 text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="text-base">🚇</span>
                   <span>
-                    Filtre actif : <strong className="text-cyan-300">{selectedMetroStation.name}</strong> (spots à ≤ 800m à pied)
+                    {selectedCategoryKey
+                      ? selectedCategoryKey
+                      : `${TAXONOMY[selectedTaxIndex].e} ${TAXONOMY[selectedTaxIndex].k}${selectedSubIndex >= 0 ? ` · ${TAXONOMY[selectedTaxIndex].subs[selectedSubIndex][0]}` : ""}`}
                   </span>
-                </div>
+                  <span>✕</span>
+                </button>
+              )}
+
+              {(openNowOnly || dietaryFilters.halalStrict || maxBudgetEur !== null || dietaryFilters.topRatedOnly || selectedCategoryKey || selectedTaxIndex >= 0 || selectedZone !== "Toutes" || instantSearchQuery) && (
                 <button
-                  onClick={() => setSelectedMetroStation(null)}
-                  className="px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white text-[11px] font-bold cursor-pointer transition-colors"
+                  onClick={() => {
+                    setOpenNowOnly(false);
+                    setMaxBudgetEur(null);
+                    setSelectedCategoryKey(null);
+                    setSelectedTaxIndex(-1);
+                    setSelectedSubIndex(-1);
+                    setSelectedZone("Toutes");
+                    setInstantSearchQuery("");
+                    setDietaryFilters((prev) => ({ ...prev, halalStrict: false, topRatedOnly: false }));
+                  }}
+                  className="shrink-0 px-2.5 py-1.5 rounded-full text-xs font-bold text-rose-400 bg-rose-500/10 border border-rose-500/25 hover:text-white transition-all cursor-pointer"
                 >
-                  ✕ Effacer
+                  ✕ Tout effacer
+                </button>
+              )}
+            </div>
+
+            {/* 4. Address Count & View Mode Switcher */}
+            <div className="flex items-center justify-between pt-1">
+              <span className="font-sans font-black text-lg text-white">
+                {currentResults.length} {currentResults.length > 1 ? "adresses trouvées" : "adresse trouvée"}
+                {selectedZone !== "Toutes" && <span className="text-amber-400 text-sm font-bold"> à {selectedZone}</span>}
+              </span>
+
+              <div className="flex bg-[#12121A] border border-zinc-800 p-0.5 rounded-xl">
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    viewMode === "list"
+                      ? "bg-amber-400 text-slate-950 font-black shadow-sm"
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  Liste
+                </button>
+                <button
+                  onClick={() => setViewMode("map")}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                    viewMode === "map"
+                      ? "bg-amber-400 text-slate-950 font-black shadow-sm"
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  Carte
+                </button>
+              </div>
+            </div>
+
+            {/* Subtle Filter Relax Notice */}
+            {isFilterRelaxed && (
+              <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 flex items-center justify-between gap-2">
+                <span>📍 Filtres élargis pour afficher les meilleures adresses disponibles.</span>
+                <button
+                  onClick={() => {
+                    setSelectedZone("Toutes");
+                    setSelectedCategoryKey(null);
+                    setSelectedTaxIndex(-1);
+                    setSelectedSubIndex(-1);
+                    setInstantSearchQuery("");
+                  }}
+                  className="px-2.5 py-1 rounded-lg bg-amber-400 text-slate-950 font-black text-[11px] shrink-0 cursor-pointer"
+                >
+                  Réinitialiser
                 </button>
               </div>
             )}
 
-            {/* STEP 1: HOME FEED */}
-            {feedStep === "home" && (
-              <div className="flex flex-col gap-6">
-                {/* L'Appli Gourmande Elite Header */}
-                <div className="px-4 pt-2 flex items-center justify-between gap-2 flex-wrap">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[11px] font-black uppercase tracking-wider text-amber-400 bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-sm">
-                      <Sparkles className="w-3 h-3 text-amber-400" />
-                      L'Appli Gourmande · Édition Noire & Or 24K
-                    </span>
-                    <button
-                      onClick={() => setIsEvolvingIntelOpen(true)}
-                      className="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/25 to-cyan-500/20 text-emerald-300 border border-emerald-400/40 hover:bg-emerald-500/30 transition-all cursor-pointer flex items-center gap-1 shadow-xs"
+            {/* 6. Main View: Map or List */}
+            {viewMode === "map" ? (
+              <RealLeafletMap
+                places={currentResults}
+                userLat={userLocation.lat}
+                userLng={userLocation.lng}
+                onSelectPlace={(p) => setSelectedPlace(p)}
+                selectedPlaceId={selectedPlace?.id}
+                onRecenterGPS={handleRecenterGPS}
+                isDark={isDark}
+              />
+            ) : (
+              <div className="flex flex-col gap-3.5 pt-1">
+                {currentResults.slice(0, resultLimit).map((place) => {
+                  const dist = calculateDistanceKm(userLocation.lat, userLocation.lng, place.la, place.lo);
+                  const walkMin = Math.max(1, Math.round(dist / 0.08));
+                  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.n + " " + place.a)}`;
+                  const isFav = favorites.includes(place.id);
+
+                  return (
+                    <article
+                      key={place.id}
+                      onClick={() => setSelectedPlace(place)}
+                      className="p-4 rounded-3xl bg-[#111118] border border-zinc-800/80 hover:border-amber-500/40 shadow-lg shadow-black/40 flex flex-col gap-3 cursor-pointer transition-all group"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>🧠 Radar Évolutif</span>
-                    </button>
-                  </div>
-                  <span className="text-xs font-black text-amber-300/90">
-                    2 050+ Pépites (75 & IDF)
-                  </span>
-                </div>
-
-                {/* Barre Ultra-Pratique d'Action Rapide (Distance & Proximité) */}
-                <div className="px-4">
-                  <div className="bg-[#101018] border border-amber-500/25 rounded-2xl p-2.5 flex flex-col gap-2 shadow-lg">
-                    <div className="flex items-center justify-between text-[11px] font-bold text-zinc-400">
-                      <span className="flex items-center gap-1.5 text-amber-300">
-                        <span>⚡</span>
-                        <span>Accès Rapide Foodie :</span>
-                      </span>
-                      <span className="text-zinc-500">
-                        {distanceRadiusKm ? `Filtre actif : < ${distanceRadiusKm} km` : "Toute l'Île-de-France"}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-                      <button
-                        onClick={() => {
-                          setDistanceRadiusKm(distanceRadiusKm === 1.2 ? null : 1.2);
-                          setFeedStep("res");
-                          showToast(distanceRadiusKm === 1.2 ? "Filtre distance retiré" : "📍 Restos à moins de 15 min à pied (< 1.2 km)");
-                        }}
-                        className={`px-2.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 text-center ${
-                          distanceRadiusKm === 1.2
-                            ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/20"
-                            : "bg-[#161622] text-zinc-300 border border-zinc-800 hover:border-amber-400/40"
-                        }`}
-                      >
-                        <span>🚶</span>
-                        <span>&lt; 15 min à pied</span>
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setDistanceRadiusKm(distanceRadiusKm === 3.0 ? null : 3.0);
-                          setFeedStep("res");
-                          showToast(distanceRadiusKm === 3.0 ? "Filtre distance retiré" : "🚲 Restos à moins de 3 km");
-                        }}
-                        className={`px-2.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 text-center ${
-                          distanceRadiusKm === 3.0
-                            ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/20"
-                            : "bg-[#161622] text-zinc-300 border border-zinc-800 hover:border-amber-400/40"
-                        }`}
-                      >
-                        <span>🚲</span>
-                        <span>&lt; 3 km quartier</span>
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setOpenNowOnly(!openNowOnly);
-                          setFeedStep("res");
-                          showToast(!openNowOnly ? "🟢 Affichage des adresses ouvertes en ce moment" : "Filtre horaires retiré");
-                        }}
-                        className={`px-2.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 text-center ${
-                          openNowOnly
-                            ? "bg-emerald-400 text-slate-950 font-black shadow-md shadow-emerald-500/20"
-                            : "bg-[#161622] text-emerald-300 border border-emerald-500/30 hover:border-emerald-400"
-                        }`}
-                      >
-                        <span className={`w-2 h-2 rounded-full ${openNowOnly ? "bg-slate-950" : "bg-emerald-400 animate-pulse"}`} />
-                        <span>Ouvert direct</span>
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setSortMode(sortMode === "rating" ? "smart" : "rating");
-                          setFeedStep("res");
-                          showToast(sortMode === "rating" ? "Tri réinitialisé" : "⭐ Tri par les mieux notés (4.8+)");
-                        }}
-                        className={`px-2.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 text-center ${
-                          sortMode === "rating"
-                            ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/20"
-                            : "bg-[#161622] text-zinc-300 border border-zinc-800 hover:border-amber-400/40"
-                        }`}
-                      >
-                        <span>⭐</span>
-                        <span>Top Notés (4.8+)</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Instant Live Search & Budget Filter Toolbar */}
-                <div className="px-4 flex flex-col gap-2.5">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={instantSearchQuery}
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        setInstantSearchQuery(val);
-                        if (val.trim().length > 0) {
-                          setSelectedTaxIndex(-1);
-                          setSelectedSubIndex(-1);
-                          setFeedStep("res");
-                        }
-                      }}
-                      placeholder="🔍 Chercher Buffalo Grill, Five Guys, tacos, smash burger, 93200..."
-                      className="w-full py-3 pl-10 pr-10 rounded-2xl bg-[#141420] border border-amber-500/30 text-white text-xs sm:text-sm placeholder:text-zinc-500 outline-none focus:border-amber-400 focus:shadow-[0_0_20px_rgba(245,158,11,0.18)] transition-all"
-                    />
-                    <div className="absolute left-3.5 top-3.5 text-amber-400">
-                      <Search className="w-4 h-4" />
-                    </div>
-                    {instantSearchQuery && (
-                      <button
-                        onClick={() => setInstantSearchQuery("")}
-                        className="absolute right-3.5 top-3 text-zinc-400 hover:text-white text-xs font-bold p-1"
-                      >
-                        ✕
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Catégories Rapides en 1-Clic (Style Uber Eats) */}
-                  <UberEatsStyleCategories
-                    onSelectCategory={(query) => {
-                      setInstantSearchQuery(query);
-                      setSelectedTaxIndex(-1);
-                      setSelectedSubIndex(-1);
-                      setSelectedBudget(0);
-                      setFeedStep("res");
-                    }}
-                    allPlaces={allPlaces}
-                    selectedTaxIndex={selectedTaxIndex}
-                  />
-
-                  {/* Instant 1-Tap Filter Chips Bar */}
-                  <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
-                    <button
-                      onClick={() => setOpenNowOnly(!openNowOnly)}
-                      className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                        openNowOnly
-                          ? "bg-emerald-400 text-slate-950 font-black shadow-sm"
-                          : "bg-[#141420] text-zinc-300 border border-emerald-500/30 hover:border-emerald-400"
-                      }`}
-                    >
-                      <span className={`w-2 h-2 rounded-full ${openNowOnly ? "bg-slate-950" : "bg-emerald-400 animate-pulse"}`} />
-                      <span>Ouvert direct</span>
-                    </button>
-
-                    <button
-                      onClick={() => setDietaryFilters((prev) => ({ ...prev, halalStrict: !prev.halalStrict }))}
-                      className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
-                        dietaryFilters.halalStrict
-                          ? "bg-emerald-400 text-slate-950 font-black shadow-sm"
-                          : "bg-[#141420] text-zinc-300 border border-emerald-500/30 hover:border-emerald-400"
-                      }`}
-                    >
-                      <span>🕌</span>
-                      <span>100% Halal</span>
-                    </button>
-
-                    <button
-                      onClick={() => setMaxBudgetEur(maxBudgetEur === 10 ? null : 10)}
-                      className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
-                        maxBudgetEur === 10
-                          ? "bg-amber-400 text-slate-950 font-black shadow-sm"
-                          : "bg-[#141420] text-zinc-300 border border-amber-500/20 hover:border-amber-400"
-                      }`}
-                    >
-                      <span>💸</span>
-                      <span>≤ 10 €</span>
-                    </button>
-
-                    <button
-                      onClick={() => setDietaryFilters((prev) => ({ ...prev, terrace: !prev.terrace }))}
-                      className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
-                        dietaryFilters.terrace
-                          ? "bg-amber-400 text-slate-950 font-black shadow-sm"
-                          : "bg-[#141420] text-zinc-300 border border-amber-500/20 hover:border-amber-400"
-                      }`}
-                    >
-                      <span>☀️</span>
-                      <span>Terrasse</span>
-                    </button>
-
-                    <button
-                      onClick={() => setDietaryFilters((prev) => ({ ...prev, topRatedOnly: !prev.topRatedOnly }))}
-                      className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
-                        dietaryFilters.topRatedOnly
-                          ? "bg-amber-400 text-slate-950 font-black shadow-sm"
-                          : "bg-[#141420] text-zinc-300 border border-amber-500/20 hover:border-amber-400"
-                      }`}
-                    >
-                      <span>⭐</span>
-                      <span>Top Noté 4.8+</span>
-                    </button>
-
-                    {(openNowOnly || dietaryFilters.halalStrict || maxBudgetEur !== null || dietaryFilters.terrace || dietaryFilters.topRatedOnly) && (
-                      <button
-                        onClick={() => {
-                          setOpenNowOnly(false);
-                          setMaxBudgetEur(null);
-                          setDietaryFilters({
-                            halalStrict: false,
-                            vegetarian: false,
-                            terrace: false,
-                            lateNight: false,
-                            budgetUnder10: false,
-                            fastService: false,
-                            tiktokViral: false,
-                            topRatedOnly: false,
-                          });
-                        }}
-                        className="shrink-0 px-2.5 py-1 rounded-full text-xs font-bold text-rose-400 hover:text-white bg-rose-500/10 border border-rose-500/25 transition-all cursor-pointer"
-                      >
-                        ✕ Réinitialiser
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Quick Budget Filters */}
-                  <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-amber-400/80 shrink-0">
-                      Budget max :
-                    </span>
-                    {[
-                      { label: "Tous", val: null },
-                      { label: "≤ 10 € 💸", val: 10 },
-                      { label: "≤ 15 € 🍔", val: 15 },
-                      { label: "≤ 25 € 🍷", val: 25 },
-                    ].map((b) => (
-                      <button
-                        key={b.label}
-                        onClick={() => {
-                          setMaxBudgetEur(b.val);
-                          if (b.val !== null) setFeedStep("res");
-                        }}
-                        className={`shrink-0 px-2.5 py-1 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                          maxBudgetEur === b.val
-                            ? "bg-amber-400 text-slate-950 font-black shadow-sm"
-                            : "bg-[#141420] text-zinc-400 border border-white/5 hover:border-amber-400/40 hover:text-white"
-                        }`}
-                      >
-                        {b.label}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Quick Food Inspiration Pills */}
-                  <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-0.5">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-amber-400/80 shrink-0">
-                      Envie de :
-                    </span>
-                    {[
-                      { label: "🍔 Smash", q: "smash" },
-                      { label: "🫓 Cheese Naan", q: "naan" },
-                      { label: "🍗 Poulet Frit", q: "poulet" },
-                      { label: "🌮 Tacos / Birria", q: "tacos" },
-                      { label: "🍜 Ramen", q: "ramen" },
-                      { label: "🍕 Pizza Napolitaine", q: "pizza" },
-                      { label: "🥞 Brunch", q: "brunch" },
-                      { label: "🥐 Cookies XXL", q: "cookie" },
-                      { label: "🥙 Kebab Berlinois", q: "kebab" },
-                      { label: "🥘 Couscous", q: "couscous" },
-                    ].map((item) => (
-                      <button
-                        key={item.label}
-                        onClick={() => {
-                          setInstantSearchQuery(item.q);
-                          setFeedStep("res");
-                        }}
-                        className={`shrink-0 px-2.5 py-1 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                          instantSearchQuery.toLowerCase() === item.q.toLowerCase()
-                            ? "bg-amber-400 text-slate-950 font-black shadow-sm"
-                            : "bg-[#141420] text-zinc-300 border border-amber-500/20 hover:border-amber-400/50 hover:text-white"
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 12 Categories Grid (Photo 3 Element - Placed right at top) */}
-                <div className="px-4 flex flex-col gap-2.5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
-                      <span>🍽️ Grandes Catégories & Cuisines</span>
-                    </h2>
-                    <span className="text-xs text-amber-300 font-bold">12 univers</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-3">
-                    {TAXONOMY.map((tax, idx) => (
-                      <button
-                        key={tax.k}
-                        onClick={() => {
-                          setSelectedTaxIndex(idx);
-                          setSelectedSubIndex(-1);
-                          setSelectedBudget(0);
-                          setFeedStep("sub");
-                        }}
-                        className="group relative h-28 rounded-3xl p-3.5 text-white text-left flex flex-col justify-end overflow-hidden shadow-sm hover:shadow-md transition-all active:scale-97 cursor-pointer"
-                        style={{
-                          background: `linear-gradient(135deg, ${tax.c[0]}, ${tax.c[1]})`,
-                        }}
-                      >
-                        <span className="absolute right-1 -top-1 text-5xl opacity-80 group-hover:scale-115 transition-transform duration-300">
-                          {tax.e}
-                        </span>
-                        <span className="font-black text-base leading-tight relative z-10">
-                          {tax.k}
-                        </span>
-                        <span className="text-xs opacity-90 relative z-10">
-                          {allPlaces.filter(tax.m).length} adresses
-                        </span>
-                      </button>
-                    ))}
-
-                    {/* Surprise me tile */}
-                    <button
-                      onClick={handleSurpriseMe}
-                      className="col-span-2 h-24 rounded-3xl p-3.5 text-slate-950 font-black text-left flex items-center justify-between overflow-hidden shadow-md active:scale-97 cursor-pointer bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-105"
-                    >
-                      <div>
-                        <span className="font-black text-lg block leading-tight text-slate-950">
-                          🎲 Surprends-moi !
-                        </span>
-                        <span className="text-xs font-bold text-slate-900/80">
-                          Une excellente adresse tirée au sort près de toi
-                        </span>
-                      </div>
-                      <span className="text-4xl">🎲</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Mode Express 3 Clics : On mange où ? */}
-                <div className="px-4">
-                  <div
-                    onClick={() => setIsExpressLunchOpen(true)}
-                    className="p-3.5 sm:p-4 rounded-3xl bg-gradient-to-r from-amber-500/20 via-[#141424] to-cyan-500/15 border border-amber-500/35 hover:border-amber-400 transition-all flex items-center justify-between gap-3 shadow-lg shadow-amber-500/10 cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-950 flex items-center justify-center font-black text-xl shadow-md group-hover:scale-105 transition-transform shrink-0">
-                        ⚡
-                      </div>
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-1.5 flex-wrap">
-                          <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 bg-amber-400/15 px-2 py-0.2 rounded-full border border-amber-400/30">
-                            Express 3 Clics
-                          </span>
-                          <span className="text-[11px] font-bold text-zinc-400">On mange où ce midi / ce soir ?</span>
-                        </div>
-                        <h3 className="font-sans font-black text-sm sm:text-base text-white group-hover:text-amber-300 transition-colors truncate mt-0.5">
-                          Décide pour moi sans hésiter → <span className="text-amber-300 font-bold">3 pépites parfaites</span>
-                        </h3>
-                      </div>
-                    </div>
-                    <span className="shrink-0 px-3.5 py-2 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 font-black text-xs group-hover:brightness-110 shadow-md transition-all">
-                      Choisir ⚡
-                    </span>
-                  </div>
-                </div>
-
-                {/* Direct Tools Access Bar (No horizontal scroll needed: 100% visible immediately) */}
-                <div className="px-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-black uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
-                      <span>⚡</span>
-                      <span>Outils Gourmands en 1-Clic</span>
-                    </span>
-                    <button
-                      onClick={() => setIsToolsMenuOpen(true)}
-                      className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>Tous les outils (8+) →</span>
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                    {/* 1. All Tools Drawer */}
-                    <button
-                      onClick={() => setIsToolsMenuOpen(true)}
-                      className="p-3 rounded-2xl bg-gradient-to-br from-amber-500/20 via-[#141420] to-[#141420] border border-amber-400/40 hover:border-amber-300 transition-all flex items-center gap-2.5 text-left group cursor-pointer shadow-md"
-                    >
-                      <div className="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-black text-base shrink-0 group-hover:scale-105 transition-transform shadow-sm">
-                        ⚡
-                      </div>
-                      <div className="min-w-0">
-                        <strong className="text-xs font-black text-white group-hover:text-amber-300 block truncate">
-                          Boîte à Outils
-                        </strong>
-                        <span className="text-[10px] text-amber-200/70 block truncate">
-                          Tous les 8+ modules
-                        </span>
-                      </div>
-                    </button>
-
-                    {/* 2. Midpoint Meetup */}
-                    <button
-                      onClick={() => setIsMidpointOpen(true)}
-                      className="p-3 rounded-2xl bg-[#12121A] border border-cyan-500/35 hover:border-cyan-400 transition-all flex items-center gap-2.5 text-left group cursor-pointer shadow-sm"
-                    >
-                      <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-black text-base shrink-0 group-hover:scale-105 transition-transform border border-cyan-500/30">
-                        🤝
-                      </div>
-                      <div className="min-w-0">
-                        <strong className="text-xs font-black text-cyan-300 group-hover:text-cyan-200 block truncate">
-                          À Mi-Chemin
-                        </strong>
-                        <span className="text-[10px] text-zinc-400 block truncate">
-                          RDV équidistant potes
-                        </span>
-                      </div>
-                    </button>
-
-                    {/* 3. Dietary & Halal */}
-                    <button
-                      onClick={() => setIsDietaryOpen(true)}
-                      className="p-3 rounded-2xl bg-[#12121A] border border-emerald-500/35 hover:border-emerald-400 transition-all flex items-center gap-2.5 text-left group cursor-pointer shadow-sm"
-                    >
-                      <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-black text-base shrink-0 group-hover:scale-105 transition-transform border border-emerald-500/30">
-                        🛡️
-                      </div>
-                      <div className="min-w-0">
-                        <strong className="text-xs font-black text-emerald-300 group-hover:text-emerald-200 block truncate">
-                          Filtres & Halal
-                        </strong>
-                        <span className="text-[10px] text-zinc-400 block truncate">
-                          Certifié, Végé, Terrasse
-                        </span>
-                      </div>
-                    </button>
-
-                    {/* 4. Golden Jackpot */}
-                    <button
-                      onClick={() => setIsJackpotOpen(true)}
-                      className="p-3 rounded-2xl bg-[#12121A] border border-yellow-500/35 hover:border-yellow-400 transition-all flex items-center gap-2.5 text-left group cursor-pointer shadow-sm"
-                    >
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-950 flex items-center justify-center font-black text-base shrink-0 group-hover:scale-105 group-hover:rotate-6 transition-all shadow-sm">
-                        🎰
-                      </div>
-                      <div className="min-w-0">
-                        <strong className="text-xs font-black text-yellow-300 group-hover:text-yellow-200 block truncate">
-                          Jackpot 24K
-                        </strong>
-                        <span className="text-[10px] text-zinc-400 block truncate">
-                          Machine à sous surprise
-                        </span>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Live Weekly Spotlight & Continuous Time-Based Evolution Banner */}
-                <WeeklyEvolutionBanner
-                  onSearchTopic={(query) => {
-                    setInstantSearchQuery(query);
-                    setFeedStep("res");
-                  }}
-                />
-
-                {/* Direct Jump Banners to Dedicated Hubs (Fast-Food & Boxs) */}
-                <div className="px-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div
-                    onClick={() => setActiveTab("fastfood")}
-                    className="p-3.5 rounded-3xl bg-gradient-to-r from-amber-500/20 via-[#141424] to-[#12121A] border border-amber-500/35 hover:border-amber-400 transition-all flex items-center justify-between gap-3 shadow-md cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-11 h-11 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-black text-2xl group-hover:scale-105 transition-transform shrink-0 border border-amber-400/30">
-                        🍔
-                      </div>
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[9px] font-black uppercase tracking-wider text-amber-300 bg-amber-400/15 px-1.5 py-0.2 rounded-md">
-                            QG Dédié
-                          </span>
-                          <span className="text-[10px] text-zinc-400">Grands connus & pépites</span>
-                        </div>
-                        <h4 className="font-sans font-black text-sm text-white group-hover:text-amber-300 transition-colors truncate">
-                          Le QG Fast-Food & "Trucs du Moment" →
-                        </h4>
-                      </div>
-                    </div>
-                    <span className="text-xs font-black text-amber-400 group-hover:translate-x-0.5 transition-transform shrink-0">
-                      Ouvrir →
-                    </span>
-                  </div>
-
-                  <div
-                    onClick={() => setActiveTab("deals")}
-                    className="p-3.5 rounded-3xl bg-gradient-to-r from-emerald-500/20 via-[#141424] to-[#12121A] border border-emerald-500/35 hover:border-emerald-400 transition-all flex items-center justify-between gap-3 shadow-md cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-black text-2xl group-hover:scale-105 transition-transform shrink-0 border border-emerald-500/30">
-                        📦
-                      </div>
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[9px] font-black uppercase tracking-wider text-emerald-300 bg-emerald-500/15 px-1.5 py-0.2 rounded-md">
-                            Bons Plans
-                          </span>
-                          <span className="text-[10px] text-zinc-400">TikTok Reels & Hacks</span>
-                        </div>
-                        <h4 className="font-sans font-black text-sm text-white group-hover:text-emerald-300 transition-colors truncate">
-                          Les Boxs & Menus ≤ 10 € →
-                        </h4>
-                      </div>
-                    </div>
-                    <span className="text-xs font-black text-emerald-400 group-hover:translate-x-0.5 transition-transform shrink-0">
-                      Voir tout →
-                    </span>
-                  </div>
-                </div>
-
-                {/* Instant Paris Arrondissements & Suburbs Navigator */}
-                <ArrondissementQuickBar
-                  selectedZone={selectedZone}
-                  onSelectZone={(zone) => {
-                    setSelectedZone(zone);
-                    if (zone !== "Toutes") {
-                      setFeedStep("res");
-                    }
-                  }}
-                  placesCount={currentResults.length}
-                />
-
-                {/* Viandes, Smash Burgers & Grillades d'Exception */}
-                <div className="flex flex-col gap-2">
-                  <div className="px-4 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
-                        <span>🥩 Viandes, Smash & Grillades</span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-400 text-slate-950">
-                          Pépites croustillantes & braisées
-                        </span>
-                      </h2>
-                      <p className="text-xs text-zinc-400">
-                        Smash burgers coulants, poulet frit doré, viandes maturées & brochettes naan
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setSelectedTaxIndex(1);
-                        setSelectedSubIndex(-1);
-                        setSelectedBudget(0);
-                        setFeedStep("sub");
-                      }}
-                      className="text-xs font-bold text-amber-400 hover:underline shrink-0"
-                    >
-                      Tout voir →
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
-                    {allPlaces
-                      .filter((p) => TAXONOMY[1].m(p) && (p.r >= 4.6 || p.tiktokViral))
-                      .slice(0, 10)
-                      .map((place) => (
-                        <button
-                          key={place.id}
-                          onClick={() => setSelectedPlace(place)}
-                          className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-zinc-800 shadow-md hover:border-amber-400/50 transition-all cursor-pointer"
-                        >
+                      {/* Top: Icon + Title + Meta + Favorite */}
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-start gap-3 min-w-0">
                           <div
-                            className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
+                            className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border border-amber-500/30"
                             style={{ background: artStyle(place) }}
                           >
                             <svg
-                              className="w-14 h-14"
+                              className="w-8 h-8"
                               viewBox="0 0 100 100"
                               dangerouslySetInnerHTML={{ __html: FA_ICONS[foodKey(place)] }}
                             />
-                            <span className="absolute left-1.5 bottom-1.5 px-1.5 py-0.5 rounded-lg bg-black/80 backdrop-blur-xs text-white font-black text-[10px] shadow-xs">
-                              ★ {place.r.toFixed(1)}
-                            </span>
-                            {place.isHalal && (
-                              <span className="absolute right-1.5 top-1.5 px-1.5 py-0.5 rounded-md bg-emerald-500/90 text-slate-950 font-black text-[9px]">
-                                🕌 Halal
-                              </span>
-                            )}
                           </div>
-                          <span className="font-black text-xs text-white block truncate mt-2">
-                            {place.n}
-                          </span>
-                          <span className="text-[11px] text-zinc-400 block truncate">
-                            {place.sub} · {place.z}
-                          </span>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <h3 className="font-black text-base text-white group-hover:text-amber-300 transition-colors leading-tight">
+                                {place.n}
+                              </h3>
+                              {place.isHalal && (
+                                <span className="px-1.5 py-0.5 rounded-md text-[10px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                  🕌 Halal
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Clean unboxed metadata with bullet separators */}
+                            <div className="flex items-center gap-1.5 text-xs text-zinc-400 mt-1 flex-wrap">
+                              <span className="text-amber-400 font-bold">★ {place.r.toFixed(1)}</span>
+                              <span>({place.c.toLocaleString("fr-FR")} avis)</span>
+                              <span>·</span>
+                              <span className="text-zinc-300 font-medium">{place.sub}</span>
+                              <span>·</span>
+                              <span className="text-amber-200">{"€".repeat(place.pr)}</span>
+                            </div>
+
+                            <div className="flex items-center gap-2 text-xs text-zinc-400 mt-0.5 flex-wrap">
+                              <span className="text-amber-300/90 font-medium truncate">📍 {place.a}</span>
+                              <span>·</span>
+                              <span className="text-zinc-400">{formatDistance(dist)}</span>
+                              <span>·</span>
+                              <span className="text-emerald-400 font-semibold">🚶 ~{walkMin} min</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Favorite Button */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleToggleFavorite(place.id);
+                          }}
+                          className={`p-2 rounded-full shrink-0 transition-all cursor-pointer ${
+                            isFav
+                              ? "bg-rose-500/20 text-rose-500 border border-rose-500/40"
+                              : "bg-[#181824] text-zinc-400 hover:text-white border border-zinc-800"
+                          }`}
+                          title="Ajouter aux Favoris"
+                        >
+                          <Heart className={`w-4 h-4 ${isFav ? "fill-current" : ""}`} />
                         </button>
-                      ))}
-                  </div>
-                </div>
-
-                {/* Tendances autour de toi */}
-                <div className="flex flex-col gap-2">
-                  <div className="px-4 flex items-center justify-between">
-                    <h2 className="font-sans font-black text-xl text-white">
-                      🔥 Tendances autour de toi
-                    </h2>
-                  </div>
-                  <div className="flex items-center gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
-                    {hotPlaces.map((place) => (
-                      <button
-                        key={place.id}
-                        onClick={() => setSelectedPlace(place)}
-                        className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-zinc-800 shadow-md hover:border-amber-400/50 transition-all cursor-pointer"
-                      >
-                        <div
-                          className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
-                          style={{ background: artStyle(place) }}
-                        >
-                          <svg
-                            className="w-14 h-14"
-                            viewBox="0 0 100 100"
-                            dangerouslySetInnerHTML={{ __html: FA_ICONS[foodKey(place)] }}
-                          />
-                          <span className="absolute left-1.5 bottom-1.5 px-2 py-0.5 rounded-lg bg-black/80 backdrop-blur-xs text-white font-black text-[11px] shadow-xs">
-                            ★ {place.r.toFixed(1)}
-                          </span>
-                        </div>
-                        <span className="font-black text-xs text-white block truncate mt-2">
-                          {place.n}
-                        </span>
-                        <span className="text-[11px] text-zinc-400 block truncate">
-                          {place.sub} · {"€".repeat(place.pr)}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Pépites Halal de la Capitale & 93 */}
-                <div className="flex flex-col gap-2">
-                  <div className="px-4 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
-                        <span>🕌 Pépites Halal de Paris & 93</span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-[#10B981] text-slate-950">
-                          1 200+ adresses
-                        </span>
-                      </h2>
-                      <p className="text-xs text-zinc-400">
-                        Poulet frit croustillant, smash burgers, naans & grillades certifiés
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
-                    {allPlaces.filter((p) => p.isHalal && (p.r >= 4.7 || p.tiktokViral)).slice(0, 10).map((place) => (
-                      <button
-                        key={place.id}
-                        onClick={() => setSelectedPlace(place)}
-                        className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-zinc-800 shadow-md hover:border-amber-400/50 transition-all cursor-pointer"
-                      >
-                        <div
-                          className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
-                          style={{ background: artStyle(place) }}
-                        >
-                          <svg
-                            className="w-14 h-14"
-                            viewBox="0 0 100 100"
-                            dangerouslySetInnerHTML={{ __html: FA_ICONS[foodKey(place)] }}
-                          />
-                          <span className="absolute left-1.5 bottom-1.5 px-1.5 py-0.5 rounded-lg bg-[#10B981] text-slate-950 font-black text-[10px] shadow-xs flex items-center gap-0.5">
-                            ★ {place.r.toFixed(1)}
-                          </span>
-                          <span className="absolute right-1.5 top-1.5 px-1.5 py-0.5 rounded-md bg-black/70 backdrop-blur-xs text-white font-black text-[9px]">
-                            🕌 Halal
-                          </span>
-                        </div>
-                        <span className="font-black text-xs text-white block truncate mt-2">
-                          {place.n}
-                        </span>
-                        <span className="text-[11px] text-zinc-400 block truncate">
-                          {place.sub} · {place.z}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Marchés Parisiens & Halles Couvertes */}
-                <div className="flex flex-col gap-2">
-                  <div className="px-4 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-sans font-black text-xl text-white">
-                        🏛️ Marchés Parisiens & Halles Cultes
-                      </h2>
-                      <p className="text-xs text-zinc-400">
-                        Enfants Rouges, Aligre, Batignolles, Belleville, Saint-Denis...
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
-                    {allPlaces.filter((p) => p.cat === "Marché" || /marché|halle|food court/i.test((p.n || "") + " " + (p.sub || ""))).slice(0, 8).map((place) => (
-                      <button
-                        key={place.id}
-                        onClick={() => setSelectedPlace(place)}
-                        className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-amber-500/25 shadow-sm hover:border-amber-400 hover:shadow-md hover:shadow-amber-500/10 transition-all cursor-pointer"
-                      >
-                        <div
-                          className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
-                          style={{ background: artStyle(place) }}
-                        >
-                          <svg
-                            className="w-14 h-14"
-                            viewBox="0 0 100 100"
-                            dangerouslySetInnerHTML={{ __html: FA_ICONS[foodKey(place)] }}
-                          />
-                          <span className="absolute left-1.5 bottom-1.5 px-1.5 py-0.5 rounded-lg bg-black/85 backdrop-blur-xs text-amber-300 border border-amber-500/30 font-black text-[10px] shadow-xs">
-                            ★ {place.r.toFixed(1)}
-                          </span>
-                        </div>
-                        <span className="font-black text-xs text-white block truncate mt-2">
-                          {place.n}
-                        </span>
-                        <span className="text-[11px] text-zinc-400 block truncate">
-                          {place.sub} · {place.z}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tea Time, Goûter & Pâtisseries d'Exception */}
-                <div className="flex flex-col gap-2">
-                  <div className="px-4 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-sans font-black text-xl text-white flex items-center gap-1.5">
-                        <span>🫖 Tea Time, Goûter & Pâtisseries</span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-pink-500/20 text-pink-300 border border-pink-500/30">
-                          Douceurs & Salons
-                        </span>
-                      </h2>
-                      <p className="text-xs text-zinc-400">
-                        Salons de thé intimistes, coffee shops de spécialité, brunchs & cookies XXL
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setSelectedTaxIndex(3);
-                        setSelectedSubIndex(-1);
-                        setSelectedBudget(0);
-                        setFeedStep("sub");
-                      }}
-                      className="text-xs font-bold text-pink-400 hover:underline shrink-0"
-                    >
-                      Tout voir →
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-3 px-4 overflow-x-auto no-scrollbar pb-2">
-                    {allPlaces.filter((p) => p.cat === "Goûter" || /brunch|pâtisserie|boulangerie/i.test(p.sub)).slice(0, 8).map((place) => (
-                      <button
-                        key={place.id}
-                        onClick={() => setSelectedPlace(place)}
-                        className="shrink-0 w-36 text-left bg-[#12121A] rounded-2xl p-2.5 border border-amber-500/25 shadow-sm hover:border-amber-400 hover:shadow-md hover:shadow-amber-500/10 transition-all cursor-pointer"
-                      >
-                        <div
-                          className="w-full h-24 rounded-xl flex items-center justify-center relative overflow-hidden"
-                          style={{ background: artStyle(place) }}
-                        >
-                          <svg
-                            className="w-14 h-14"
-                            viewBox="0 0 100 100"
-                            dangerouslySetInnerHTML={{ __html: FA_ICONS[foodKey(place)] }}
-                          />
-                          <span className="absolute left-1.5 bottom-1.5 px-1.5 py-0.5 rounded-lg bg-black/85 backdrop-blur-xs text-amber-300 border border-amber-500/30 font-black text-[10px] shadow-xs">
-                            ★ {place.r.toFixed(1)}
-                          </span>
-                        </div>
-                        <span className="font-black text-xs text-white block truncate mt-2">
-                          {place.n}
-                        </span>
-                        <span className="text-[11px] text-zinc-400 block truncate">
-                          {place.sub} · {place.z}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* STEP 2: SUB-CATEGORY SELECTION */}
-            {feedStep === "sub" && selectedTaxIndex >= 0 && (
-              <div className="px-4 flex flex-col gap-3">
-                <h2 className="font-sans font-black text-2xl text-white">
-                  {TAXONOMY[selectedTaxIndex].e} {TAXONOMY[selectedTaxIndex].k} : quel style ?
-                </h2>
-                {TAXONOMY[selectedTaxIndex].note && (
-                  <p className="text-xs text-zinc-400">
-                    {TAXONOMY[selectedTaxIndex].note}
-                  </p>
-                )}
-
-                <div className="grid grid-cols-2 gap-2.5">
-                  {/* View all in category */}
-                  <button
-                    onClick={() => {
-                      setSelectedSubIndex(-1);
-                      setFeedStep("bud");
-                    }}
-                    className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-[#12121A] border-2 border-amber-400/80 text-left shadow-md hover:bg-amber-500/10 transition-all cursor-pointer"
-                  >
-                    <span className="text-2xl">✨</span>
-                    <div>
-                      <span className="font-black text-sm text-white block">
-                        Tout voir
-                      </span>
-                      <span className="text-xs text-amber-300/80">
-                        {allPlaces.filter(TAXONOMY[selectedTaxIndex].m).length} adresses
-                      </span>
-                    </div>
-                  </button>
-
-                  {TAXONOMY[selectedTaxIndex].subs.map(([label, emoji, filterFn], i) => {
-                    const count = allPlaces.filter((p) => TAXONOMY[selectedTaxIndex].m(p) && filterFn(p)).length;
-                    if (count === 0) return null;
-
-                    return (
-                      <button
-                        key={label}
-                        onClick={() => {
-                          setSelectedSubIndex(i);
-                          setFeedStep("bud");
-                        }}
-                        className="flex items-center gap-2.5 p-3.5 rounded-2xl bg-[#12121A] border border-amber-500/25 hover:border-amber-400 text-left shadow-sm hover:shadow-amber-500/10 transition-all cursor-pointer group"
-                      >
-                        <span className="text-2xl group-hover:scale-110 transition-transform">{emoji}</span>
-                        <div>
-                          <span className="font-black text-sm text-white block leading-snug group-hover:text-amber-300 transition-colors">
-                            {label}
-                          </span>
-                          <span className="text-xs text-zinc-400">
-                            {count} adresses
-                          </span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* STEP 3: BUDGET SELECTION */}
-            {feedStep === "bud" && (
-              <div className="px-4 flex flex-col gap-3">
-                <h2 className="font-sans font-black text-2xl text-white flex items-center gap-2">
-                  <span>Ton budget ?</span>
-                  <span className="text-xs font-black px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">24K</span>
-                </h2>
-
-                <div className="flex flex-col gap-2.5">
-                  {BUDGET_STEPS.map((step) => (
-                    <button
-                      key={step.val}
-                      onClick={() => {
-                        setSelectedBudget(step.val);
-                        setFeedStep("res");
-                      }}
-                      className="flex items-center gap-3.5 p-4 rounded-3xl bg-[#12121A] border border-amber-500/25 hover:border-amber-400 text-left shadow-md hover:shadow-amber-500/10 transition-all cursor-pointer group"
-                    >
-                      <span className="text-3xl group-hover:scale-115 transition-transform">{step.emoji}</span>
-                      <div className="flex-1">
-                        <span className="font-black text-base text-white block group-hover:text-amber-300 transition-colors">
-                          {step.label}
-                        </span>
-                        <span className="text-xs text-zinc-400">
-                          {step.desc}
-                        </span>
                       </div>
-                      <ChevronRight className="w-5 h-5 text-amber-400/70 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
 
-            {/* STEP 4: RESULTS VIEW */}
-            {feedStep === "res" && (
-              <div className="flex flex-col gap-4">
-                {/* Header with count and view mode toggle */}
-                <div className="px-4 flex items-center justify-between">
-                  <h2 className="font-sans font-black text-2xl text-white flex items-center gap-2">
-                    <span>{currentResults.length.toLocaleString("fr-FR")} adresse{currentResults.length > 1 ? "s" : ""}</span>
-                    <span className="text-[11px] font-black uppercase px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                      Vérifiées
-                    </span>
-                  </h2>
-
-                  <div className="flex bg-[#0D0D14] border border-amber-500/25 p-1 rounded-xl shadow-inner">
-                    <button
-                      onClick={() => setViewMode("list")}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                        viewMode === "list"
-                          ? "bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-black shadow-md"
-                          : "text-zinc-400 hover:text-white"
-                      }`}
-                    >
-                      Liste
-                    </button>
-                    <button
-                      onClick={() => setViewMode("map")}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                        viewMode === "map"
-                          ? "bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-black shadow-md"
-                          : "text-zinc-400 hover:text-white"
-                      }`}
-                    >
-                      Carte GPS
-                    </button>
-                  </div>
-                </div>
-
-                {/* Zones Row */}
-                <div className="px-4 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-                  <span className="text-xs font-bold text-amber-400/80 shrink-0">Où ?</span>
-                  {allZones.map((z) => (
-                    <button
-                      key={z}
-                      onClick={() => setSelectedZone(z)}
-                      className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                        selectedZone === z
-                          ? "bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-black shadow-md shadow-amber-500/20"
-                          : "bg-[#12121A] text-zinc-300 border border-amber-500/20 hover:border-amber-400"
-                      }`}
-                    >
-                      {z === "Toutes" ? "Partout" : z}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Wishes Pills Row */}
-                <div className="px-4 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-                  <span className="text-xs font-bold text-amber-400/80 shrink-0">Envies :</span>
-                  {Object.keys(WISHES).map((w) => {
-                    const isOn = activeWishes.includes(w);
-                    return (
-                      <button
-                        key={w}
-                        onClick={() => {
-                          setActiveWishes(isOn ? activeWishes.filter((x) => x !== w) : [...activeWishes, w]);
-                        }}
-                        className={`shrink-0 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                          isOn
-                            ? "bg-gradient-to-r from-amber-400 to-amber-500 text-zinc-950 font-black shadow-md shadow-amber-500/20"
-                            : "bg-[#12121A] text-zinc-300 border border-amber-500/20 hover:border-amber-400"
-                        }`}
-                      >
-                        {w}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* 24K Luxury Sort Mode Selector */}
-                <div className="px-4 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-                  <span className="text-xs font-bold text-amber-400/80 shrink-0">Trier par :</span>
-                  {[
-                    { id: "smart", label: "⚡ Smart 24K" },
-                    { id: "distance", label: "🚶 Le + Proche" },
-                    { id: "rating", label: "⭐ Note ★ 4.8+" },
-                    { id: "popular", label: "🔥 + Populaire" },
-                    { id: "price", label: "💸 Moins cher" },
-                  ].map((s) => (
-                    <button
-                      key={s.id}
-                      onClick={() => setSortMode(s.id as any)}
-                      className={`shrink-0 px-2.5 py-1 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
-                        sortMode === s.id
-                          ? "bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 font-black shadow-sm"
-                          : "bg-[#141420] text-zinc-400 border border-amber-500/15 hover:border-amber-400/50 hover:text-white"
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Anti-0 Guarantee Banner */}
-                {isFilterRelaxed && (
-                  <div className="mx-4 p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-start gap-3 shadow-xs">
-                    <span className="text-xl shrink-0">✨</span>
-                    <div className="text-xs flex-1">
-                      <span className="font-black text-emerald-800 dark:text-emerald-300 block mb-0.5">
-                        Garantie Anti-Zéro Résultat active !
-                      </span>
-                      <span className="text-emerald-400 leading-relaxed block">
-                        Aucune adresse ne cochait 100% de ces filtres stricts en même temps. L'Appli Gourmande a intelligemment élargi la zone pour vous présenter les meilleures pépites {activeWishes.includes("Halal") || activeWishes.includes("🕌 Halal") ? "Halal " : ""}disponibles !
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setActiveWishes([]);
-                        setSelectedZone("Toutes");
-                        setSelectedBudget(0);
-                      }}
-                      className="shrink-0 px-2.5 py-1 rounded-xl bg-[#10B981] hover:bg-[#059669] text-slate-950 text-[11px] font-black cursor-pointer"
-                    >
-                      Réinitialiser
-                    </button>
-                  </div>
-                )}
-
-                {/* Switch Between Real Leaflet Map and List */}
-                {viewMode === "map" ? (
-                  <RealLeafletMap
-                    places={currentResults}
-                    userLat={userLocation.lat}
-                    userLng={userLocation.lng}
-                    onSelectPlace={(p) => setSelectedPlace(p)}
-                    selectedPlaceId={selectedPlace?.id}
-                    onRecenterGPS={handleRecenterGPS}
-                    isDark={isDark}
-                  />
-                ) : (
-                  <div className="px-4 flex flex-col gap-4">
-                    {/* Top 3 Podiums */}
-                    {currentResults.slice(0, 3).map((place, idx) => (
-                      <article
-                        key={place.id}
-                        onClick={() => setSelectedPlace(place)}
-                        className="p-4 rounded-3xl bg-[#12121A] border border-amber-500/25 shadow-[0_4px_20px_rgba(0,0,0,0.5)] flex flex-col gap-3 cursor-pointer hover:border-amber-400 hover:shadow-amber-500/10 transition-all group"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex items-center gap-3">
-                            <div
-                              className="w-16 h-16 rounded-2xl flex items-center justify-center relative overflow-hidden shrink-0 border border-amber-500/30"
-                              style={{ background: artStyle(place) }}
-                            >
-                              <span className="absolute top-1 left-1 text-base drop-shadow-sm">
-                                {["🥇", "🥈", "🥉"][idx]}
-                              </span>
-                              <svg
-                                className="w-10 h-10"
-                                viewBox="0 0 100 100"
-                                dangerouslySetInnerHTML={{ __html: FA_ICONS[foodKey(place)] }}
-                              />
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-1.5 flex-wrap">
-                                <h3 className="font-black text-base text-white group-hover:text-amber-300 transition-colors">
-                                  {place.n}
-                                </h3>
-                                {place.tiktokViral && (
-                                  <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-[#FF0050] text-white">
-                                    TIKTOK
-                                  </span>
-                                )}
-                                {place.isHalal && (
-                                  <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500 text-slate-950 flex items-center gap-0.5 shadow-xs">
-                                    <span>🕌</span>
-                                    <span>{place.halalStatus || "Halal"}</span>
-                                  </span>
-                                )}
-                              </div>
-                              <span className="text-xs text-zinc-400">
-                                <span className="text-amber-400 font-bold">★ {place.r.toFixed(1)}</span> ({place.c.toLocaleString("fr-FR")} avis) · {place.sub} · <span className="text-amber-200">{"€".repeat(place.pr)}</span>
-                              </span>
-                              {(() => {
-                                const dist = calculateDistanceKm(userLocation.lat, userLocation.lng, place.la, place.lo);
-                                const walkMin = Math.max(1, Math.round(dist / 0.08));
-                                return (
-                                  <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                                    <span className="text-xs font-bold text-amber-300/90">
-                                      {formatDistance(dist)} de toi · {place.z}
-                                    </span>
-                                    <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.2 rounded-full inline-flex items-center gap-1 shadow-xs">
-                                      🚶 ~{walkMin} min à pied
-                                    </span>
-                                  </div>
-                                );
-                              })()}
-                            </div>
-                          </div>
-
-                          <div className="flex items-center gap-1.5 shrink-0">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                try {
-                                  navigator.clipboard.writeText(`${place.n} - ${place.a}`);
-                                } catch {}
-                                showToast(`📍 Adresse de "${place.n}" copiée !`);
-                              }}
-                              className="p-2 rounded-full text-amber-300 bg-amber-400/10 hover:bg-amber-400/25 transition-colors cursor-pointer"
-                              title="Copier l'adresse"
-                            >
-                              <Copy className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                const shareText = `On mange là ? 🍽️ *${place.n}* (★ ${place.r.toFixed(1)})\n📍 ${place.a}\n🗺️ Itinéraire Google Maps : https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.a)}`;
-                                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
-                              }}
-                              className="p-2 rounded-full text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/25 transition-colors cursor-pointer"
-                              title="Inviter des potes sur WhatsApp"
-                            >
-                              <MessageCircle className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setPlaceToStar(place);
-                                setIsStarringListOpen(true);
-                              }}
-                              className="p-2 rounded-full text-amber-400 bg-amber-400/10 hover:bg-amber-400/25 transition-colors cursor-pointer"
-                              title="Ajouter à une Starring List"
-                            >
-                              <Star className="w-4 h-4 fill-amber-400/80" />
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleToggleFavorite(place.id);
-                              }}
-                              className="p-2 rounded-full text-rose-500 bg-rose-500/10 hover:bg-rose-500/20 transition-colors cursor-pointer"
-                              title="Ajouter aux Favoris"
-                            >
-                              <Heart className={`w-4 h-4 ${favorites.includes(place.id) ? "fill-current" : ""}`} />
-                            </button>
-                          </div>
-                        </div>
-
-                        <p className="text-xs text-zinc-300 line-clamp-2 leading-relaxed">
+                      {/* Summary */}
+                      {place.s && (
+                        <p className="text-xs text-zinc-400 line-clamp-1 leading-relaxed">
                           {place.s}
                         </p>
+                      )}
 
-                        {/* Signature Banger */}
-                        <div className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center gap-2 text-xs">
-                          <span className="text-base shrink-0">🔥</span>
-                          <span className="text-amber-300 font-black text-[10px] uppercase shrink-0">Banger :</span>
-                          <span className="text-white font-bold truncate">{getSignatureBanger(place)}</span>
-                        </div>
+                      {/* Action Buttons: Google Maps IS #1 PRIMARY GOLD BUTTON */}
+                      <div className="flex items-center gap-2 pt-1">
+                        <a
+                          href={mapsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex-1 py-3 px-4 rounded-2xl text-xs font-black text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-110 flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 transition-all cursor-pointer text-center"
+                        >
+                          <Navigation className="w-4 h-4 fill-current shrink-0" />
+                          <span>Ouvrir sur Google Maps</span>
+                        </a>
 
-                        {/* Nearest Transit Station */}
-                        {(() => {
-                          const transit = getNearestTransit(place.la, place.lo);
-                          if (!transit) return null;
-                          return (
-                            <div className="text-[11px] text-zinc-400 flex items-center gap-1.5">
-                              <span>{transit.formatted}</span>
-                            </div>
-                          );
-                        })()}
-
-                        <div className="flex items-center gap-2 pt-1">
-                          <button
-                            onClick={() => setSelectedPlace(place)}
-                            className="flex-1 py-2.5 rounded-xl text-xs font-black text-zinc-950 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:brightness-110 text-center shadow-md shadow-amber-500/15 transition-all cursor-pointer"
-                          >
-                            Voir la fiche
-                          </button>
-                          <a
-                            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.n + ", " + place.a)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="flex items-center gap-1 px-3.5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#1A1A24] border border-zinc-800 hover:border-amber-400 transition-all cursor-pointer"
-                          >
-                            <Navigation className="w-3.5 h-3.5 text-amber-400" />
-                            <span>Itinéraire</span>
-                          </a>
-                        </div>
-                      </article>
-                    ))}
-
-                    {/* Rest of the List */}
-                    {currentResults.length > 3 && (
-                      <div className="flex flex-col divide-y divide-zinc-800/80">
-                        {currentResults.slice(3, 3 + resultLimit).map((place) => {
-                          const dist = calculateDistanceKm(userLocation.lat, userLocation.lng, place.la, place.lo);
-                          const walkMin = Math.max(1, Math.round(dist / 0.08));
-                          return (
-                            <div
-                              key={place.id}
-                              onClick={() => setSelectedPlace(place)}
-                              className="py-3 flex items-center justify-between gap-3 cursor-pointer hover:bg-[#14141E] rounded-2xl px-2 transition-colors border border-transparent hover:border-amber-500/20"
-                            >
-                              <div className="flex items-center gap-3 min-w-0">
-                                <div
-                                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border border-amber-500/20"
-                                  style={{ background: artStyle(place) }}
-                                >
-                                  <svg
-                                    className="w-8 h-8"
-                                    viewBox="0 0 100 100"
-                                    dangerouslySetInnerHTML={{ __html: FA_ICONS[foodKey(place)] }}
-                                  />
-                                </div>
-                                <div className="min-w-0">
-                                  <div className="flex items-center gap-1.5 flex-wrap">
-                                    <h4 className="font-black text-sm text-white truncate">
-                                      {place.n}
-                                    </h4>
-                                    {place.isHalal && (
-                                      <span className="px-1.5 py-0.2 rounded-md bg-emerald-500/15 text-emerald-400 font-black text-[10px] flex items-center gap-0.5">
-                                        <span>🕌</span>
-                                        <span>{place.halalStatus || "Halal"}</span>
-                                      </span>
-                                    )}
-                                  </div>
-                                  <span className="text-xs text-zinc-400 block truncate">
-                                    <span className="text-amber-400 font-bold">★ {place.r.toFixed(1)}</span> · {place.sub} · {place.z}
-                                  </span>
-                                  <div className="flex items-center gap-2 mt-0.5">
-                                    <span className="text-[11px] font-bold text-amber-300">
-                                      {formatDistance(dist)} de toi
-                                    </span>
-                                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/15 px-1.5 py-0.2 rounded-md">
-                                      🚶 ~{walkMin} min
-                                    </span>
-                                  </div>
-                                  <span className="text-[11px] text-zinc-300 block truncate mt-0.5">
-                                    🔥 <strong className="text-amber-200 font-medium">{getSignatureBanger(place)}</strong>
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-1.5 shrink-0">
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    const shareText = `On mange là ? 🍽️ *${place.n}* (★ ${place.r.toFixed(1)})\n📍 ${place.a}\n🗺️ Itinéraire Google Maps : https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.a)}`;
-                                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, "_blank");
-                                  }}
-                                  className="p-1.5 rounded-lg text-emerald-400/80 hover:text-emerald-400 hover:bg-emerald-500/15 transition-colors cursor-pointer"
-                                  title="Partager sur WhatsApp"
-                                >
-                                  <MessageCircle className="w-4 h-4" />
-                                </button>
-                                <ChevronRight className="w-4 h-4 text-amber-400/60" />
-                              </div>
-                            </div>
-                          );
-                        })}
-
-                        {currentResults.length > 3 + resultLimit && (
-                          <button
-                            onClick={() => setResultLimit((prev) => prev + 30)}
-                            className="mt-3 py-3 rounded-2xl font-black text-xs bg-[#141420] border border-amber-500/20 text-white hover:border-amber-400 hover:text-amber-300 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-sm"
-                          >
-                            <span>Charger plus d'adresses</span>
-                            <span className="text-[11px] font-bold text-amber-400/80 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
-                              +{(currentResults.length - 3 - resultLimit).toLocaleString("fr-FR")} restantes
-                            </span>
-                          </button>
-                        )}
+                        <button
+                          onClick={() => setSelectedPlace(place)}
+                          className="py-3 px-4 rounded-2xl text-xs font-bold text-zinc-300 bg-[#181824] border border-zinc-800 hover:border-amber-400/50 hover:text-white transition-all cursor-pointer shrink-0"
+                        >
+                          Détails
+                        </button>
                       </div>
-                    )}
-                  </div>
+                    </article>
+                  );
+                })}
+
+                {currentResults.length > resultLimit && (
+                  <button
+                    onClick={() => setResultLimit((prev) => prev + 24)}
+                    className="w-full py-3.5 rounded-2xl bg-[#141420] border border-amber-500/30 text-amber-300 font-bold text-xs hover:border-amber-400 transition-all cursor-pointer my-2"
+                  >
+                    Afficher plus de restaurants (+{currentResults.length - resultLimit} restants)
+                  </button>
                 )}
               </div>
             )}
+          </div>
+        )}
+
+        {/* ================= TAB: CATÉGORIES ================= */}
+        {activeTab === "categories" && (
+          <div className="flex flex-col gap-5">
+            {/* Top: Scrolling Quick Food Strip (Pizza, Sushi, Ramen, Poulet, Burger...) */}
+            <UberEatsStyleCategories
+              selectedCategory={selectedCategoryKey}
+              onSelectCategory={(catKey) => {
+                setSelectedCategoryKey(catKey);
+                setSelectedTaxIndex(-1);
+                setSelectedSubIndex(-1);
+                setActiveTab("feed");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            />
+
+            {/* Bottom: Grandes Catégories (Viandes, Restau, Fast-food, Goûter, etc.) */}
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <h2 className="font-sans font-black text-lg text-white">
+                  Grandes Catégories
+                </h2>
+                <span className="text-xs text-zinc-400 font-semibold">
+                  {allPlaces.length} adresses vérifiées
+                </span>
+              </div>
+
+              {/* If a main category is expanded, show its subcategories cleanly */}
+              {selectedTaxIndex >= 0 && (
+                <div className="p-4 rounded-2xl bg-[#111118] border border-amber-500/40 flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{TAXONOMY[selectedTaxIndex].e}</span>
+                      <span className="font-black text-base text-white">
+                        {TAXONOMY[selectedTaxIndex].k}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setSelectedTaxIndex(-1);
+                        setSelectedSubIndex(-1);
+                      }}
+                      className="text-xs text-zinc-400 hover:text-white font-bold px-2 py-1 cursor-pointer"
+                    >
+                      ✕ Fermer
+                    </button>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => {
+                        setSelectedCategoryKey(null);
+                        setSelectedSubIndex(-1);
+                        setActiveTab("feed");
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                      className="px-3.5 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs cursor-pointer"
+                    >
+                      Tout voir ({allPlaces.filter(TAXONOMY[selectedTaxIndex].m).length})
+                    </button>
+
+                    {TAXONOMY[selectedTaxIndex].subs.map(([label, emoji, filterFn], subIdx) => {
+                      const subCount = allPlaces.filter((p) => TAXONOMY[selectedTaxIndex].m(p) && filterFn(p)).length;
+                      if (subCount === 0) return null;
+                      return (
+                        <button
+                          key={label}
+                          onClick={() => {
+                            setSelectedCategoryKey(null);
+                            setSelectedSubIndex(subIdx);
+                            setActiveTab("feed");
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }}
+                          className="px-3 py-2 rounded-xl bg-[#181824] border border-zinc-800 hover:border-amber-400/60 text-zinc-200 hover:text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all"
+                        >
+                          <span>{emoji}</span>
+                          <span>{label}</span>
+                          <span className="text-zinc-500">({subCount})</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                {TAXONOMY.map((tax, idx) => {
+                  const count = allPlaces.filter(tax.m).length;
+                  const isActive = selectedTaxIndex === idx;
+                  return (
+                    <button
+                      key={tax.k}
+                      onClick={() => {
+                        setSelectedCategoryKey(null);
+                        setSelectedTaxIndex(isActive ? -1 : idx);
+                        setSelectedSubIndex(-1);
+                      }}
+                      className={`p-3.5 rounded-2xl text-left flex flex-col justify-between gap-2 transition-all cursor-pointer border ${
+                        isActive
+                          ? "bg-[#1A1A26] border-amber-400 shadow-md shadow-amber-500/10"
+                          : "bg-[#111118] border-zinc-800/80 hover:border-amber-500/50"
+                      }`}
+                    >
+                      <span className="text-2xl leading-none">{tax.e}</span>
+                      <div>
+                        <span className="font-black text-sm text-white block leading-tight">
+                          {tax.k}
+                        </span>
+                        <span className="text-[11px] text-zinc-400 font-medium">
+                          {count} adresses
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+
+                <button
+                  onClick={handleSurpriseMe}
+                  className="col-span-2 sm:col-span-3 p-3.5 rounded-2xl bg-amber-400 text-slate-950 font-black text-left flex items-center justify-between cursor-pointer hover:brightness-105 transition-all"
+                >
+                  <div>
+                    <span className="text-sm font-black block">🎲 Surprends-moi !</span>
+                    <span className="text-xs font-semibold text-slate-900/80">
+                      Choisis une bonne adresse au hasard
+                    </span>
+                  </div>
+                  <span className="text-2xl">🎲</span>
+                </button>
+              </div>
+            </div>
           </div>
         )}
 
@@ -1978,53 +1187,25 @@ export default function App() {
           />
         )}
 
-        {/* ================= TAB 4: FAVORIS & LISTES ================= */}
+        {/* ================= TAB 4: FAVORIS ================= */}
         {activeTab === "favs" && (
-          <div className="px-4 py-4 flex flex-col gap-4">
-            <div className="flex items-center justify-between flex-wrap gap-2">
+          <div className="py-2 flex flex-col gap-4">
+            <div className="flex items-center justify-between gap-2">
               <div>
-                <h2 className="font-sans font-black text-2xl text-white">
-                  Mes Favoris & Listes ⭐
+                <h2 className="font-sans font-black text-xl text-white">
+                  Favoris ({favorites.length})
                 </h2>
-                <p className="text-xs text-amber-200/70">
-                  Synchronisés en temps réel sur ton compte et partageables en 1-clic.
+                <p className="text-xs text-zinc-400">
+                  Vos adresses sauvegardées
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setIsStarringListOpen(true)}
-                  className="px-3 py-1.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 shadow-md shadow-amber-500/25 hover:brightness-110 transition-all cursor-pointer flex items-center gap-1.5"
-                >
-                  <span>⭐</span>
-                  <span>Starring Lists ({customLists.length})</span>
-                </button>
-                <span className="text-xs font-black text-[#10B981] bg-[#10B981]/15 px-3 py-1.5 rounded-full border border-emerald-500/30">
-                  {favorites.length} favori{favorites.length > 1 ? "s" : ""}
-                </span>
-              </div>
-            </div>
-
-            {/* Quick Banner for Starring Lists */}
-            <div
-              onClick={() => setIsStarringListOpen(true)}
-              className="p-3.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-[#141420] to-[#141420] border border-amber-500/30 hover:border-amber-400 transition-all flex items-center justify-between gap-3 cursor-pointer group shadow-md"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold text-lg shrink-0 border border-amber-400/30">
-                  ⭐
-                </div>
-                <div className="min-w-0">
-                  <h4 className="font-black text-sm text-white group-hover:text-amber-300 transition-colors truncate">
-                    Mes Starring Lists ({customLists.length} listes actives)
-                  </h4>
-                  <p className="text-xs text-zinc-400 truncate">
-                    Gérez vos sélections thématiques, marquez les restos testés et partagez sur WhatsApp
-                  </p>
-                </div>
-              </div>
-              <span className="text-xs font-black text-amber-400 group-hover:translate-x-0.5 transition-transform shrink-0">
-                Ouvrir →
-              </span>
+              <button
+                onClick={() => setIsStarringListOpen(true)}
+                className="px-3.5 py-2 rounded-xl text-xs font-black bg-[#141420] border border-amber-500/30 text-amber-300 hover:border-amber-400 transition-all cursor-pointer flex items-center gap-1.5"
+              >
+                <span>⭐</span>
+                <span>Mes Listes ({customLists.length})</span>
+              </button>
             </div>
 
             {favorites.length === 0 ? (
@@ -2092,115 +1273,74 @@ export default function App() {
         )}
       </main>
 
-      {/* Floating Mobile Switcher: Map <-> List */}
-      <div className="fixed bottom-20 right-4 z-40 sm:hidden">
-        {activeTab === "feed" ? (
-          <button
-            onClick={() => setActiveTab("map")}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-black text-xs shadow-xl shadow-amber-500/30 border border-amber-300 active:scale-95 transition-transform cursor-pointer"
-          >
-            <Compass className="w-4 h-4 text-slate-950 fill-current" />
-            <span>Carte GPS (2 050+)</span>
-          </button>
-        ) : activeTab === "map" ? (
-          <button
-            onClick={() => setActiveTab("feed")}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#12121A] text-amber-300 font-black text-xs shadow-xl border border-amber-500/40 active:scale-95 transition-transform cursor-pointer"
-          >
-            <span>📋 Voir Liste</span>
-          </button>
-        ) : null}
-      </div>
-
-      {/* Persistent Bottom Tab Bar (Black & Gold Luxury Dock with Direct Shortcuts) */}
-      <nav className="fixed bottom-4 left-2.5 right-2.5 sm:left-4 sm:right-4 max-w-lg mx-auto z-40 bg-[#0A0A0F]/95 backdrop-blur-2xl border border-amber-500/30 rounded-2xl p-1.5 shadow-[0_0_35px_rgba(245,158,11,0.22)] flex items-center justify-between transition-all">
-        {/* 1. Accueil (Catégories) */}
+      {/* Persistent Bottom Tab Bar (5 Clean Tabs: Accueil, Catégories, Carte, Outils, Favoris) */}
+      <nav className="fixed bottom-4 left-3 right-3 sm:left-4 sm:right-4 max-w-lg mx-auto z-40 bg-[#0A0A0F]/95 backdrop-blur-2xl border border-amber-500/30 rounded-2xl p-1.5 shadow-[0_0_30px_rgba(0,0,0,0.8)] flex items-center justify-between gap-1">
+        {/* 1. Accueil */}
         <button
           onClick={() => {
-            if (activeTab === "feed" && feedStep === "home") {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            } else {
-              setActiveTab("feed");
-              setFeedStep("home");
-              handleClearAI();
-            }
+            setActiveTab("feed");
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className={`flex-1 py-1.5 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
+          className={`flex-1 py-2 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
             activeTab === "feed"
-              ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25"
-              : "text-amber-200/60 hover:text-white"
+              ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/25"
+              : "text-zinc-400 hover:text-white"
           }`}
-          title="Accueil & Catégories L'Appli Gourmande (Tape pour remonter en haut)"
         >
-          <span className="text-base leading-none">🧭</span>
+          <span className="text-base leading-none">🏠</span>
           <span className="text-[10px] sm:text-[11px] font-black truncate">Accueil</span>
         </button>
 
-        {/* 2. Fast-Food & Drops */}
+        {/* 2. Catégories */}
         <button
-          onClick={() => setActiveTab("fastfood")}
-          className={`flex-1 py-1.5 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
-            activeTab === "fastfood"
-              ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25"
-              : "text-amber-200/60 hover:text-white"
+          onClick={() => {
+            setActiveTab("categories");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className={`flex-1 py-2 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
+            activeTab === "categories"
+              ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/25"
+              : "text-zinc-400 hover:text-white"
           }`}
-          title="Le QG Fast-Food, Grands connus & Drops"
         >
-          <span className="text-base leading-none">🍔</span>
-          <span className="text-[10px] sm:text-[11px] font-black truncate">Fast-Food</span>
+          <span className="text-base leading-none">🍽️</span>
+          <span className="text-[10px] sm:text-[11px] font-black truncate">Catégories</span>
         </button>
 
-        {/* 3. Boxs ≤ 10€ */}
-        <button
-          onClick={() => setActiveTab("deals")}
-          className={`flex-1 py-1.5 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
-            activeTab === "deals"
-              ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25"
-              : "text-amber-200/60 hover:text-white"
-          }`}
-          title="Menus & Boxs virales ≤ 10 €"
-        >
-          <span className="text-base leading-none">📦</span>
-          <span className="text-[10px] sm:text-[11px] font-black truncate">Boxs ≤10€</span>
-        </button>
-
-        {/* 4. Carte GPS */}
+        {/* 3. Carte GPS */}
         <button
           onClick={() => setActiveTab("map")}
-          className={`flex-1 py-1.5 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
+          className={`flex-1 py-2 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
             activeTab === "map"
-              ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25"
-              : "text-amber-200/60 hover:text-white"
+              ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/25"
+              : "text-zinc-400 hover:text-white"
           }`}
-          title="Carte interactive GPS de Paris & IDF"
         >
           <span className="text-base leading-none">🗺️</span>
           <span className="text-[10px] sm:text-[11px] font-black truncate">Carte</span>
         </button>
 
-        {/* 5. Tous les Outils (Accès direct en 1 clic) */}
+        {/* 4. Outils */}
         <button
           onClick={() => setIsToolsMenuOpen(true)}
-          className={`flex-1 py-1.5 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
+          className={`flex-1 py-2 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
             isToolsMenuOpen
-              ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25"
+              ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/25"
               : "text-amber-300 hover:text-white"
           }`}
-          title="Ouvrir la boîte à outils (Jackpot, Roulette, Split note, etc.)"
         >
           <span className="text-base leading-none">⚡</span>
-          <span className="text-[10px] sm:text-[11px] font-black truncate">Outils (8+)</span>
+          <span className="text-[10px] sm:text-[11px] font-black truncate">Outils</span>
         </button>
 
-        {/* 6. Favoris */}
+        {/* 5. Favoris */}
         <button
           onClick={() => setActiveTab("favs")}
-          className={`flex-1 py-1.5 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
+          className={`flex-1 py-2 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
             activeTab === "favs"
-              ? "bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 text-slate-950 font-black shadow-md shadow-amber-500/25"
-              : "text-amber-200/60 hover:text-white"
+              ? "bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-500/25"
+              : "text-zinc-400 hover:text-white"
           }`}
-          title="Mes Favoris & Starring Lists"
         >
           <span className="text-base leading-none">❤️</span>
           <span className="text-[10px] sm:text-[11px] font-black truncate">Favoris</span>

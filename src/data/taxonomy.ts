@@ -209,10 +209,10 @@ export const TAXONOMY: TaxCategory[] = [
     k: "Tard le soir",
     e: "🌙",
     c: ["#5c6bc0", "#1a237e"],
-    m: (p) => /(–|jusqu’à)\s*[1-5]h/i.test(p.h) || /–\s*0h/i.test(p.h),
+    m: (p) => /(–|jusqu’à)\s*[1-5]h/i.test(p.h || "") || /–\s*0h/i.test(p.h || ""),
     subs: [
-      ["Après minuit", "🌃", (p) => /(–|jusqu’à)\s*[1-5]h/i.test(p.h)],
-      ["Jusqu’à minuit", "🌙", (p) => /–\s*0h/i.test(p.h)],
+      ["Après minuit", "🌃", (p) => /(–|jusqu’à)\s*[1-5]h/i.test(p.h || "")],
+      ["Jusqu’à minuit", "🌙", (p) => /–\s*0h/i.test(p.h || "")],
     ],
   },
   {

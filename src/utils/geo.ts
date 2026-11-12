@@ -23,7 +23,8 @@ export function formatDistance(distanceKm: number): string {
 }
 
 // Check if a place is open based on place object or hours string
-export function isCurrentlyOpen(placeOrHours: RestaurantPlace | string, date: Date = new Date()): boolean {
+export function isCurrentlyOpen(placeOrHours?: RestaurantPlace | string | null, date: Date = new Date()): boolean {
+  if (!placeOrHours) return true;
   const hoursStr = typeof placeOrHours === "string" ? placeOrHours : (placeOrHours?.hours || "");
   const lower = hoursStr.toLowerCase();
   if (lower.includes("24h/24") || lower.includes("tous les jours 6h–2h") || lower.includes("tous les jours 8h–5h")) {

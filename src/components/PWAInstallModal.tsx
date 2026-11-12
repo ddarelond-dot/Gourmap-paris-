@@ -126,7 +126,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({ isOpen, onClos
             <WifiOff className="w-4 h-4 text-emerald-400 mb-1.5" />
             <div className="text-xs font-bold text-zinc-100">100% Hors-Ligne</div>
             <div className="text-[11px] text-zinc-400">
-              Les 2 050 pépites marchent dans le métro
+              Toutes les adresses vérifiées disponibles même dans le métro
             </div>
           </div>
         </div>
